@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", // Set the target JavaScript version
+    "module": "NodeNext", // Use ES modules
+    "moduleResolution": "NodeNext", // Use Node.js module resolution
+    "strict": true, // Enable all strict type-checking options
+    "esModuleInterop": true, // Enable ES module interoperability
+    "skipLibCheck": true, // Skip type-checking of declaration files
+    "forceConsistentCasingInFileNames": true, // Ensure consistent casing in file names
+    "outDir": "./dist", // Output directory for compiled files
+    "rootDir": "./src", // Source directory
+    "baseUrl": ".", // Base directory for module resolution
+    "paths": {
+      "@/*": ["src/*"] // Alias for imports
+    }
+  },
+  "include": ["src/**/*"], // Include all files in the src directory
+  "exclude": ["node_modules", "dist"] // Exclude node_modules and dist
+}
