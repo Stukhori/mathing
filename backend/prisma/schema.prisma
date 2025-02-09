@@ -22,14 +22,6 @@ model User {
   submissions     TaskSubmission[] // Relation to TaskSubmission
 }
 
-model Lesson {
-  id              Int      @id @default(autoincrement())
-  title           String
-  theory          String
-  problems        String
-  createdAt       DateTime @default(now())
-}
-
 model DailyTask {
   id              Int      @id @default(autoincrement())
   title           String
@@ -48,4 +40,34 @@ model TaskSubmission {
   submittedAt     DateTime @default(now())
   user            User     @relation(fields: [userId], references: [id])
   task            DailyTask @relation(fields: [taskId], references: [id])
+}
+
+model Lesson {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  theory      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  problems    Problem[] // A lesson can have many problems
+}
+
+model Problem {
+  id          Int      @id @default(autoincrement())
+  lessonId    Int
+  equation    String
+  solution    Solution? // A problem has one solution
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  lesson      Lesson   @relation(fields: [lessonId], references: [id])
+}
+
+model Solution {
+  id          Int      @id @default(autoincrement())
+  problemId   Int @unique
+  discriminant Float
+  roots       String[] // Store roots as an array of strings
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  problem     Problem  @relation(fields: [problemId], references: [id])
 }
