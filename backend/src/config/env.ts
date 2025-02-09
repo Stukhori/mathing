@@ -3,9 +3,9 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const { DATABASE_URL, PORT, SECRET_KEY, OPENAI_API_KEY } = process.env;
+const { DATABASE_URL, PORT, SECRET_KEY, OPENAI_API } = process.env;
 
-if (!DATABASE_URL || !SECRET_KEY || !OPENAI_API_KEY) {
+if (!DATABASE_URL || !SECRET_KEY || !OPENAI_API) {
   throw new Error('Missing required environment variables');
 }
 
@@ -13,5 +13,5 @@ export default {
   DATABASE_URL,
   PORT: PORT ? parseInt(PORT, 10) : 3000, // Ensure PORT is a number
   SECRET_KEY,
-  OPENAI_API_KEY,
+  OPENAI_API,
 };
