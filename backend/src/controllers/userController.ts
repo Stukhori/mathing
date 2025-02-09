@@ -1,20 +1,32 @@
 import { Request, Response } from 'express';
 import { signupUser, loginUser, getUserProfile } from '../services/userService';
 
-export const signup = async (req: Request, res: Response) => {
-  const { name, email, password } = req.body;
-  const user = await signupUser(name, email, password);
-  res.json({ user });
+export const signup = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { name, email, password } = req.body;
+    const user = await signupUser(name, email, password);
+    res.status(201).json({ user });
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message });
+  }
 };
 
-export const login = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
-  const token = await loginUser(email, password);
-  res.json({ token });
+export const login = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { email, password } = req.body;
+    const { token, user } = await loginUser(email, password);
+    res.status(200).json({ token, user });
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message });
+  }
 };
 
-export const getProfile = async (req: Request, res: Response) => {
-  const { userId } = req.params;
-  const profile = await getUserProfile(parseInt(userId));
-  res.json({ profile });
+export const getProfile = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const userId = parseInt(req.params.userId, 10);
+    const user = await getUserProfile(userId);
+    res.status(200).json({ user });
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message });
+  }
 };

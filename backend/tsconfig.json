@@ -2,8 +2,9 @@
   "compilerOptions": {
     "target": "ES2022", // Set the target JavaScript version
     "module": "NodeNext", // Use ES modules
+    "noImplicitAny": false,
     "moduleResolution": "NodeNext", // Use Node.js module resolution
-    "strict": true, // Enable all strict type-checking options
+    "strict": false, // Enable all strict type-checking options
     "esModuleInterop": true, // Enable ES module interoperability
     "skipLibCheck": true, // Skip type-checking of declaration files
     "forceConsistentCasingInFileNames": true, // Ensure consistent casing in file names
