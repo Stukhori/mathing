@@ -16,7 +16,7 @@ model User {
   email           String   @unique
   passwordHash    String
   streak          Int      @default(0)
-  lastActiveDate  DateTime
+  lastActiveDate  DateTime?
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   submissions     TaskSubmission[] // Relation to TaskSubmission
