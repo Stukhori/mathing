@@ -12,8 +12,6 @@ const client = new OpenAI({
   project: 'proj_t6RrmQQH11jzDTn65wuSeoA2',
 });
 
-console.log(OPENAI_API);
-
 /**
  * Get a lesson by ID
  */
