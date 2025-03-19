@@ -18,7 +18,7 @@ const IPhone1314 = () => {
           					<Text style={styles.iAlreadyHave}>I already have an account</Text>
         				</View>
       			</View>
-      			<Text style={[styles.diveIntoThe, styles.mathingFlexBox]}>Dive into the world of math with ease and fun!</Text>
+      			<Text style={[styles.diveIntoThe, styles.mathingFlexBox]}>Ferrrannnnnnnnnn</Text>
       			<Text style={[styles.mathing, styles.mathingFlexBox]}>Mathing</Text>
     		</ImageBackground>);
 };
