@@ -4,7 +4,7 @@ import {StyleSheet, View, Text, ImageBackground} from "react-native";
 const IPhone1314 = () => {
   	
   	return (
-    		<ImageBackground style={styles.iphone131429} resizeMode="cover" source={`iPhone 13 & 14 - 29.png`}>
+    		<ImageBackground style={styles.iphone131429} resizeMode="cover" source={`./src/img/bg1.jpg`}>
       			<View style={[styles.frame, styles.frameLayout]} />
       			<View style={[styles.frame1, styles.framePosition]}>
         				<View style={[styles.frame2, styles.frameShadowBox]} />
