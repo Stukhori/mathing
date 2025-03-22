@@ -34,3 +34,10 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# Ignore fonts cache and installed dependencies
+.expo/
+.expo-shared/
+node_modules/
+*.log
+*.lock
