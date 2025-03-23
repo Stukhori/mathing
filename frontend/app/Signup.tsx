@@ -1,29 +1,36 @@
 import * as React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, Image } from "react-native";
+import Icon from "./assets/icon.svg";
 
 const IPhone1314 = () => {
   return (
-    <View style={styles.iphone13143}>
-      <View style={styles.iphone16Pro37}>
+    <View style={[styles.iphone13143, styles.iphone13143ShadowBox]}>
+      <View style={[styles.iphone16Pro37, styles.frame3Position]}>
         <View style={styles.frame}>
           <Text style={[styles.alreadyHaveAn, styles.alreadyText]}>
             ALREADY HAVE AN ACCOUNT? LOG IN
           </Text>
         </View>
-        <View style={styles.frame1}>
-          <View style={[styles.frame2, styles.frameLayout2]} />
-          <View style={[styles.frame3, styles.frameLayout2]}>
+        <View style={[styles.frame1, styles.frameLayout1]}>
+          <View style={styles.frame2} />
+          <View style={[styles.frame3, styles.frameLayout1]}>
             <Text style={[styles.createAccount, styles.createAccountText1]}>
               create account
             </Text>
           </View>
         </View>
         <View style={styles.frame4}>
-          <Text style={styles.firstName}>First Name</Text>
-          <Text style={styles.firstName}>First Name</Text>
-          <Text style={styles.firstName}>First Name</Text>
+          <Text style={[styles.firstName, styles.firstNamePosition]}>
+            First Name
+          </Text>
+          <Text style={[styles.firstName, styles.firstNamePosition]}>
+            First Name
+          </Text>
+          <Text style={[styles.firstName, styles.firstNamePosition]}>
+            First Name
+          </Text>
           <View style={[styles.frame5, styles.frameLayout1]}>
-            <View style={styles.frameBorder} />
+            <View style={styles.frameBorder1} />
             <View style={[styles.frame7, styles.frameLayout]}>
               <Text style={[styles.startLearning, styles.createAccountText1]}>
                 Start Learning
@@ -35,58 +42,6 @@ const IPhone1314 = () => {
         <Text style={[styles.creationOfProfile, styles.mathingFlexBox]}>
           Creation of profile
         </Text>
-        <View style={styles.frame9}>
-          <Text style={[styles.emailAddress, styles.phoneNumberTypo]}>
-            email address
-          </Text>
-          <View style={[styles.frame10, styles.frameLayout1]}>
-            <View style={styles.frameBorder} />
-            <View style={[styles.frame7, styles.frameLayout]}>
-              <Text style={[styles.startLearning, styles.createAccountText1]}>
-                Start Learning
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={[styles.frame13, styles.frameShadowBox]}>
-          <Text style={[styles.phoneNumber, styles.phoneNumberTypo]}>
-            phone number
-          </Text>
-          <View style={[styles.frame5, styles.frameLayout1]}>
-            <View style={styles.frameBorder} />
-            <View style={[styles.frame7, styles.frameLayout]}>
-              <Text style={[styles.startLearning, styles.createAccountText1]}>
-                Start Learning
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={[styles.frame17, styles.frameShadowBox]}>
-          <Text style={[styles.phoneNumber, styles.phoneNumberTypo]}>
-            username
-          </Text>
-          <View style={[styles.frame5, styles.frameLayout1]}>
-            <View style={styles.frameBorder} />
-            <View style={[styles.frame7, styles.frameLayout]}>
-              <Text style={[styles.startLearning, styles.createAccountText1]}>
-                Start Learning
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={[styles.frame21, styles.frameShadowBox]}>
-          <Text style={[styles.phoneNumber, styles.phoneNumberTypo]}>
-            password
-          </Text>
-          <View style={[styles.frame5, styles.frameLayout1]}>
-            <View style={styles.frameBorder} />
-            <View style={[styles.frame7, styles.frameLayout]}>
-              <Text style={[styles.startLearning, styles.createAccountText1]}>
-                Start Learning
-              </Text>
-            </View>
-          </View>
-        </View>
         <Text style={[styles.alreadyHaveAnContainer, styles.alreadyText]}>
           <Text
             style={styles.alreadyHaveAn1}
@@ -97,12 +52,80 @@ const IPhone1314 = () => {
           By continuing, you agree to our terms of service and privacy policy
         </Text>
         <Text style={[styles.mathing, styles.mathingFlexBox]}>Mathing</Text>
+        <View style={styles.frame9}>
+          <Text style={[styles.emailAddress, styles.firstNamePosition]}>
+            email address
+          </Text>
+          <View style={[styles.frame5, styles.frameLayout1]}>
+            <View style={styles.frameBorder1} />
+            <View style={[styles.frame7, styles.frameLayout]}>
+              <Text style={[styles.startLearning, styles.createAccountText1]}>
+                Start Learning
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View style={[styles.frame13, styles.frameBorder]}>
+          <Text style={[styles.emailAddress, styles.firstNamePosition]}>
+            phone number
+          </Text>
+          <View style={[styles.frame5, styles.frameLayout1]}>
+            <View style={styles.frameBorder1} />
+            <View style={[styles.frame7, styles.frameLayout]}>
+              <Text style={[styles.startLearning, styles.createAccountText1]}>
+                Start Learning
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View style={[styles.frame17, styles.frameBorder]}>
+          <Text style={[styles.emailAddress, styles.firstNamePosition]}>
+            username
+          </Text>
+          <View style={[styles.frame5, styles.frameLayout1]}>
+            <View style={styles.frameBorder1} />
+            <View style={[styles.frame7, styles.frameLayout]}>
+              <Text style={[styles.startLearning, styles.createAccountText1]}>
+                Start Learning
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View style={[styles.frame21, styles.frameBorder]}>
+          <Text style={[styles.emailAddress, styles.firstNamePosition]}>
+            password
+          </Text>
+          <View style={[styles.frame5, styles.frameLayout1]}>
+            <View style={styles.frameBorder1} />
+            <View style={[styles.frame7, styles.frameLayout]}>
+              <Text style={[styles.startLearning, styles.createAccountText1]}>
+                Start Learning
+              </Text>
+            </View>
+          </View>
+          <Icon style={styles.icon} />
+        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  iphone13143ShadowBox: {
+    height: 844,
+    shadowOpacity: 1,
+    elevation: 4,
+    shadowRadius: 4,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowColor: "rgba(0, 0, 0, 0.25)",
+  },
+  frame3Position: {
+    top: 0,
+    overflow: "hidden",
+  },
   alreadyText: {
     textAlign: "left",
     textTransform: "uppercase",
@@ -110,12 +133,9 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     position: "absolute",
   },
-  frameLayout2: {
-    height: 48,
+  frameLayout1: {
     width: 330,
-    top: 0,
     position: "absolute",
-    overflow: "hidden",
   },
   createAccountText1: {
     color: "#f8f9fa",
@@ -125,11 +145,14 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     position: "absolute",
   },
-  frameLayout1: {
-    height: 50,
-    width: 330,
-    borderRadius: 12,
-    left: 0,
+  firstNamePosition: {
+    left: 15,
+    top: 15,
+    textAlign: "left",
+    textTransform: "uppercase",
+    lineHeight: 18,
+    letterSpacing: 1,
+    fontSize: 15,
     position: "absolute",
   },
   frameLayout: {
@@ -145,21 +168,12 @@ const styles = StyleSheet.create({
     left: "50%",
     position: "absolute",
   },
-  phoneNumberTypo: {
-    color: "#5e5555",
-    top: 15,
-    fontFamily: "DoHyeon-Regular",
-    textAlign: "left",
-    textTransform: "uppercase",
-    lineHeight: 18,
-    letterSpacing: 1,
-    fontSize: 15,
-    position: "absolute",
-  },
-  frameShadowBox: {
-    left: 37,
+  frameBorder: {
+    borderColor: "#a377da",
+    left: 30,
+    borderWidth: 1,
     backgroundColor: "#fff",
-    height: 48,
+    borderStyle: "solid",
     elevation: 0,
     shadowRadius: 0,
     shadowColor: "#e5e5e5",
@@ -188,14 +202,18 @@ const styles = StyleSheet.create({
   frame2: {
     backgroundColor: "#6637a1",
     borderColor: "#6337a1",
+    height: 48,
     borderWidth: 2,
     borderStyle: "solid",
     elevation: 0,
     shadowRadius: 0,
     shadowColor: "#e5e5e5",
-    height: 48,
+    width: 330,
     borderRadius: 12,
     left: 0,
+    top: 0,
+    position: "absolute",
+    overflow: "hidden",
     shadowOpacity: 1,
   },
   createAccount: {
@@ -207,33 +225,26 @@ const styles = StyleSheet.create({
     left: "50%",
   },
   frame3: {
-    left: "50%",
     height: 48,
+    left: "50%",
     marginLeft: -165,
+    top: 0,
+    overflow: "hidden",
   },
   frame1: {
     top: 606,
     height: 61,
-    width: 330,
     borderRadius: 12,
+    width: 330,
     left: "50%",
     marginLeft: -165,
-    position: "absolute",
   },
   firstName: {
     color: "rgba(124, 129, 135, 0.49)",
-    left: 15,
-    top: 15,
-    textAlign: "left",
     fontFamily: "Roboto-Bold",
     fontWeight: "700",
-    textTransform: "uppercase",
-    lineHeight: 18,
-    letterSpacing: 1,
-    fontSize: 15,
-    position: "absolute",
   },
-  frameBorder: {
+  frameBorder1: {
     backgroundColor: "#007bff",
     borderColor: "#0726af",
     height: 48,
@@ -264,6 +275,10 @@ const styles = StyleSheet.create({
   },
   frame5: {
     top: -82,
+    height: 50,
+    borderRadius: 12,
+    width: 330,
+    left: 0,
   },
   frame4: {
     top: -198,
@@ -302,39 +317,6 @@ const styles = StyleSheet.create({
     display: "flex",
     textAlign: "center",
   },
-  emailAddress: {
-    left: 14,
-  },
-  frame10: {
-    top: -88,
-  },
-  frame9: {
-    marginLeft: -164,
-    top: 310,
-    width: 329,
-    backgroundColor: "#fff",
-    height: 48,
-    elevation: 0,
-    shadowRadius: 0,
-    shadowColor: "#e5e5e5",
-    borderRadius: 12,
-    left: "50%",
-    position: "absolute",
-    overflow: "hidden",
-    shadowOpacity: 1,
-  },
-  phoneNumber: {
-    left: 15,
-  },
-  frame13: {
-    top: 370,
-  },
-  frame17: {
-    top: 432,
-  },
-  frame21: {
-    top: 498,
-  },
   alreadyHaveAn1: {
     color: "#000",
   },
@@ -357,9 +339,6 @@ const styles = StyleSheet.create({
     height: 49,
     color: "#000",
     fontSize: 15,
-    alignItems: "center",
-    display: "flex",
-    textAlign: "center",
   },
   mathing: {
     marginTop: -259,
@@ -372,13 +351,57 @@ const styles = StyleSheet.create({
     fontFamily: "DoHyeon-Regular",
     top: "50%",
   },
+  emailAddress: {
+    color: "#5e5555",
+    fontFamily: "DoHyeon-Regular",
+  },
+  frame9: {
+    top: 285,
+    borderColor: "#ae88de",
+    borderWidth: 1,
+    backgroundColor: "#fff",
+    height: 48,
+    borderStyle: "solid",
+    elevation: 0,
+    shadowRadius: 0,
+    shadowColor: "#e5e5e5",
+    width: 330,
+    borderRadius: 12,
+    left: "50%",
+    marginLeft: -165,
+    position: "absolute",
+    overflow: "hidden",
+    shadowOpacity: 1,
+  },
+  frame13: {
+    top: 351,
+    height: 44,
+  },
+  frame17: {
+    top: 413,
+    height: 48,
+  },
+  icon: {
+    height: "38.13%",
+    width: "6.7%",
+    top: "31.25%",
+    right: "7.36%",
+    bottom: "30.63%",
+    left: "85.95%",
+    maxWidth: "100%",
+    maxHeight: "100%",
+    position: "absolute",
+    overflow: "hidden",
+  },
+  frame21: {
+    top: 479,
+    height: 48,
+  },
   iphone16Pro37: {
     backgroundColor: "#fdfcff",
     width: 390,
     left: 0,
-    top: 0,
     position: "absolute",
-    overflow: "hidden",
     height: 844,
     shadowOpacity: 1,
     elevation: 4,
@@ -394,15 +417,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     overflow: "hidden",
-    height: 844,
-    shadowOpacity: 1,
-    elevation: 4,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowColor: "rgba(0, 0, 0, 0.25)",
   },
 });
 

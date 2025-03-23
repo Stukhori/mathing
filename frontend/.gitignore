@@ -1,43 +1,61 @@
 # Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
 
-# dependencies
+# Node dependencies
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
 
-# Expo
-.expo/
-dist/
-web-build/
-expo-env.d.ts
-
-# Native
-*.orig.*
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
-
-# Metro
-.metro-health-check*
-
-# debug
-npm-debug.*
-yarn-debug.*
-yarn-error.*
-
-# macOS
-.DS_Store
-*.pem
-
-# local env files
-.env*.local
-
-# typescript
-*.tsbuildinfo
-
-# Ignore fonts cache and installed dependencies
+# Expo cache & build folders
 .expo/
 .expo-shared/
-node_modules/
+web-build/
+dist/
+
+# Metro bundler files
+.cache/
+babel.config.js.cache/
+
+# iOS & Android build folders (only needed if using EAS or bare workflow)
+android/
+ios/
+*.xcworkspace
+Pods/
+*.xcodeproj/
+*.xcworkspace/
+*.xcconfig
+
+# Environment files (Sensitive data)
+.env*
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Logs & Debug files
+debug.log
 *.log
-*.lock
+
+# Mac System Files
+.DS_Store
+
+# Editor & OS generated files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+*.tmp
+*.temp
+
+# Git merge conflict files
+*.orig
+
+# Ignore Expo Development Builds (if using Expo Dev Clients)
+build/
+
