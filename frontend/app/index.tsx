@@ -6,6 +6,7 @@ import {
   Text,
   ImageBackground,
   TouchableOpacity,
+  Pressable,
 } from "react-native";
 
 const IPhone1314 = () => {
@@ -18,9 +19,9 @@ const IPhone1314 = () => {
       source={require("./src/img/bg1.jpg")}
     >
       {/* Sign Up Button */}
-      <TouchableOpacity
+      <Pressable
         style={[styles.frame, styles.frameLayout]}
-        onPress={() => router.push("/Signup")}
+        onPress={() => router.push("/signup")}
       >
         <View style={[styles.frame1, styles.framePosition]}>
           <View style={[styles.frame2, styles.frameShadowBox]} />
@@ -28,18 +29,18 @@ const IPhone1314 = () => {
             <Text style={styles.getStarted}>Get Started</Text>
           </View>
         </View>
-      </TouchableOpacity>
+      </Pressable>
 
       {/* Sign In Button */}
-      <TouchableOpacity
+      <Pressable
         style={[styles.frame4, styles.framePosition]}
-        onPress={() => router.push("/Signin")}
+        onPress={() => router.push("/signin")}
       >
         <View style={[styles.frame5, styles.frameShadowBox]} />
         <View style={styles.frame6}>
           <Text style={styles.iAlreadyHave}>I already have an account</Text>
         </View>
-      </TouchableOpacity>
+      </Pressable>
 
       {/* Centered container for "Mathing" and description */}
       <View style={styles.textContainer}>
