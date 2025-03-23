@@ -4,7 +4,7 @@ import Eyeoff from "../assets/eye-off.svg";
 import Xmlid34 from "../assets/xmlid-34.svg";
 import Image32lww from "../assets/image--32lww.svg";
 
-const IPhone1314 = () => {
+const signin = () => {
   return (
     <View style={[styles.iphone13145, styles.iphone13145ShadowBox]}>
       <View style={[styles.iphone16Pro38, styles.iphone13145ShadowBox]}>
@@ -494,4 +494,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IPhone1314;
+export default signin;

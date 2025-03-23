@@ -10,12 +10,12 @@ import {
 
 const IPhone1314 = () => {
   const router = useRouter();
-
+  
   return (
     <ImageBackground
       style={styles.iphone131429}
       resizeMode="cover"
-      source={require("../src/img/bg1.jpg")}
+      source={require("./src/img/bg1.jpg")}
     >
       {/* Centered Text Content */}
       <View style={styles.textContainer}>
@@ -133,4 +133,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IPhone1314;
+export default IPhone1314;
