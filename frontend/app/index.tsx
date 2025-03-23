@@ -15,7 +15,7 @@ const IPhone1314 = () => {
     <ImageBackground
       style={styles.iphone131429}
       resizeMode="cover"
-      source={require(`../src/img/bg1.jpg`)}
+      source={require("./src/img/bg1.jpg")}
     >
       {/* Sign Up Button */}
       <TouchableOpacity
@@ -40,6 +40,14 @@ const IPhone1314 = () => {
           <Text style={styles.iAlreadyHave}>I already have an account</Text>
         </View>
       </TouchableOpacity>
+
+      {/* Centered container for "Mathing" and description */}
+      <View style={styles.textContainer}>
+        <Text style={styles.mathing}>Mathing</Text>
+        <Text style={styles.diveIntoThe}>
+          Dive into the world of math with ease and fun!
+        </Text>
+      </View>
     </ImageBackground>
   );
 };
