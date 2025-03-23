@@ -6,41 +6,30 @@ import {
   Text,
   ImageBackground,
   TouchableOpacity,
-  Pressable,
 } from "react-native";
 
 const IPhone1314 = () => {
   const router = useRouter();
-
+  
   return (
     <ImageBackground
       style={styles.iphone131429}
       resizeMode="cover"
-      source={require("../src/img/bg1.jpg")}
+      source={require("./src/img/bg1.jpg")}
     >
-      {/* Sign Up Button */}
-      <Pressable
-        style={[styles.frame, styles.frameLayout]}
-        onPress={() => router.push("/signup")}
-      >
-        <View style={[styles.frame1, styles.framePosition]}>
-          <View style={[styles.frame2, styles.frameShadowBox]} />
-          <View style={[styles.frame3, styles.frameLayout]}>
-            <Text style={styles.getStarted}>Get Started</Text>
-          </View>
+      <View style={[styles.frame, styles.frameLayout]} />
+      <View style={[styles.frame1, styles.framePosition]}>
+        <View style={[styles.frame2, styles.frameShadowBox]} />
+        <View style={[styles.frame3, styles.frameLayout]}>
+          <Text style={styles.getStarted}>get started</Text>
         </View>
-      </Pressable>
-
-      {/* Sign In Button */}
-      <Pressable
-        style={[styles.frame4, styles.framePosition]}
-        onPress={() => router.push("/signin")}
-      >
+      </View>
+      <View style={[styles.frame4, styles.framePosition]}>
         <View style={[styles.frame5, styles.frameShadowBox]} />
         <View style={styles.frame6}>
           <Text style={styles.iAlreadyHave}>I already have an account</Text>
         </View>
-      </Pressable>
+      </View>
 
       {/* Centered container for "Mathing" and description */}
       <View style={styles.textContainer}>
@@ -195,4 +184,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IPhone1314;
+export default IPhone1314;

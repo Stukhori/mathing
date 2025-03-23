@@ -2,7 +2,7 @@ import * as React from "react";
 import { Text, StyleSheet, View, Image } from "react-native";
 import Icon from "../assets/Icon.svg";
 
-const IPhone1314 = () => {
+const signup = () => {
   return (
     <View style={[styles.iphone13143, styles.iphone13143ShadowBox]}>
       <View style={[styles.iphone16Pro37, styles.frame3Position]}>
@@ -420,4 +420,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IPhone1314;
+export default signup;
