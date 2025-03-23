@@ -15,7 +15,7 @@ const IPhone1314 = () => {
     <ImageBackground
       style={styles.iphone131429}
       resizeMode="cover"
-      source={require(`./src/img/bg1.jpg`)}
+      source={require(`../src/img/bg1.jpg`)}
     >
       {/* Sign Up Button */}
       <TouchableOpacity

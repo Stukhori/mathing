@@ -24,29 +24,29 @@ const IPhone1314 = () => {
         				<View style={styles.iphone16Pro38Item} />
         				<Text style={[styles.viewAll, styles.viewTypo]}>View all</Text>
         				<Text style={[styles.friends, styles.groupsLayout]}>Friends</Text>
-        				<Image style={[styles.imageIcon, styles.imageIconLayout]} resizeMode="cover" source="image.png" />
-        				<Image style={[styles.imageIcon1, styles.imageIconLayout]} resizeMode="cover" source="image.png" />
+        				<Image style={[styles.imageIcon, styles.imageIconLayout]} resizeMode="cover" source="../assets/fox.png" />
+        				<Image style={[styles.imageIcon1, styles.imageIconLayout]} resizeMode="cover" source="../assets/men.png" />
         				<Text style={styles.ayaulym}>Ayaulym</Text>
         				<Text style={[styles.agzam, styles.agzamTypo]}>Agzam</Text>
         				<Text style={styles.text}>(12)</Text>
-        				<Image style={[styles.imageIcon2, styles.imageIconLayout]} resizeMode="cover" source="image.png" />
+        				<Image style={[styles.imageIcon2, styles.imageIconLayout]} resizeMode="cover" source="../assets/women.png" />
         				<Text style={[styles.daniyal, styles.agzamTypo]}>Daniyal</Text>
         				<Text style={[styles.addNewFriends, styles.agzamTypo]}>{`Add new
           					friends`}</Text>
         				<Ellipse4 style={[styles.iphone16Pro38Inner, styles.imageIconLayout]} width={64} height={64} />
-        				<Image style={[styles.image3Icon, styles.iconLayout3]} resizeMode="cover" source="image 3.png" />
+        				<Image style={[styles.image3Icon, styles.iconLayout3]} resizeMode="cover" source="../assets/addfriends.png" />
         				<Text style={[styles.groups, styles.groupsLayout]}>Groups</Text>
         				<View style={[styles.rectangleView, styles.iphone16ChildBorder]} />
         				<Image3 style={styles.imageIcon3} width={67} height={67} />
         				<Ellipse5 style={[styles.ellipseIcon, styles.iphone16ChildLayout]} width={68} height={68} />
-        				<Image style={[styles.image5Icon, styles.iconLayout2]} resizeMode="cover" source="image 5.png" />
+        				<Image style={[styles.image5Icon, styles.iconLayout2]} resizeMode="cover" source="../assets/house.png" />
         				<Text style={[styles.school, styles.schoolFlexBox]}>School</Text>
         				<Ellipse6 style={[styles.iphone16Pro38Child1, styles.iphone16ChildLayout]} width={68} height={68} />
         				<Ellipse7 style={[styles.iphone16Pro38Child2, styles.iphone16ChildLayout]} width={68} height={68} />
         				<Text style={[styles.coolGuys, styles.schoolFlexBox]}>Cool guys</Text>
-        				<Image style={[styles.image6Icon, styles.iconLayout3]} resizeMode="cover" source="image 6.png" />
+        				<Image style={[styles.image6Icon, styles.iconLayout3]} resizeMode="cover" source="../assets/newfriends.png" />
         				<Text style={[styles.createNewGroup, styles.schoolFlexBox]}>Create new group</Text>
-        				<Image style={[styles.image7Icon, styles.iconLayout2]} resizeMode="cover" source="image 7.png" />
+        				<Image style={[styles.image7Icon, styles.iconLayout2]} resizeMode="cover" source="../assets/group.png" />
         				<Text style={[styles.learnWithFriends1, styles.learnFlexBox]}>Learn with friends</Text>
         				<View style={[styles.iphone16Pro38Child3, styles.iphone16Position]} />
         				<Vuesaxlinearprofile style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} />
@@ -74,7 +74,7 @@ const IPhone1314 = () => {
           					</Text>
         				</Text>
         				<Text style={[styles.text2, styles.textTypo]}>1</Text>
-        				<Image style={styles.iconParkSolidupOne} resizeMode="cover" source="icon-park-solid:up-one.png" />
+        				<Image style={styles.iconParkSolidupOne} resizeMode="cover" source="../assets/arrowdown.svg" />
       			</View>
     		</View>);
 };
