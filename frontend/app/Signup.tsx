@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Text, StyleSheet, View, Image } from "react-native";
-import Icon from "./assets/icon.svg";
+import Icon from "../assets/Icon.svg";
 
 const IPhone1314 = () => {
   return (
