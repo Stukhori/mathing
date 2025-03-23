@@ -1,34 +1,45 @@
 import * as React from "react";
-import { StyleSheet, View, Text, ImageBackground } from "react-native";
+import { useRouter } from "expo-router";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ImageBackground,
+  TouchableOpacity,
+} from "react-native";
 
 const IPhone1314 = () => {
+  const router = useRouter();
+
   return (
     <ImageBackground
       style={styles.iphone131429}
       resizeMode="cover"
       source={require(`./src/img/bg1.jpg`)}
     >
-      <View style={[styles.frame, styles.frameLayout]} />
-      <View style={[styles.frame1, styles.framePosition]}>
-        <View style={[styles.frame2, styles.frameShadowBox]} />
-        <View style={[styles.frame3, styles.frameLayout]}>
-          <Text style={styles.getStarted}>get started</Text>
+      {/* Sign Up Button */}
+      <TouchableOpacity
+        style={[styles.frame, styles.frameLayout]}
+        onPress={() => router.push("/Signup")}
+      >
+        <View style={[styles.frame1, styles.framePosition]}>
+          <View style={[styles.frame2, styles.frameShadowBox]} />
+          <View style={[styles.frame3, styles.frameLayout]}>
+            <Text style={styles.getStarted}>Get Started</Text>
+          </View>
         </View>
-      </View>
-      <View style={[styles.frame4, styles.framePosition]}>
+      </TouchableOpacity>
+
+      {/* Sign In Button */}
+      <TouchableOpacity
+        style={[styles.frame4, styles.framePosition]}
+        onPress={() => router.push("/Signin")}
+      >
         <View style={[styles.frame5, styles.frameShadowBox]} />
         <View style={styles.frame6}>
           <Text style={styles.iAlreadyHave}>I already have an account</Text>
         </View>
-      </View>
-
-      {/* Centered container for "Mathing" and description */}
-      <View style={styles.textContainer}>
-        <Text style={styles.mathing}>Mathing</Text>
-        <Text style={styles.diveIntoThe}>
-          Dive into the world of math with ease and fun!
-        </Text>
-      </View>
+      </TouchableOpacity>
     </ImageBackground>
   );
 };
