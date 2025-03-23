@@ -2,7 +2,7 @@
   "name": "mathing",
   "license": "0BSD",
   "version": "1.0.0",
-  "main": "./app/index.tsx",
+  "main": "expo-router/entry",
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",
@@ -22,6 +22,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.3.12",
+    "@types/webpack-env": "^1.18.8",
     "typescript": "^5.3.3"
   },
   "private": true
