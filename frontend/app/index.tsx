@@ -1,8 +1,3 @@
-import { registerRootComponent } from "expo";
-
-import App from "../App";
-
-
 import * as React from "react";
 import { useRouter } from "expo-router";
 import {
@@ -192,4 +187,3 @@ const styles = StyleSheet.create({
 });
 
 export default IPhone1314;
-registerRootComponent(App);
