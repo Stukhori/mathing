@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 export default function Layout() {
   const [fontsLoaded] = useFonts({
-    'DoHyeon-Regular': require('../assets/fonts/DoHyeon-Regular.ttf')
+    'DoHyeon-Regular': require('../assets/fonts/DoHyeon-Regular.ttf'),
   });
 
   // Keep splash screen visible until fonts are loaded
