@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Text, StyleSheet, View, Image } from "react-native";
-import Rectangle23 from "../assets/rectangle-23.svg";
+import Rectangle23 from "../assets/Rectangle-23.svg";
 import Fluentemojiflatfire from "../assets/fluentemojiflatfire.svg";
-import Rectangle232 from "../assets/rectangle-232.svg";
-import Rectangle234 from "../assets/rectangle-234.svg";
-import Group from "../assets/group.svg";
+import Rectangle232 from "../assets/Rectangle-232.svg";
+import Rectangle234 from "../assets/Rectangle-234.svg";
+import Group from "../assets/brain.svg";
 import Vuesaxlinearprofile from "../assets/profile.svg";
 import Vuesaxlinearsetting2 from "../assets/setting-2.svg";
 import Lisearch from "../assets/lisearch.svg";
@@ -24,7 +24,7 @@ const IPhone1314 = () => {
         <Image
           style={styles.iphone16Pro45Inner}
           resizeMode="cover"
-          source={require("Group 1.png")}
+          source={require("../src/img/Group1.png")}
         />
         <Rectangle23
           style={[styles.rectangleIcon, styles.rectangleIconLayout]}
@@ -33,8 +33,7 @@ const IPhone1314 = () => {
         />
         <Text style={styles.continue}>Continue</Text>
         <Text style={styles.mathIntermediate}>Math Intermediate</Text>
-        <Text style={styles.challengeOfThe}>{`Challenge
-          					of the day`}</Text>
+        <Text style={styles.challengeOfThe}>{`Challenge of the day`}</Text>
         <Text style={styles.text}>59%</Text>
         <View style={[styles.rectangleView, styles.rectangleViewLayout]} />
         <Fluentemojiflatfire
@@ -52,7 +51,7 @@ const IPhone1314 = () => {
           Rewards available
         </Text>
         <Text style={[styles.numericalNinja, styles.mathWizardTypo]}>
-          Numerical Ninja
+          Num Ninja
         </Text>
         <Text style={[styles.mathWizard, styles.mathWizardTypo]}>
           Math Wizard
@@ -104,8 +103,7 @@ const IPhone1314 = () => {
         <Text style={[styles.try, styles.tryPosition]}>Try!</Text>
         <Text
           style={[styles.testYourLogicRiddles, styles.rewardsAvailableTypo]}
-        >{`Test your logic!Riddles, puzzles, paradoxes
-          					and more`}</Text>
+        >{`Test your logic!Riddles, puzzles, paradoxes and more`}</Text>
         <View style={styles.iphone16Pro45Child7} />
         <Vuesaxlinearprofile
           style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]}
@@ -165,7 +163,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   rewardsAvailableTypo: {
-    lineHeight: 15,
+    lineHeight: 20,
     fontSize: 20,
     alignItems: "center",
     display: "flex",
@@ -249,7 +247,7 @@ const styles = StyleSheet.create({
     left: 23,
     fontSize: 29,
     width: 281,
-    height: 26,
+    height: 40,
     lineHeight: 38,
     alignItems: "center",
     display: "flex",
@@ -313,7 +311,7 @@ const styles = StyleSheet.create({
     top: 169,
     left: 68,
     width: 69,
-    height: 46,
+    height: 55,
     justifyContent: "center",
     textAlign: "center",
     color: "#000",
@@ -321,11 +319,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
     fontFamily: "DoHyeon-Regular",
-    lineHeight: 38,
+    lineHeight: 45,
     position: "absolute",
   },
   mathIntermediate: {
-    top: 124,
+    top: 134,
     left: 42,
     fontSize: 25,
     lineHeight: 28,
@@ -339,9 +337,9 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   challengeOfThe: {
-    top: 259,
+    top: 269,
     left: 28,
-    width: 191,
+    width: 151,
     height: 77,
     lineHeight: 31,
     color: "#fff",
@@ -353,7 +351,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   text: {
-    top: 131,
+    top: 145,
     left: 289,
     width: 60,
     height: 72,
@@ -394,7 +392,7 @@ const styles = StyleSheet.create({
     width: 291,
     left: 34,
     height: 77,
-    lineHeight: 31,
+    lineHeight: 71,
     color: "#000",
     alignItems: "center",
     display: "flex",
@@ -409,7 +407,7 @@ const styles = StyleSheet.create({
     width: 291,
     left: 34,
     height: 77,
-    lineHeight: 31,
+    lineHeight: 81,
     alignItems: "center",
     display: "flex",
     textAlign: "left",
@@ -417,7 +415,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   rewardsAvailable: {
-    top: 502,
+    top: 531,
     left: 198,
     color: "#010101",
     textAlign: "right",
@@ -537,13 +535,13 @@ const styles = StyleSheet.create({
     lineHeight: 38,
   },
   testYourLogicRiddles: {
-    top: 633,
+    top: 613,
     width: 146,
-    height: 27,
+    height: 127,
     left: 32,
     color: "#fff",
-    lineHeight: 15,
     textAlign: "left",
+    flexWrap: "wrap",
   },
   iphone16Pro45Child7: {
     top: 779,
