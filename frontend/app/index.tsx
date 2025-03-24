@@ -28,7 +28,7 @@ const IPhone1314 = () => {
       {/* "Get Started" Button */}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => router.push("/Signup")}
+        onPress={() => router.push("/signup")}
       >
         <View style={styles.buttonBackground} />
         <Text style={styles.buttonText}>Get Started</Text>
@@ -37,7 +37,7 @@ const IPhone1314 = () => {
       {/* "I Already Have an Account" Button */}
       <TouchableOpacity
         style={styles.buttonSecondary}
-        onPress={() => router.push("/Signin")}
+        onPress={() => router.push("/signin")}
       >
         <View style={styles.buttonSecondaryBackground} />
         <Text style={styles.buttonSecondaryText}>

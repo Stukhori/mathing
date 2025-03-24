@@ -9,8 +9,10 @@ import {
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
+import { useRouter } from "expo-router";
 
 const Signup = () => {
+  const router = useRouter();
   const { control, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
@@ -21,7 +23,8 @@ const Signup = () => {
       );
       console.log(response.data);
       Alert.alert("Success", response.data.message);
-      reset(); // Reset form fields after successful submission
+      router.push("/level-identifier");
+      // reset(); // Reset form fields after successful submission
     } catch (error) {
       console.log(data);
       Alert.alert(
