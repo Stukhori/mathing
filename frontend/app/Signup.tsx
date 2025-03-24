@@ -15,10 +15,15 @@ const Signup = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("https://example.com/api/signup", data);
+      const response = await axios.post(
+        "http://localhost:4000/api/users/signup",
+        data
+      );
+      console.log(response.data);
       Alert.alert("Success", response.data.message);
       reset(); // Reset form fields after successful submission
     } catch (error) {
+      console.log(data);
       Alert.alert(
         "Error",
         error.response?.data?.message || "Something went wrong"
@@ -47,22 +52,7 @@ const Signup = () => {
 
         <Controller
           control={control}
-          name="phone"
-          defaultValue=""
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              placeholder="PHONE NUMBER"
-              style={[styles.frame13, styles.frameBorder, styles.emailAddress]}
-              onChangeText={onChange}
-              value={value}
-              keyboardType="phone-pad"
-            />
-          )}
-        />
-
-        <Controller
-          control={control}
-          name="username"
+          name="name"
           defaultValue=""
           render={({ field: { onChange, value } }) => (
             <TextInput
@@ -118,7 +108,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     position: "absolute",
-    top: 606,
+    top: 556,
     left: "50%",
     marginLeft: -165,
   },
@@ -345,7 +335,7 @@ const styles = StyleSheet.create({
   },
   byContinuingYou: {
     marginLeft: -158,
-    top: 672,
+    top: 622,
     lineHeight: 22,
     fontFamily: "Roboto",
     width: 306,
@@ -398,7 +388,7 @@ const styles = StyleSheet.create({
     height: 44,
   },
   frame17: {
-    top: 413,
+    top: 351,
     height: 48,
   },
   icon: {
@@ -414,7 +404,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   frame21: {
-    top: 479,
+    top: 413,
     height: 48,
   },
   iphone16Pro37: {
