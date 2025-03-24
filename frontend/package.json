@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "expo": "~52.0.38",
-    "expo-font": "^13.0.4",
+    "expo-font": "~13.0.4",
     "expo-router": "^4.0.19",
     "expo-splash-screen": "~0.29.22",
     "expo-status-bar": "~2.0.1",
