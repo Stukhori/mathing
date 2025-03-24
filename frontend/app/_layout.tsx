@@ -5,8 +5,7 @@ import { useEffect } from 'react';
 
 export default function Layout() {
   const [fontsLoaded] = useFonts({
-    'OpenSans-Regular': require('../assets/fonts/OpenSans-Regular.ttf'),
-    'OpenSans-Bold': require('../assets/fonts/OpenSans-Bold.ttf'),
+    'DoHyeon-Regular': require('../assets/fonts/DoHyeon-Regular.ttf')
   });
 
   // Keep splash screen visible until fonts are loaded
@@ -21,10 +20,7 @@ export default function Layout() {
   }
 
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="signup" options={{ headerShown: false }} />
-      <Stack.Screen name="signin" options={{ headerShown: false }} />
+    <Stack screenOptions={{ headerShown: false }}>
     </Stack>
   );
 }
