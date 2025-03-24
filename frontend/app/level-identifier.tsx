@@ -6,7 +6,7 @@ const IPhone1314 = () => {
     <ImageBackground
       style={styles.iphone131423}
       resizeMode="cover"
-      source={`iPhone 13 & 14 - 23.png`}
+      source={require("../src/img/bg1.jpg")}
     >
       <View style={[styles.frame, styles.frameLayout]}>
         <View style={[styles.frame1, styles.frame1ShadowBox]} />
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     marginLeft: -83.3,
     top: 2,
     fontSize: 22,
-    lineHeight: 18,
+    lineHeight: 20,
   },
   frame2: {
     top: 14,
