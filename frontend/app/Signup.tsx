@@ -1,57 +1,133 @@
-import * as React from "react";
-import { Text, StyleSheet, View, Image, TextInput } from "react-native";
+import React from "react";
+import {
+  Text,
+  StyleSheet,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
+import { useForm, Controller } from "react-hook-form";
+import axios from "axios";
 
-const signup = () => {
+const Signup = () => {
+  const { control, handleSubmit, reset } = useForm();
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post("https://example.com/api/signup", data);
+      Alert.alert("Success", response.data.message);
+      reset(); // Reset form fields after successful submission
+    } catch (error) {
+      Alert.alert(
+        "Error",
+        error.response?.data?.message || "Something went wrong"
+      );
+    }
+  };
+
   return (
     <View style={[styles.iphone13143, styles.iphone13143ShadowBox]}>
       <View style={[styles.iphone16Pro37, styles.frame3Position]}>
-        <View style={styles.frame}>
-          <Text style={[styles.alreadyHaveAn, styles.alreadyText]}>
-            ALREADY HAVE AN ACCOUNT? LOG IN
-          </Text>
-        </View>
-        <View style={[styles.frame1, styles.frameLayout1]}>
-          <View style={styles.frame2} />
-          <View style={[styles.frame3, styles.frameLayout1]}>
-            <Text style={[styles.createAccount, styles.createAccountText1]}>
-              create account
-            </Text>
-          </View>
-        </View>
-        <View style={[styles.frame8, styles.frameLayout]} />
-        <Text style={[styles.alreadyHaveAnContainer, styles.alreadyText]}>
-          <Text
-            style={styles.alreadyHaveAn1}
-          >{`ALREADY HAVE AN ACCOUNT? `}</Text>
-          <Text style={styles.logIn}>LOG IN</Text>
-        </Text>
+        <Text style={[styles.mathing, styles.mathingFlexBox]}>Mathing</Text>
+
+        <Controller
+          control={control}
+          name="email"
+          defaultValue=""
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              placeholder="EMAIL ADDRESS"
+              style={[styles.frame9, styles.emailAddress]}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="phone"
+          defaultValue=""
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              placeholder="PHONE NUMBER"
+              style={[styles.frame13, styles.frameBorder, styles.emailAddress]}
+              onChangeText={onChange}
+              value={value}
+              keyboardType="phone-pad"
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="username"
+          defaultValue=""
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              placeholder="USERNAME"
+              style={[styles.frame17, styles.frameBorder, styles.emailAddress]}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="password"
+          defaultValue=""
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              secureTextEntry
+              placeholder="PASSWORD"
+              style={[styles.frame21, styles.frameBorder, styles.emailAddress]}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+        />
+
+        <TouchableOpacity
+          style={styles.createAccountButton}
+          onPress={handleSubmit(onSubmit)}
+        >
+          <Text style={styles.createAccountText}>Create Account</Text>
+        </TouchableOpacity>
+
         <Text style={[styles.byContinuingYou, styles.mathingFlexBox]}>
           By continuing, you agree to our terms of service and privacy policy
         </Text>
-        <Text style={[styles.mathing, styles.mathingFlexBox]}>Mathing</Text>
-        <TextInput
-          placeholder="EMAIL ADDRESS"
-          style={[styles.frame9, styles.emailAddress]}
-        ></TextInput>
-        <TextInput
-          placeholder="PHONE NUMBER"
-          style={[styles.frame13, styles.frameBorder, styles.emailAddress]}
-        ></TextInput>
-        <TextInput
-          placeholder="USERNAME"
-          style={[styles.frame17, styles.frameBorder, styles.emailAddress]}
-        ></TextInput>
-        <TextInput
-          secureTextEntry
-          style={[styles.frame21, styles.frameBorder, styles.emailAddress]}
-          placeholder="PASSWORD"
-        ></TextInput>
+
+        <Text style={[styles.alreadyHaveAnContainer, styles.alreadyText]}>
+          <Text style={styles.alreadyHaveAn1}>ALREADY HAVE AN ACCOUNT? </Text>
+          <Text style={styles.logIn}>LOG IN</Text>
+        </Text>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  createAccountButton: {
+    backgroundColor: "#6637a1",
+    borderRadius: 12,
+    paddingVertical: 15,
+    width: 330,
+    alignItems: "center",
+    alignSelf: "center",
+    position: "absolute",
+    top: 606,
+    left: "50%",
+    marginLeft: -165,
+  },
+  createAccountText: {
+    color: "#fff",
+    fontSize: 17,
+    fontWeight: "bold",
+    textTransform: "uppercase",
+  },
   iphone13143ShadowBox: {
     height: 844,
     shadowOpacity: 1,
@@ -271,7 +347,7 @@ const styles = StyleSheet.create({
     marginLeft: -158,
     top: 672,
     lineHeight: 22,
-    fontFamily: "Roboto-Regular",
+    fontFamily: "Roboto",
     width: 306,
     height: 49,
     color: "#000",
@@ -364,4 +440,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default signup;
+export default Signup;
