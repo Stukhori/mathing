@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Text, StyleSheet, View, Image } from "react-native";
-import Icon from "../assets/Icon.svg";
+import { Text, StyleSheet, View, Image, TextInput } from "react-native";
 
 const signup = () => {
   return (
@@ -19,29 +18,7 @@ const signup = () => {
             </Text>
           </View>
         </View>
-        <View style={styles.frame4}>
-          <Text style={[styles.firstName, styles.firstNamePosition]}>
-            First Name
-          </Text>
-          <Text style={[styles.firstName, styles.firstNamePosition]}>
-            First Name
-          </Text>
-          <Text style={[styles.firstName, styles.firstNamePosition]}>
-            First Name
-          </Text>
-          <View style={[styles.frame5, styles.frameLayout1]}>
-            <View style={styles.frameBorder1} />
-            <View style={[styles.frame7, styles.frameLayout]}>
-              <Text style={[styles.startLearning, styles.createAccountText1]}>
-                Start Learning
-              </Text>
-            </View>
-          </View>
-        </View>
         <View style={[styles.frame8, styles.frameLayout]} />
-        <Text style={[styles.creationOfProfile, styles.mathingFlexBox]}>
-          Creation of profile
-        </Text>
         <Text style={[styles.alreadyHaveAnContainer, styles.alreadyText]}>
           <Text
             style={styles.alreadyHaveAn1}
@@ -52,59 +29,22 @@ const signup = () => {
           By continuing, you agree to our terms of service and privacy policy
         </Text>
         <Text style={[styles.mathing, styles.mathingFlexBox]}>Mathing</Text>
-        <View style={styles.frame9}>
-          <Text style={[styles.emailAddress, styles.firstNamePosition]}>
-            email address
-          </Text>
-          <View style={[styles.frame5, styles.frameLayout1]}>
-            <View style={styles.frameBorder1} />
-            <View style={[styles.frame7, styles.frameLayout]}>
-              <Text style={[styles.startLearning, styles.createAccountText1]}>
-                Start Learning
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={[styles.frame13, styles.frameBorder]}>
-          <Text style={[styles.emailAddress, styles.firstNamePosition]}>
-            phone number
-          </Text>
-          <View style={[styles.frame5, styles.frameLayout1]}>
-            <View style={styles.frameBorder1} />
-            <View style={[styles.frame7, styles.frameLayout]}>
-              <Text style={[styles.startLearning, styles.createAccountText1]}>
-                Start Learning
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={[styles.frame17, styles.frameBorder]}>
-          <Text style={[styles.emailAddress, styles.firstNamePosition]}>
-            username
-          </Text>
-          <View style={[styles.frame5, styles.frameLayout1]}>
-            <View style={styles.frameBorder1} />
-            <View style={[styles.frame7, styles.frameLayout]}>
-              <Text style={[styles.startLearning, styles.createAccountText1]}>
-                Start Learning
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={[styles.frame21, styles.frameBorder]}>
-          <Text style={[styles.emailAddress, styles.firstNamePosition]}>
-            password
-          </Text>
-          <View style={[styles.frame5, styles.frameLayout1]}>
-            <View style={styles.frameBorder1} />
-            <View style={[styles.frame7, styles.frameLayout]}>
-              <Text style={[styles.startLearning, styles.createAccountText1]}>
-                Start Learning
-              </Text>
-            </View>
-          </View>
-          <Icon style={styles.icon} />
-        </View>
+        <TextInput
+          placeholder="email address"
+          style={[styles.frame9, styles.emailAddress]}
+        ></TextInput>
+        <TextInput
+          placeholder="phone number"
+          style={[styles.frame13, styles.frameBorder, styles.emailAddress]}
+        ></TextInput>
+        <TextInput
+          placeholder="username"
+          style={[styles.frame17, styles.frameBorder, styles.emailAddress]}
+        ></TextInput>
+        <TextInput
+          style={[styles.frame21, styles.frameBorder, styles.emailAddress]}
+          placeholder="password"
+        ></TextInput>
       </View>
     </View>
   );
@@ -148,11 +88,7 @@ const styles = StyleSheet.create({
   firstNamePosition: {
     left: 15,
     top: 15,
-    textAlign: "left",
-    textTransform: "uppercase",
-    lineHeight: 18,
-    letterSpacing: 1,
-    fontSize: 15,
+
     position: "absolute",
   },
   frameLayout: {
@@ -352,10 +288,16 @@ const styles = StyleSheet.create({
     fontFamily: "DoHyeon-Regular",
     textAlign: "center",
     position: "absolute",
-  },  
+  },
   emailAddress: {
     color: "#5e5555",
     fontFamily: "DoHyeon-Regular",
+    textAlign: "left",
+    textTransform: "uppercase",
+    lineHeight: 18,
+    letterSpacing: 1,
+    fontSize: 15,
+    paddingLeft: 15,
   },
   frame9: {
     top: 285,
