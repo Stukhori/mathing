@@ -30,20 +30,21 @@ const signup = () => {
         </Text>
         <Text style={[styles.mathing, styles.mathingFlexBox]}>Mathing</Text>
         <TextInput
-          placeholder="email address"
+          placeholder="EMAIL ADDRESS"
           style={[styles.frame9, styles.emailAddress]}
         ></TextInput>
         <TextInput
-          placeholder="phone number"
+          placeholder="PHONE NUMBER"
           style={[styles.frame13, styles.frameBorder, styles.emailAddress]}
         ></TextInput>
         <TextInput
-          placeholder="username"
+          placeholder="USERNAME"
           style={[styles.frame17, styles.frameBorder, styles.emailAddress]}
         ></TextInput>
         <TextInput
+          secureTextEntry
           style={[styles.frame21, styles.frameBorder, styles.emailAddress]}
-          placeholder="password"
+          placeholder="PASSWORD"
         ></TextInput>
       </View>
     </View>
@@ -293,7 +294,6 @@ const styles = StyleSheet.create({
     color: "#5e5555",
     fontFamily: "DoHyeon-Regular",
     textAlign: "left",
-    textTransform: "uppercase",
     lineHeight: 18,
     letterSpacing: 1,
     fontSize: 15,
