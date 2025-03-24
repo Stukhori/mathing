@@ -341,16 +341,18 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   mathing: {
-    marginTop: -259,
-    marginLeft: -172,
+    top: 100, // Ensures it's in view
+    left: "50%",
+    transform: [{ translateX: -171 }], // Centers it properly
     fontSize: 75,
-    lineHeight: 25,
+    lineHeight: 80, // Ensures proper spacing
     color: "#b875ff",
-    width: 342,
-    height: 58,
+    width: 342, // Matches the width to ensure proper centering
+    height: 80, // Adjusted for full visibility
     fontFamily: "DoHyeon-Regular",
-    top: "50%",
-  },
+    textAlign: "center",
+    position: "absolute",
+  },  
   emailAddress: {
     color: "#5e5555",
     fontFamily: "DoHyeon-Regular",
