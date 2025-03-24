@@ -1,30 +1,70 @@
 import * as React from "react";
-import { Text, StyleSheet, Image, View } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  Image,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
+import { useForm, Controller } from "react-hook-form";
 import Eyeoff from "../assets/eye-off.svg";
 import Image32lww from "../assets/image--32lww.svg";
 
 const IPhone1314 = () => {
+  const { control, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <View style={styles.iphone13145}>
       <Text style={[styles.signIn, styles.orFlexBox]}>Sign in</Text>
       <Text style={[styles.forgotYourPassword, styles.signIn1Typo]}>
         Forgot your password?
       </Text>
-      <View style={styles.frame}>
-        <Eyeoff
-          style={[styles.eyeOffIcon, styles.iconPosition]}
-          width={27}
-          height={20}
-        />
-        <Text style={[styles.password, styles.passwordTypo]}>password</Text>
-      </View>
-      <View style={styles.frame1}>
+
+      <Controller
+        control={control}
+        name="email"
+        defaultValue=""
+        render={({ field: { onChange, value } }) => (
+          <TextInput
+            placeholder="EMAIL ADDRESS"
+            style={[styles.frame7, styles.emailAddress]}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
+      />
+
+      <Controller
+        control={control}
+        name="password"
+        defaultValue=""
+        render={({ field: { onChange, value } }) => (
+          <TextInput
+            secureTextEntry
+            placeholder="PASSWORD"
+            style={[styles.password, styles.frame7, styles.passwordTypo]}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
+      />
+
+      <TouchableOpacity style={styles.frame1} onPress={handleSubmit(onSubmit)}>
         <View style={[styles.frame2, styles.frameLayout]} />
         <View style={[styles.frame3, styles.framePosition]}>
           <Text style={[styles.signIn1, styles.signIn1Position]}>Sign in</Text>
         </View>
-      </View>
+      </TouchableOpacity>
+
       <Text style={[styles.or, styles.orFlexBox]}>or</Text>
+      <View style={styles.iphone13145Child} />
+      <View style={styles.iphone13145Item} />
+
       <View style={[styles.frame4, styles.frameLayout]}>
         <Image32lww
           style={[styles.image32lwwIcon, styles.iconPosition]}
@@ -34,16 +74,9 @@ const IPhone1314 = () => {
         <View style={[styles.frame5, styles.frame5Position]}>
           <Text style={styles.signInWith}>Sign in with google</Text>
         </View>
-        <View style={[styles.frame5, styles.frame5Position]} />
       </View>
-      <View style={[styles.iphone13145Child, styles.iphone13145Position]} />
-      <View style={[styles.iphone13145Item, styles.iphone13145Position]} />
+
       <Text style={[styles.mathing, styles.frame5Position]}>Mathing</Text>
-      <View style={styles.frame7}>
-        <Text style={[styles.emailAddress, styles.passwordTypo]}>
-          email address
-        </Text>
-      </View>
     </View>
   );
 };
@@ -65,12 +98,11 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   passwordTypo: {
-    textAlign: "left",
     color: "#5e5555",
     textTransform: "uppercase",
     lineHeight: 18,
     letterSpacing: 1,
-    top: 15,
+    top: 438,
     fontSize: 15,
     position: "absolute",
   },
@@ -138,14 +170,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     position: "absolute",
   },
-  eyeOffIcon: {
-    top: 13,
-    left: 290,
-  },
   password: {
-    left: 16,
+    paddingLeft: 15,
+    position: "absolute",
+    left: 31,
     fontFamily: "DoHyeon-Regular",
-    fontWeight: "700",
   },
   frame: {
     top: 438,
@@ -263,7 +292,8 @@ const styles = StyleSheet.create({
     fontFamily: "DoHyeon-Regular",
   },
   emailAddress: {
-    left: 15,
+    left: 31,
+    paddingLeft: 15,
     fontFamily: "DoHyeon-Regular",
   },
   frame9: {
@@ -295,15 +325,13 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   frame7: {
-    marginLeft: -164,
-    top: 378,
+    top: 376,
     borderColor: "#a377da",
     width: 330,
     height: 48,
     borderWidth: 1,
     borderStyle: "solid",
     borderRadius: 12,
-    left: "50%",
     position: "absolute",
     overflow: "hidden",
     backgroundColor: "#fff",
