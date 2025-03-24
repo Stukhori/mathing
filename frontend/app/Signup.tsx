@@ -1,36 +1,46 @@
-import React from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+import React, { useState } from "react";
+import { Text, StyleSheet, View, TextInput, TouchableOpacity, Animated } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
-import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Signup = () => {
-  const router = useRouter();
   const { control, handleSubmit, reset } = useForm();
+  const [errorMessage, setErrorMessage] = useState("");
+  const shakeAnimation = new Animated.Value(0);
+
+  const shake = () => {
+    Animated.sequence([
+      Animated.timing(shakeAnimation, { toValue: 10, duration: 100, useNativeDriver: true }),
+      Animated.timing(shakeAnimation, { toValue: -10, duration: 100, useNativeDriver: true }),
+      Animated.timing(shakeAnimation, { toValue: 10, duration: 100, useNativeDriver: true }),
+      Animated.timing(shakeAnimation, { toValue: 0, duration: 100, useNativeDriver: true }),
+    ]).start();
+  };
 
   const onSubmit = async (data) => {
+    if (!data.email.includes("@")) {
+      setErrorMessage("Invalid email format");
+      shake();
+      return;
+    }
+    if (data.password.length < 6) {
+      setErrorMessage("Password must be at least 6 characters");
+      shake();
+      return;
+    }
+    setErrorMessage("");
+
     try {
-      const response = await axios.post(
-        "http://localhost:4000/api/users/signup",
-        data
-      );
-      console.log(response.data);
-      Alert.alert("Success", response.data.message);
-      router.push("/level-identifier");
-      // reset(); // Reset form fields after successful submission
+      const response = await axios.post("http://localhost:4000/api/users/signup", data);
+      const {token} = response.data;
+      if (token) {
+        await AsyncStorage.setItem("authToken", token);
+      }
+      reset(); // Reset form fields after successful submission
     } catch (error) {
-      console.log(data);
-      Alert.alert(
-        "Error",
-        error.response?.data?.message || "Something went wrong"
-      );
+      setErrorMessage(error.response?.data?.message || "Something went wrong");
+      shake();
     }
   };
 
@@ -39,19 +49,21 @@ const Signup = () => {
       <View style={[styles.iphone16Pro37, styles.frame3Position]}>
         <Text style={[styles.mathing, styles.mathingFlexBox]}>Mathing</Text>
 
-        <Controller
-          control={control}
-          name="email"
-          defaultValue=""
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              placeholder="EMAIL ADDRESS"
-              style={[styles.frame9, styles.emailAddress]}
-              onChangeText={onChange}
-              value={value}
-            />
-          )}
-        />
+        <Animated.View style={{ transform: [{ translateX: shakeAnimation }] }}>
+          <Controller
+            control={control}
+            name="email"
+            defaultValue=""
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                placeholder="EMAIL ADDRESS"
+                style={[styles.frame9, styles.emailAddress]}
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+          />
+        </Animated.View>
 
         <Controller
           control={control}
@@ -67,25 +79,26 @@ const Signup = () => {
           )}
         />
 
-        <Controller
-          control={control}
-          name="password"
-          defaultValue=""
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              secureTextEntry
-              placeholder="PASSWORD"
-              style={[styles.frame21, styles.frameBorder, styles.emailAddress]}
-              onChangeText={onChange}
-              value={value}
-            />
-          )}
-        />
+        <Animated.View style={{ transform: [{ translateX: shakeAnimation }] }}>
+          <Controller
+            control={control}
+            name="password"
+            defaultValue=""
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                secureTextEntry
+                placeholder="PASSWORD"
+                style={[styles.frame21, styles.frameBorder, styles.emailAddress]}
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+          />
+        </Animated.View>
 
-        <TouchableOpacity
-          style={styles.createAccountButton}
-          onPress={handleSubmit(onSubmit)}
-        >
+        {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
+
+        <TouchableOpacity style={styles.createAccountButton} onPress={handleSubmit(onSubmit)}>
           <Text style={styles.createAccountText}>Create Account</Text>
         </TouchableOpacity>
 
@@ -101,8 +114,12 @@ const Signup = () => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
+  errorText: {
+    color: "red",
+    textAlign: "center",
+    marginTop: 5,
+  },
   createAccountButton: {
     backgroundColor: "#6637a1",
     borderRadius: 12,

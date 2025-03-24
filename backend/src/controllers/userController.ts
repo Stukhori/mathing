@@ -5,6 +5,7 @@ import config from '../config/env';
 
 export const signup = async (req: Request, res: Response): Promise<void> => {
   try {
+    console.log('Signup Request:', req.body); // Debugging
     const { name, email, password } = req.body;
     const user = await signupUser(name, email, password);
     const token = jwt.sign({ userId: user.id }, config.SECRET_KEY, { expiresIn: '1h' });
