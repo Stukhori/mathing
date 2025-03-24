@@ -3,11 +3,14 @@ import { Text, StyleSheet, View, TextInput, TouchableOpacity, Animated } from "r
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
+
 
 const Signup = () => {
   const { control, handleSubmit, reset } = useForm();
   const [errorMessage, setErrorMessage] = useState("");
   const shakeAnimation = new Animated.Value(0);
+  const router = useRouter();
 
   const shake = () => {
     Animated.sequence([
@@ -37,6 +40,7 @@ const Signup = () => {
       if (token) {
         await AsyncStorage.setItem("authToken", token);
       }
+      router.push("/level-identifier");
       reset(); // Reset form fields after successful submission
     } catch (error) {
       setErrorMessage(error.response?.data?.message || "Something went wrong");
