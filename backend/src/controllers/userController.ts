@@ -1,11 +1,14 @@
 import { Request, Response } from 'express';
 import { signupUser, loginUser, getUserProfile } from '../services/userService';
+import jwt from 'jsonwebtoken';
+import config from '../config/env';
 
 export const signup = async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, email, password } = req.body;
     const user = await signupUser(name, email, password);
-    res.status(201).json({ user });
+    const token = jwt.sign({ userId: user.id }, config.SECRET_KEY, { expiresIn: '1h' });
+    res.status(201).json({ user, token });
   } catch (error) {
     res.status(400).json({ error: (error as Error).message });
   }
