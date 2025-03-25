@@ -1,44 +1,39 @@
 import * as React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import Rectangle176 from "../assets/rectangle-176.svg";
+import Rectangle176 from "../assets/rectangle-173.svg";
 
 const IPhone1314 = () => {
   return (
     <View style={styles.iphone131413}>
-      <View style={[styles.iphone131413Child, styles.iphone131413Position]} />
-      <View style={[styles.iphone131413Item, styles.iphone131413Position]} />
-      <View style={styles.iphone131413Inner} />
+      <View style={[styles.purpleback, styles.toppurple]} />
+      <View style={[styles.iphone131413Item, styles.toppurple]} />
       <Text style={[styles.challengeOfThe, styles.textFlexBox]}>
         Challenge of the day
       </Text>
-      <Text style={[styles.text, styles.textFlexBox]}>←</Text>
+      <Text style={[styles.arrowtext, styles.textFlexBox]}>←</Text>
       <Rectangle176
-        style={[styles.rectangleIcon, styles.rectanglePosition]}
+        style={[styles.questionrectangle, styles.rectangleViewPosition]}
         width={329}
         height={230}
       />
       <Text
-        style={[styles.agzamWantsTo, styles.continueClr]}
-      >{`Agzam wants to go on a vacation to Vietnam, the trip costs $1,200.
-
-She plans to save money every month for a year. In the first month, she saves $50, and each subsequent month, she increases her savings by $10. 
-
-      			Will she have enough money by the end of the year to afford the trip?`}</Text>
-      <View style={[styles.rectangleView, styles.rectanglePosition]} />
+        style={[styles.questiontext, styles.continueClr]}
+      >{`Agzam wants to go on a vacation to Vietnam, the trip costs $1,200. She plans to save money every month for a year. In the first month, she saves $50, and each subsequent month, she increases her savings by $10. Will she have enough money by the end of the year to afford the trip?`}</Text>
+      <View style={[styles.answerrectangle, styles.rectangleViewPosition]} />
       <Text style={[styles.yourAnswer, styles.continueClr]}>Your answer:</Text>
-      <View style={[styles.iphone131413Child1, styles.continuePosition]} />
+      <View style={[styles.continuebutton, styles.continuePosition]} />
       <Text style={[styles.continue, styles.continuePosition]}>Continue</Text>
       <View
-        style={[styles.iphone131413Child2, styles.iphone131413ChildShadowBox]}
+        style={[styles.hintbutton, styles.hintandhelpbuttons]}
       />
       <Text style={[styles.hint, styles.hintTypo]}>Hint!</Text>
       <Image
-        style={[styles.heads6Icon, styles.continuePosition]}
+        style={[styles.roboticon, styles.continuePosition]}
         resizeMode="cover"
-        source="Heads/6.png"
+        source={require("../src/img/robot.png")}
       />
       <View
-        style={[styles.iphone131413Child3, styles.iphone131413ChildShadowBox]}
+        style={[styles.helpbutton, styles.hintandhelpbuttons]}
       />
       <Text style={[styles.needHelp, styles.hintTypo]}>Need help?</Text>
     </View>
@@ -46,7 +41,7 @@ She plans to save money every month for a year. In the first month, she saves $5
 };
 
 const styles = StyleSheet.create({
-  iphone131413Position: {
+  toppurple: {
     width: 390,
     left: 0,
     top: 0,
@@ -57,7 +52,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
   },
-  rectanglePosition: {
+  rectangleViewPosition: {
     left: "50%",
     position: "absolute",
   },
@@ -69,7 +64,7 @@ const styles = StyleSheet.create({
     top: 700,
     position: "absolute",
   },
-  iphone131413ChildShadowBox: {
+  hintandhelpbuttons: {
     height: 42,
     width: 120,
     backgroundColor: "#6637a1",
@@ -94,22 +89,13 @@ const styles = StyleSheet.create({
     lineHeight: 38,
     position: "absolute",
   },
-  iphone131413Child: {
+  purpleback: {
     backgroundColor: "#552d8e",
     height: 379,
   },
   iphone131413Item: {
     backgroundColor: "#875fc0",
-    height: 106,
-  },
-  iphone131413Inner: {
-    top: 54,
-    left: 47,
-    backgroundColor: "rgba(149, 199, 255, 0)",
-    width: 317,
-    height: 114,
-    borderRadius: 15,
-    position: "absolute",
+    height: 116,
   },
   challengeOfThe: {
     marginLeft: -129,
@@ -126,7 +112,7 @@ const styles = StyleSheet.create({
     fontFamily: "DoHyeon-Regular",
     left: "50%",
   },
-  text: {
+  arrowtext: {
     top: 64,
     left: 7,
     fontSize: 50,
@@ -137,31 +123,36 @@ const styles = StyleSheet.create({
     color: "#fff",
     alignItems: "center",
     display: "flex",
-    lineHeight: 38,
+    lineHeight: 48,
     position: "absolute",
   },
-  rectangleIcon: {
+  questionrectangle: {
     marginLeft: -164,
-    top: 124,
-    borderRadius: 10,
+    top: 134,
+    borderRadius: 20, // Optional: rounder corners
+    width: 280, // Increased size
+    height: 90, // Increased height
+    position: "absolute",
+    backgroundColor: "#fff", // Ensure it's visible
+    zIndex: 0, // Make sure it stays behind the text
   },
-  agzamWantsTo: {
+  questiontext: {
     marginLeft: -145,
-    top: 196,
+    top: 156,
     lineHeight: 20,
     textAlign: "left",
     width: 291,
-    height: 86,
-    fontSize: 17,
+    height: 186,
+    fontSize: 20,
     color: "#000",
     alignItems: "center",
     display: "flex",
     left: "50%",
     position: "absolute",
   },
-  rectangleView: {
+  answerrectangle: {
     marginLeft: -166,
-    top: 471,
+    top: 461,
     backgroundColor: "#fff",
     borderStyle: "solid",
     borderColor: "#b786f1",
@@ -181,9 +172,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
     textAlign: "center",
+    color: "#000",
     position: "absolute",
   },
-  iphone131413Child1: {
+  continuebutton: {
     backgroundColor: "#efb22e",
     width: 193,
     height: 41,
@@ -199,7 +191,7 @@ const styles = StyleSheet.create({
     lineHeight: 38,
     top: 700,
   },
-  iphone131413Child2: {
+  hintbutton: {
     left: 31,
   },
   hint: {
@@ -209,12 +201,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
   },
-  heads6Icon: {
+  roboticon: {
     left: 287,
     width: 66,
     height: 62,
   },
-  iphone131413Child3: {
+  helpbutton: {
     left: 227,
   },
   needHelp: {
