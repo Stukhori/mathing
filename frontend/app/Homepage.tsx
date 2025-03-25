@@ -8,7 +8,7 @@ import Group from "../assets/brain.svg";
 import Vuesaxlinearprofile from "../assets/profile.svg";
 import Vuesaxlinearsetting2 from "../assets/setting-2.svg";
 import Lisearch from "../assets/lisearch.svg";
-import Vuesaxboldhome from "../assets/home.svg";
+import Vuesaxboldhome from "../assets/homebold.svg";
 import Vector from "../assets/vector.svg";
 import Heart from "../assets/heart.svg";
 
