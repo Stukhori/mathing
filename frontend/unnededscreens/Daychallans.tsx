@@ -4,77 +4,54 @@ import Rectangle176 from "../assets/rectangle-176.svg";
 
 const IPhone1314 = () => {
   return (
-    <View style={styles.iphone131415}>
-      <View style={[styles.iphone131415Child, styles.iphone131415Position]} />
-      <View style={[styles.iphone131415Item, styles.iphone131415Position]} />
-      <View style={styles.iphone131415Inner} />
+    <View style={styles.iphone131414}>
+      <View style={[styles.iphone131414Child, styles.iphone131414Position]} />
+      <View style={[styles.iphone131414Item, styles.iphone131414Position]} />
+      <View style={styles.iphone131414Inner} />
       <Text style={[styles.challengeOfThe, styles.textFlexBox]}>
         Challenge of the day
       </Text>
       <Text style={[styles.text, styles.textFlexBox]}>←</Text>
       <Rectangle176 style={styles.rectangleIcon} width={329} height={230} />
       <Text
-        style={styles.agzamWantsTo}
+        style={[styles.agzamWantsTo, styles.continueClr]}
       >{`Agzam wants to go on a vacation to Vietnam, the trip costs $1,200.
 
 She plans to save money every month for a year. In the first month, she saves $50, and each subsequent month, she increases her savings by $10. 
 
       			Will she have enough money by the end of the year to afford the trip?`}</Text>
-      <View style={styles.rectangleView} />
-      <Text style={styles.yourAnswer}>Your answer:</Text>
-      <View style={[styles.iphone131415Child1, styles.heads6IconPosition]} />
-      <Text style={styles.continue}>Continue</Text>
+      <View style={[styles.rectangleView, styles.rectangleViewLayout]} />
+      <Text style={[styles.yourAnswer, styles.continueClr]}>Your answer:</Text>
+      <View style={[styles.iphone131414Child1, styles.continuePosition]} />
+      <Text style={[styles.continue, styles.continuePosition]}>Continue</Text>
       <View
-        style={[styles.iphone131415Child2, styles.iphone131415ChildShadowBox1]}
+        style={[styles.iphone131414Child2, styles.iphone131414ChildShadowBox]}
       />
       <View
-        style={[styles.iphone131415Child3, styles.iphone131415ChildShadowBox]}
-      />
-      <View
-        style={[styles.iphone131415Child4, styles.iphone131415ChildShadowBox]}
+        style={[styles.iphone131414Child3, styles.hintFormulaForPosition]}
       />
       <Text style={[styles.hint, styles.hintTypo]}>Hint!</Text>
       <Image
-        style={[styles.heads6Icon, styles.heads6IconPosition]}
+        style={[styles.heads6Icon, styles.continuePosition]}
         resizeMode="cover"
         source="Heads/6.png"
       />
       <View
-        style={[styles.iphone131415Child5, styles.iphone131415ChildShadowBox1]}
+        style={[styles.iphone131414Child4, styles.iphone131414ChildShadowBox]}
       />
       <Text style={[styles.needHelp, styles.hintTypo]}>Need help?</Text>
-      <Text style={styles.answerInThe}>{`Answer:
-In the first month, he saves $50, in the second month 60, in the third month $70. This is an arithmetic progression where:
-a=50 (the first term),
-d=10 (the common difference),
-n=12n (the number of months).
-S 12​=12/2​⋅(2⋅50+(12−1)⋅10)
-S12 = 1260$
-      			Answer: no, he will not, as 1260>1200`}</Text>
-      <Text style={[styles.text1, styles.textPosition]}>2</Text>
-      <Text style={[styles.text2, styles.textPosition]}>0</Text>
-      <Text style={styles.text3}>12</Text>
-      <Image
-        style={[styles.imageIcon, styles.iconPosition]}
-        resizeMode="cover"
-        source="image.png"
-      />
-      <Image
-        style={[styles.image4Icon, styles.iconPosition]}
-        resizeMode="cover"
-        source="image 4.png"
-      />
-      <Image
-        style={styles.image5Icon}
-        resizeMode="cover"
-        source="image 5.png"
-      />
+      <Text
+        style={[styles.hintFormulaFor, styles.hintFormulaForPosition]}
+      >{`Hint:
+Formula for the sum of an arithmetic progression: 
+
+      			Sn​=2n*(2a+(n−1)d)`}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  iphone131415Position: {
+  iphone131414Position: {
     width: 390,
     left: 0,
     top: 0,
@@ -85,16 +62,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
   },
-  heads6IconPosition: {
+  continueClr: {
+    color: "#000",
+    fontFamily: "DoHyeon-Regular",
+  },
+  rectangleViewLayout: {
+    width: 333,
+    marginLeft: -166,
+  },
+  continuePosition: {
     top: 700,
     position: "absolute",
   },
-  iphone131415ChildShadowBox1: {
+  iphone131414ChildShadowBox: {
     height: 42,
     width: 120,
     backgroundColor: "#6637a1",
     borderRadius: 20,
-    shadowOpacity: 1,
     elevation: 4,
     shadowRadius: 4,
     shadowOffset: {
@@ -103,21 +87,12 @@ const styles = StyleSheet.create({
     },
     shadowColor: "rgba(0, 0, 0, 0.25)",
     top: 774,
+    shadowOpacity: 1,
     position: "absolute",
   },
-  iphone131415ChildShadowBox: {
-    width: 363,
-    elevation: 69,
-    shadowRadius: 69,
-    shadowColor: "rgba(0, 0, 0, 0)",
+  hintFormulaForPosition: {
     top: "50%",
-    marginLeft: -181,
-    shadowOpacity: 1,
-    borderWidth: 2,
-    borderColor: "#b786f1",
-    borderStyle: "solid",
     left: "50%",
-    borderRadius: 15,
     position: "absolute",
   },
   hintTypo: {
@@ -129,34 +104,15 @@ const styles = StyleSheet.create({
     lineHeight: 38,
     position: "absolute",
   },
-  textPosition: {
-    width: 14,
-    marginTop: 110,
-    color: "#2e0862",
-    lineHeight: 15,
-    top: "50%",
-    height: 42,
-    fontSize: 20,
-    textAlign: "left",
-    alignItems: "center",
-    display: "flex",
-    fontFamily: "DoHyeon-Regular",
-    left: "50%",
-    position: "absolute",
-  },
-  iconPosition: {
-    top: 539,
-    position: "absolute",
-  },
-  iphone131415Child: {
+  iphone131414Child: {
     backgroundColor: "#552d8e",
     height: 379,
   },
-  iphone131415Item: {
+  iphone131414Item: {
     backgroundColor: "#875fc0",
     height: 106,
   },
-  iphone131415Inner: {
+  iphone131414Inner: {
     top: 54,
     left: 47,
     backgroundColor: "rgba(149, 199, 255, 0)",
@@ -173,9 +129,9 @@ const styles = StyleSheet.create({
     height: 60,
     textAlign: "center",
     color: "#fff",
-    lineHeight: 38,
     alignItems: "center",
     display: "flex",
+    lineHeight: 38,
     position: "absolute",
     fontFamily: "DoHyeon-Regular",
     left: "50%",
@@ -189,9 +145,9 @@ const styles = StyleSheet.create({
     height: 38,
     textAlign: "center",
     color: "#fff",
-    lineHeight: 38,
     alignItems: "center",
     display: "flex",
+    lineHeight: 38,
     position: "absolute",
   },
   rectangleIcon: {
@@ -205,25 +161,24 @@ const styles = StyleSheet.create({
     marginLeft: -145,
     top: 196,
     lineHeight: 20,
+    textAlign: "left",
     width: 291,
     height: 86,
-    textAlign: "left",
     fontSize: 17,
     color: "#000",
     alignItems: "center",
     display: "flex",
-    fontFamily: "DoHyeon-Regular",
     left: "50%",
     position: "absolute",
   },
   rectangleView: {
     top: 471,
     backgroundColor: "#fff",
-    width: 333,
     height: 188,
     borderWidth: 2,
     borderColor: "#b786f1",
     borderStyle: "solid",
+    width: 333,
     marginLeft: -166,
     left: "50%",
     borderRadius: 15,
@@ -236,15 +191,13 @@ const styles = StyleSheet.create({
     lineHeight: 17,
     width: 143,
     height: 37,
-    color: "#000",
     justifyContent: "center",
     alignItems: "center",
     display: "flex",
     textAlign: "center",
-    fontFamily: "DoHyeon-Regular",
     position: "absolute",
   },
-  iphone131415Child1: {
+  iphone131414Child1: {
     backgroundColor: "#efb22e",
     width: 193,
     height: 41,
@@ -254,25 +207,30 @@ const styles = StyleSheet.create({
   continue: {
     left: 92,
     fontSize: 20,
-    top: 700,
     color: "#000",
-    textAlign: "center",
     fontFamily: "DoHyeon-Regular",
+    textAlign: "center",
     lineHeight: 38,
-    position: "absolute",
+    top: 700,
   },
-  iphone131415Child2: {
+  iphone131414Child2: {
     left: 31,
   },
-  iphone131415Child3: {
+  iphone131414Child3: {
     marginTop: -101,
-    backgroundColor: "#f9ffad",
+    marginLeft: -181,
+    shadowColor: "rgba(169, 58, 242, 0)",
+    shadowRadius: 69,
+    elevation: 69,
+    backgroundColor: "#ffafee",
+    width: 363,
     height: 202,
-  },
-  iphone131415Child4: {
-    marginTop: 104,
-    backgroundColor: "#faffad",
-    height: 55,
+    shadowOpacity: 1,
+    top: "50%",
+    borderWidth: 2,
+    borderColor: "#b786f1",
+    borderStyle: "solid",
+    borderRadius: 15,
   },
   hint: {
     left: 69,
@@ -286,68 +244,28 @@ const styles = StyleSheet.create({
     width: 66,
     height: 62,
   },
-  iphone131415Child5: {
+  iphone131414Child4: {
     left: 227,
   },
   needHelp: {
     left: 249,
   },
-  answerInThe: {
-    marginTop: -111,
-    fontSize: 15,
-    width: 335,
+  hintFormulaFor: {
+    marginTop: -100,
+    fontSize: 24,
+    lineHeight: 25,
+    color: "#2e0862",
     height: 212,
-    color: "#2e0862",
-    lineHeight: 15,
-    top: "50%",
+    width: 333,
     marginLeft: -166,
-    textAlign: "left",
-    alignItems: "center",
-    display: "flex",
-    fontFamily: "DoHyeon-Regular",
-    left: "50%",
-    position: "absolute",
-  },
-  text1: {
-    marginLeft: -103,
-  },
-  text2: {
-    marginLeft: -31,
-  },
-  text3: {
-    marginLeft: 39,
-    width: 19,
-    marginTop: 110,
-    color: "#2e0862",
-    lineHeight: 15,
     top: "50%",
-    height: 42,
-    fontSize: 20,
-    textAlign: "left",
+    justifyContent: "center",
     alignItems: "center",
     display: "flex",
+    textAlign: "center",
     fontFamily: "DoHyeon-Regular",
-    left: "50%",
-    position: "absolute",
   },
-  imageIcon: {
-    left: 184,
-    width: 22,
-    height: 26,
-  },
-  image4Icon: {
-    left: 110,
-    width: 23,
-    height: 27,
-  },
-  image5Icon: {
-    top: 538,
-    left: 255,
-    width: 25,
-    height: 29,
-    position: "absolute",
-  },
-  iphone131415: {
+  iphone131414: {
     backgroundColor: "#fdfcff",
     flex: 1,
     width: "100%",

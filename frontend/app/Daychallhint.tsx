@@ -1,25 +1,20 @@
 import * as React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import Rectangle176 from "../assets/rectangle-176.svg";
+import Rectangle176 from "../assets/rectangle-173.svg";
 
 const IPhone1314 = () => {
   return (
     <View style={styles.iphone131414}>
       <View style={[styles.iphone131414Child, styles.iphone131414Position]} />
       <View style={[styles.iphone131414Item, styles.iphone131414Position]} />
-      <View style={styles.iphone131414Inner} />
       <Text style={[styles.challengeOfThe, styles.textFlexBox]}>
         Challenge of the day
       </Text>
       <Text style={[styles.text, styles.textFlexBox]}>←</Text>
-      <Rectangle176 style={styles.rectangleIcon} width={329} height={230} />
+      <Rectangle176 style={styles.iphone131414Inner} width={349} height={230} />
       <Text
         style={[styles.agzamWantsTo, styles.continueClr]}
-      >{`Agzam wants to go on a vacation to Vietnam, the trip costs $1,200.
-
-She plans to save money every month for a year. In the first month, she saves $50, and each subsequent month, she increases her savings by $10. 
-
-      			Will she have enough money by the end of the year to afford the trip?`}</Text>
+      >{`Agzam wants to go on a vacation to Vietnam, the trip costs $1,200. She plans to save money every month for a year. In the first month, she saves $50, and each subsequent month, she increases her savings by $10. Will she have enough money by the end of the year to afford the trip?`}</Text>
       <View style={[styles.rectangleView, styles.rectangleViewLayout]} />
       <Text style={[styles.yourAnswer, styles.continueClr]}>Your answer:</Text>
       <View style={[styles.iphone131414Child1, styles.continuePosition]} />
@@ -34,7 +29,7 @@ She plans to save money every month for a year. In the first month, she saves $5
       <Image
         style={[styles.heads6Icon, styles.continuePosition]}
         resizeMode="cover"
-        source="Heads/6.png"
+        source={require("../src/img/robot.png")}
       />
       <View
         style={[styles.iphone131414Child4, styles.iphone131414ChildShadowBox]}
@@ -42,10 +37,12 @@ She plans to save money every month for a year. In the first month, she saves $5
       <Text style={[styles.needHelp, styles.hintTypo]}>Need help?</Text>
       <Text
         style={[styles.hintFormulaFor, styles.hintFormulaForPosition]}
-      >{`Hint:
-Formula for the sum of an arithmetic progression: 
+      >{`
+Hint:
 
-      			Sn​=2n*(2a+(n−1)d)`}</Text>
+Formula for the sum of an arithmetic progression:
+
+  Sn​=2n*(2a+(n−1)d)`}</Text>
     </View>
   );
 };
@@ -112,15 +109,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#875fc0",
     height: 106,
   },
-  iphone131414Inner: {
-    top: 54,
-    left: 47,
-    backgroundColor: "rgba(149, 199, 255, 0)",
-    width: 317,
-    height: 114,
-    borderRadius: 15,
-    position: "absolute",
-  },
   challengeOfThe: {
     marginLeft: -129,
     top: 57,
@@ -147,24 +135,27 @@ const styles = StyleSheet.create({
     color: "#fff",
     alignItems: "center",
     display: "flex",
-    lineHeight: 38,
+    lineHeight: 48,
     position: "absolute",
   },
-  rectangleIcon: {
-    marginLeft: -164,
+  iphone131414Inner: {
+    marginLeft: 19,
     top: 124,
-    borderRadius: 10,
-    left: "50%",
+    borderRadius: 20, // Optional: rounder corners
+    width: 320, // Increased size
+    height: 160, // Increased height
     position: "absolute",
-  },
+    backgroundColor: "#fff", // Ensure it's visible
+    zIndex: 0, // Make sure it stays behind the text
+},
   agzamWantsTo: {
-    marginLeft: -145,
-    top: 196,
+    marginLeft: -158,
+    top: 146,
     lineHeight: 20,
     textAlign: "left",
-    width: 291,
-    height: 86,
-    fontSize: 17,
+    width: 321,
+    height: 186,
+    fontSize: 20,
     color: "#000",
     alignItems: "center",
     display: "flex",
@@ -179,9 +170,9 @@ const styles = StyleSheet.create({
     borderColor: "#b786f1",
     borderStyle: "solid",
     width: 333,
+    borderRadius: 15,
     marginLeft: -166,
     left: "50%",
-    borderRadius: 15,
     position: "absolute",
   },
   yourAnswer: {
@@ -195,6 +186,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
     textAlign: "center",
+    color: "#000",
     position: "absolute",
   },
   iphone131414Child1: {
@@ -203,6 +195,7 @@ const styles = StyleSheet.create({
     height: 41,
     left: 31,
     borderRadius: 15,
+    top: 700,
   },
   continue: {
     left: 92,
