@@ -1,11 +1,14 @@
 import * as React from "react";
 import {StyleSheet, View, Image, Text} from "react-native";
-import Radixiconscrosscircled from "../assets/radixiconscrosscircled.svg"
-import Lucidetimer from "../assets/lucidetimer.svg"
-import Group85 from "../assets/group-85.svg"
-import Simplelineiconscheck from "../assets/simplelineiconscheck.svg"
-import Materialsymbolsshareoutline from "../assets/materialsymbolsshareoutline.svg"
-import Vuesaxlinearheart from "../assets/vuesaxlinearheart.svg"
+import Radixiconscrosscircled from "../assets/reviewpage/cross-circled.svg"
+import Lucidetimer from "../assets/reviewpage/lucidetimer.svg"
+import Vuesaxlinearprofile from "../assets/profile.svg"
+import Vuesaxlinearsetting2 from "../assets/setting-2.svg"
+import Lisearch from "../assets/lisearch.svg"
+import Vuesaxlinearhome from "../assets/homecommon.svg"
+import Simplelineiconscheck from "../assets/reviewpage/icons_check.svg"
+import Materialsymbolsshareoutline from "../assets/reviewpage/share-outline.svg"
+import Vuesaxlinearheart from "../assets/heart.svg"
 
 const IPhone1314 = () => {
   	
@@ -13,41 +16,45 @@ const IPhone1314 = () => {
     		<View style={styles.iphone131410}>
       			<View style={styles.iphone16Pro44}>
         				<View style={styles.iphone16Pro44Child} />
-        				<Image style={styles.image5Icon} resizeMode="cover" source="image 5.png" />
+        				<Image style={styles.image5Icon} resizeMode="cover" source={require("../src/img/imagecoin.png")} />
         				<Text style={[styles.lessonOverview, styles.textTypo1]}>Lesson overview</Text>
         				<Text style={[styles.score, styles.textTypo1]}>Score</Text>
-        				<Image style={styles.iphone16Pro44Item} resizeMode="cover" source="Group 1.png" />
-        				<Text style={[styles.text, styles.textLayout]}>60%</Text>
-        				<Image style={styles.imageIcon} resizeMode="cover" source="image.png" />
+        				<Image style={styles.percentagecircle} resizeMode="cover" source={require("../src/img/Group1.png")} />
+        				<Text style={[styles.percentagetext, styles.percentageLayout]}>60%</Text>
+        				<Image style={styles.imageIcon} resizeMode="cover" source={require("../src/img/profilepic.png")} />
         				<Text style={[styles.correctAnswers, styles.answersLayout]}>12 correct answers</Text>
         				<Text style={[styles.wrongAnswers, styles.answersLayout]}>8 wrong answers</Text>
-        				<Text style={[styles.minutes, styles.answersTypo]}>9:51 minutes</Text>
-        				<Text style={[styles.recommendations, styles.viewAllPosition]}>Recommendations</Text>
-        				<View style={[styles.iphone16Pro44Inner, styles.iphone16ShadowBox]} />
-        				<Text style={[styles.text1, styles.viewFlexBox]}>10</Text>
-        				<Image style={styles.image5Icon1} resizeMode="cover" source="image 5.png" />
+        				<Text style={[styles.minutes, styles.timetext]}>9:51 minutes</Text>
+        				<Text style={[styles.recommendations, styles.Recommendations]}>Recommendations</Text>
+        				<View style={[styles.recommendation1rectangle, styles.recommendationrectangles]} />
+        				<Text style={[styles.coinamount1, styles.text1Layout]}>10</Text>
+        				<Image style={styles.coiniconleft} resizeMode="cover" source={require("../src/img/imagecoin.png")} />
         				<View style={[styles.rectangleView, styles.image9IconLayout]} />
-        				<Image style={styles.maskGroupIcon} resizeMode="cover" source="Mask group.png" />
+        				<Image style={styles.maskGroupIcon} resizeMode="cover" source={require("../src/img/Maskgroup.png")} />
         				<Text style={[styles.shareResultsWith, styles.setTheoryTypo]}>Share results with friends !</Text>
-        				<View style={[styles.iphone16Pro44Child1, styles.iphone16ChildBg]} />
+        				<View style={[styles.viewrectangleleft, styles.iphone16ChildBg]} />
         				<Text style={[styles.view, styles.viewLayout]}>View</Text>
-        				<View style={[styles.iphone16Pro44Child2, styles.iphone16ShadowBox]} />
-        				<Text style={[styles.text2, styles.textTypo]}>20</Text>
-        				<Image style={[styles.image9Icon, styles.image9IconLayout]} resizeMode="cover" source="image 9.png" />
+        				<View style={[styles.iphone16Pro44Child2, styles.recommendationrectangles]} />
+        				<Text style={[styles.text2, styles.coinamount]}>20</Text>
+        				<Image style={[styles.image9Icon, styles.image9IconLayout]} resizeMode="cover" source={require("../src/img/imagecoin.png")} />
         				<View style={[styles.iphone16Pro44Child3, styles.rectangleViewBorder]} />
-        				<Image style={styles.maskGroupIcon1} resizeMode="cover" source="Mask group.png" />
+        				<Image style={styles.maskGroupIcon1} resizeMode="cover" source={require("../src/img/Maskgroup.png")} />
         				<View style={[styles.iphone16Pro44Child4, styles.iphone16ChildBg]} />
         				<Text style={[styles.view1, styles.viewTypo]}>View</Text>
         				<Text style={[styles.setTheory, styles.setTheoryTypo]}>Set theory</Text>
         				<Text style={[styles.viewAll, styles.viewTypo]}>View all</Text>
         				<Text style={[styles.treeDiagram, styles.setTheoryTypo]}>Tree diagram</Text>
-        				<Radixiconscrosscircled style={[styles.radixIconscrossCircled, styles.textLayout]} width={46} height={46} />
+        				<Radixiconscrosscircled style={[styles.radixIconscrossCircled, styles.percentageLayout]} width={46} height={46} />
         				<Lucidetimer style={styles.lucidetimerIcon} width={54} height={54} />
-        				<Group85 style={[styles.groupIcon, styles.answersLayout]} width={390} height={65} />
+        				<View style={[styles.iphone16Pro44Child5, styles.answersLayout]} />
+        				<Vuesaxlinearprofile style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} />
+        				<Vuesaxlinearsetting2 style={[styles.vuesaxlinearsetting2Icon, styles.iconLayout]} />
+        				<Lisearch style={[styles.lisearchIcon, styles.text1Layout]} width={45} height={41} />
+        				<Vuesaxlinearhome style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} />
         				<Simplelineiconscheck style={styles.simpleLineIconscheck} width={43} height={43} />
       			</View>
       			<Materialsymbolsshareoutline style={[styles.materialSymbolsshareOutlineIcon, styles.viewLayout]} width={35} height={36} />
-      			<Vuesaxlinearheart style={styles.vuesaxlinearheartIcon} />
+      			<Vuesaxlinearheart style={[styles.vuesaxlinearheartIcon, styles.iconLayout]} />
     		</View>);
 };
 
@@ -58,7 +65,7 @@ const styles = StyleSheet.create({
     		color: "#000",
     		lineHeight: 38
   	},
-  	textLayout: {
+  	percentageLayout: {
     		width: 46,
     		position: "absolute"
   	},
@@ -66,7 +73,7 @@ const styles = StyleSheet.create({
     		height: 65,
     		position: "absolute"
   	},
-  	answersTypo: {
+  	timetext: {
     		fontSize: 25,
     		alignItems: "center",
     		display: "flex",
@@ -74,11 +81,11 @@ const styles = StyleSheet.create({
     		fontFamily: "DoHyeon-Regular",
     		lineHeight: 38
   	},
-  	viewAllPosition: {
+  	Recommendations: {
     		top: 523,
     		position: "absolute"
   	},
-  	iphone16ShadowBox: {
+  	recommendationrectangles: {
     		height: 162,
     		width: 163,
     		backgroundColor: "#efeeef",
@@ -94,12 +101,9 @@ const styles = StyleSheet.create({
     		shadowOpacity: 1,
     		position: "absolute"
   	},
-  	viewFlexBox: {
-    		left: -35,
-    		justifyContent: "center",
-    		alignItems: "center",
-    		display: "flex",
-    		color: "#000"
+  	text1Layout: {
+    		height: 41,
+    		position: "absolute"
   	},
   	image9IconLayout: {
     		height: 29,
@@ -121,13 +125,12 @@ const styles = StyleSheet.create({
     		height: 36,
     		position: "absolute"
   	},
-  	textTypo: {
+  	coinamount: {
     		top: 635,
     		textAlign: "center",
     		fontFamily: "DoHyeon-Regular",
     		lineHeight: 38,
-    		fontSize: 24,
-    		position: "absolute"
+    		fontSize: 24
   	},
   	rectangleViewBorder: {
     		borderWidth: 1,
@@ -141,7 +144,14 @@ const styles = StyleSheet.create({
     		fontSize: 18,
     		textAlign: "center",
     		fontFamily: "DoHyeon-Regular",
-    		lineHeight: 38
+    		lineHeight: 32
+  	},
+  	iconLayout: {
+    		maxHeight: "100%",
+    		maxWidth: "100%",
+    		width: "11.54%",
+    		position: "absolute",
+    		overflow: "hidden"
   	},
   	iphone16Pro44Child: {
     		marginLeft: -177,
@@ -182,17 +192,17 @@ const styles = StyleSheet.create({
     		fontFamily: "DoHyeon-Regular",
     		position: "absolute"
   	},
-  	iphone16Pro44Item: {
+  	percentagecircle: {
     		top: 143,
     		left: 150,
     		width: 77,
     		height: 75,
     		position: "absolute"
   	},
-  	text: {
-    		top: 142,
-    		left: 169,
-    		fontSize: 15,
+    percentagetext: {
+    		top: 162,
+    		left: 167,
+    		fontSize: 20,
     		height: 77,
     		transform: [
       			{
@@ -215,7 +225,7 @@ const styles = StyleSheet.create({
     		position: "absolute"
   	},
   	correctAnswers: {
-    		top: 238,
+    		top: 248,
     		width: 230,
     		fontSize: 25,
     		alignItems: "center",
@@ -229,7 +239,7 @@ const styles = StyleSheet.create({
     		textAlign: "center"
   	},
   	wrongAnswers: {
-    		top: 308,
+    		top: 318,
     		width: 209,
     		fontSize: 25,
     		alignItems: "center",
@@ -243,7 +253,7 @@ const styles = StyleSheet.create({
     		textAlign: "center"
   	},
   	minutes: {
-    		top: 385,
+    		top: 392,
     		left: 120,
     		textAlign: "left",
     		width: 254,
@@ -258,20 +268,23 @@ const styles = StyleSheet.create({
     		color: "#000",
     		lineHeight: 38
   	},
-  	iphone16Pro44Inner: {
+  	recommendation1rectangle: {
     		left: 19
   	},
-  	text1: {
+  	coinamount1: {
     		width: 384,
-    		height: 41,
+    		left: -35,
+    		justifyContent: "center",
+    		alignItems: "center",
+    		display: "flex",
+    		color: "#000",
     		top: 635,
     		textAlign: "center",
     		fontFamily: "DoHyeon-Regular",
     		lineHeight: 38,
-    		fontSize: 24,
-    		position: "absolute"
+    		fontSize: 24
   	},
-  	image5Icon1: {
+  	coiniconleft: {
     		left: 109,
     		width: 32,
     		height: 31,
@@ -302,7 +315,7 @@ const styles = StyleSheet.create({
     		fontSize: 20,
     		left: "50%"
   	},
-  	iphone16Pro44Child1: {
+  	viewrectangleleft: {
     		left: 53,
     		width: 103,
     		height: 33,
@@ -331,7 +344,8 @@ const styles = StyleSheet.create({
     		justifyContent: "center",
     		alignItems: "center",
     		display: "flex",
-    		color: "#000"
+    		color: "#000",
+    		position: "absolute"
   	},
   	image9Icon: {
     		left: 297,
@@ -399,9 +413,43 @@ const styles = StyleSheet.create({
     		left: 41,
     		position: "absolute"
   	},
-  	groupIcon: {
+  	iphone16Pro44Child5: {
     		top: 780,
-    		left: 1
+    		left: 1,
+    		backgroundColor: "#ededed",
+    		width: 390
+  	},
+  	vuesaxlinearprofileIcon: {
+    		right: "23.03%",
+    		left: "65.43%",
+    		bottom: "1.37%",
+    		maxWidth: "100%",
+    		width: "11.54%",
+    		top: "93.37%",
+    		height: "5.25%"
+  	},
+  	vuesaxlinearsetting2Icon: {
+    		right: "4.87%",
+    		left: "83.59%",
+    		bottom: "1.37%",
+    		maxWidth: "100%",
+    		width: "11.54%",
+    		top: "93.37%",
+    		height: "5.25%"
+  	},
+  	lisearchIcon: {
+    		top: 791,
+    		left: 21,
+    		overflow: "hidden"
+  	},
+  	vuesaxlinearhomeIcon: {
+    		height: "5.03%",
+    		top: "93.6%",
+    		right: "43.68%",
+    		left: "44.78%",
+    		bottom: "1.37%",
+    		maxWidth: "100%",
+    		width: "11.54%"
   	},
   	simpleLineIconscheck: {
     		top: 249,
@@ -431,15 +479,12 @@ const styles = StyleSheet.create({
   	},
   	vuesaxlinearheartIcon: {
     		height: "5.21%",
-    		width: "11.54%",
     		top: "93.72%",
     		right: "64.62%",
     		bottom: "1.07%",
     		left: "23.85%",
     		maxWidth: "100%",
-    		maxHeight: "100%",
-    		position: "absolute",
-    		overflow: "hidden"
+    		width: "11.54%"
   	},
   	iphone131410: {
     		backgroundColor: "#d0afca",
