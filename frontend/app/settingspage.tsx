@@ -1,5 +1,6 @@
 import * as React from "react";
-import {StyleSheet, View, Image, Text} from "react-native";
+import {StyleSheet, View, Image, Text, TouchableOpacity} from "react-native";
+import { useRouter } from "expo-router";
 import Rectangle1stroke from "../assets/settingspage/rectangle-email.svg"
 import Rectangle194 from "../assets/settingspage/rectangle-lang.svg"
 import Rectangle1stroke1 from "../assets/settingspage/rectangle-phone.svg"
@@ -17,7 +18,8 @@ import Vuesaxboldsetting2 from "../assets/settingspage/boldsetting2.svg"
 import Vuesaxlinearheart from "../assets/heart.svg"
 
 const IPhone1314 = () => {
-  	
+	const router = useRouter();
+
   	return (
     		<View style={[styles.iphone131411, styles.iphone131411Bg]}>
       			<View style={[styles.iphone16Pro44, styles.iphone16Position]}>
@@ -48,11 +50,40 @@ const IPhone1314 = () => {
         				<Iontoggleoutline style={[styles.iontoggleOutlineIcon, styles.iontoggleIconLayout]} width={39} height={39} />
         				<Iontoggleoutline1 style={[styles.iontoggleOutlineIcon1, styles.iontoggleIconLayout]} width={39} height={39} />
         				<View style={[styles.rectangleView, styles.iphone16Position]} />
-        				<Vuesaxlinearprofile style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} />
-        				<Lisearch style={styles.lisearchIcon} width={45} height={41} />
-        				<Vuesaxlinearhome style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} />
-        				<Vuesaxboldsetting2 style={styles.vuesaxboldsetting2Icon} width={47} height={48} />
-        				<Vuesaxlinearheart style={[styles.vuesaxlinearheartIcon, styles.iconLayout]} />
+						<TouchableOpacity 
+          style={[styles.vuesaxlinearheartIcon, styles.iconLayout]} 
+          onPress={() => router.push("/home")}
+        >
+          <Vuesaxlinearheart />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.vuesaxlinearhomeIcon} 
+          onPress={() => router.push("/home")}
+        >
+          <Vuesaxlinearhome />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.lisearchIcon} 
+          onPress={() => router.push("/home")}
+        >
+          <Lisearch width={45} height={41} />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} 
+          onPress={() => router.push("/home")}
+        >
+          <Vuesaxlinearprofile />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.vuesaxboldsetting2Icon} 
+          onPress={() => router.push("/home")}
+        >
+          <Vuesaxboldsetting2 width={47} height={48} />
+        </TouchableOpacity>
       			</View>
     		</View>);
 };
@@ -286,38 +317,48 @@ const styles = StyleSheet.create({
     		width: 390,
     		height: 65
   	},
-  	vuesaxlinearprofileIcon: {
-    		height: "5.25%",
-    		top: "93.49%",
-    		right: "23.87%",
-    		bottom: "1.26%",
-    		left: "64.68%"
-  	},
-  	lisearchIcon: {
-    		top: 792,
-    		left: 20,
-    		position: "absolute",
-    		overflow: "hidden"
-  	},
-  	vuesaxlinearhomeIcon: {
-    		height: "5.03%",
-    		top: "93.72%",
-    		right: "44.36%",
-    		bottom: "1.25%",
-    		left: "44.19%"
-  	},
-  	vuesaxboldsetting2Icon: {
-    		top: 789,
-    		left: 324,
-    		position: "absolute"
-  	},
-  	vuesaxlinearheartIcon: {
-    		height: "5.21%",
-    		top: "93.73%",
-    		right: "64.89%",
-    		bottom: "1.07%",
-    		left: "23.66%"
-  	},
+	  vuesaxlinearheartIcon: {
+		height: "5.21%",
+		top: "93.73%",
+		right: "64.89%",
+		bottom: "1.07%",
+		left: "23.66%",
+		justifyContent: 'center',
+		alignItems: 'center',
+	  },
+	  vuesaxlinearhomeIcon: {
+		height: "4.53%",
+		top: "93.72%",
+		right: "44.36%",
+		bottom: "1.25%",
+		left: "0.19%",
+		justifyContent: 'center',
+		alignItems: 'center',
+	  },
+	  lisearchIcon: {
+		top: 792,
+		left: 20,
+		position: "absolute",
+		overflow: "hidden",
+		justifyContent: 'center',
+		alignItems: 'center',
+	  },
+	  vuesaxlinearprofileIcon: {
+		height: "5.25%",
+		top: "93.49%",
+		right: "23.87%",
+		bottom: "1.26%",
+		left: "64.68%",
+		justifyContent: 'center',
+		alignItems: 'center',
+	  },
+	  vuesaxboldsetting2Icon: {
+		top: 789,
+		left: 324,
+		position: "absolute",
+		justifyContent: 'center',
+		alignItems: 'center',
+	  },
   	iphone16Pro44: {
     		shadowColor: "rgba(0, 0, 0, 0.25)",
     		shadowOffset: {
