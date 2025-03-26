@@ -1,0 +1,27 @@
+<svg width="58" height="54" viewBox="0 0 58 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 101">
+<g id="Mask" filter="url(#filter0_d_391_1594)">
+<ellipse cx="29" cy="23.2915" rx="21" ry="19.5" fill="url(#paint0_linear_391_1594)"/>
+</g>
+<mask id="mask0_391_1594" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="8" y="3" width="42" height="40">
+<ellipse id="Mask_2" cx="29" cy="23.2915" rx="21" ry="19.5" fill="white"/>
+</mask>
+<g mask="url(#mask0_391_1594)">
+</g>
+</g>
+<defs>
+<filter id="filter0_d_391_1594" x="0.888889" y="0.235948" width="56.2222" height="53.2222" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="3.55556"/>
+<feGaussianBlur stdDeviation="3.55556"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.643137 0 0 0 0 0.301509 0 0 0 0 0.0196078 0 0 0 0.2 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_391_1594"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_391_1594" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_391_1594" x1="8" y1="3.7915" x2="8" y2="42.7915" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FDDA9D"/>
+<stop offset="1" stop-color="#EFB35E"/>
+</linearGradient>
+</defs>
+</svg>

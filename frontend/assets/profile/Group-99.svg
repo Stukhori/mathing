@@ -1,0 +1,11 @@
+<svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 99">
+<path id="Mask Copy 32" fill-rule="evenodd" clip-rule="evenodd" d="M16.0954 4.31597C20.4897 1.78453 25.8996 1.78453 30.2939 4.31596L35.6497 7.40126C40.0567 9.94002 42.7727 14.6389 42.7727 19.7249V25.8408C42.7727 30.9268 40.0567 35.6256 35.6497 38.1644L30.2939 41.2497C25.8996 43.7811 20.4897 43.7811 16.0954 41.2497L10.7396 38.1644C6.33255 35.6256 3.61662 30.9268 3.61662 25.8408V19.7249C3.61662 14.6389 6.33254 9.94002 10.7396 7.40126L16.0954 4.31597Z" fill="url(#paint0_linear_391_1567)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_391_1567" x1="0.587891" y1="0.226318" x2="0.587891" y2="45.3393" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FDE046"/>
+<stop offset="1" stop-color="#F9B800"/>
+</linearGradient>
+</defs>
+</svg>

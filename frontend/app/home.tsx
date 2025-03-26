@@ -110,14 +110,14 @@ const IPhone1314 = () => {
         <View style={styles.iphone16Pro45Child7} />
         <TouchableOpacity 
         style={styles.heartIcon} 
-        onPress={() => router.push("/settingspage")}
+        onPress={() => router.push("/learnwithfriends")}
       >
         <Heart />
       </TouchableOpacity>
 
       <TouchableOpacity 
         style={styles.vuesaxboldhomeIcon} 
-        onPress={() => router.push("/settingspage")}
+        onPress={() => router.push("/home")}
       >
         <Vuesaxboldhome width={47} height={48} />
       </TouchableOpacity>

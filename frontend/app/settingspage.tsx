@@ -52,7 +52,7 @@ const IPhone1314 = () => {
         				<View style={[styles.rectangleView, styles.iphone16Position]} />
 						<TouchableOpacity 
           style={[styles.vuesaxlinearheartIcon, styles.iconLayout]} 
-          onPress={() => router.push("/home")}
+          onPress={() => router.push("/learnwithfriends")}
         >
           <Vuesaxlinearheart />
         </TouchableOpacity>
