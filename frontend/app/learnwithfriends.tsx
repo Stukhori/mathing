@@ -68,7 +68,7 @@ friends`}</Text>
           					</Text>
         				</Text>
         				<Text style={[styles.text2, styles.groupnumber]}>1</Text>
-        				<Image style={styles.iconParkSolidupOne} resizeMode="cover" source={require("../assets/friendspage/arrowdown.svg")} />
+        				<Image style={styles.iconParkSolidupOne} resizeMode="cover" source={require("../assets/friendspage/arrowdown.png")} />
       			</View>
     		</View>);
 };
@@ -468,6 +468,13 @@ const styles = StyleSheet.create({
     		top: 702,
     		left: 332
   	},
+	iconParkSolidupOne: {
+		top: 694,
+		width: 36,
+		height: 36,
+		left: 15,
+		position: "absolute"
+  },
   	iphone16Pro38: {
     		top: 0,
     		shadowColor: "rgba(0, 0, 0, 0.25)",
