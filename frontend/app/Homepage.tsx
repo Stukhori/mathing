@@ -9,7 +9,7 @@ import Vuesaxlinearprofile from "../assets/profile.svg";
 import Vuesaxlinearsetting2 from "../assets/setting-2.svg";
 import Lisearch from "../assets/lisearch.svg";
 import Vuesaxboldhome from "../assets/homebold.svg";
-import Vector from "../assets/vector.svg";
+import Vector from "../assets/Vector.svg";
 import Heart from "../assets/heart.svg";
 
 const IPhone1314 = () => {
