@@ -1,7 +1,10 @@
 import * as React from "react";
-import { StyleSheet, View, Text, ImageBackground } from "react-native";
+import { StyleSheet, View, Text, ImageBackground, TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router";
 
 const IPhone1314 = () => {
+  const router = useRouter();
+
   return (
     <ImageBackground
       style={styles.iphone131423}
@@ -10,18 +13,17 @@ const IPhone1314 = () => {
     >
       <View style={[styles.frame, styles.frameLayout]}>
         <View style={[styles.frame1, styles.frame1ShadowBox]} />
-        <View style={styles.frame2}>
+        <TouchableOpacity style={styles.frame2} onPress={() => router.push("/Identifierquestions")}>
           <Text style={[styles.startTheTest, styles.startTheTestTypo]}>
             start the test
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={[styles.iphone131423Child, styles.frame1ShadowBox]} />
       <View style={styles.frame3}>
-        <Text
-          style={[styles.pleaseAnswerTo, styles.startTheTestTypo]}
-        >{`Please, answer to a short quiz to identify your current level!
-`}</Text>
+        <Text style={[styles.pleaseAnswerTo, styles.startTheTestTypo]}>
+          Please, answer a short quiz to identify your current level!
+        </Text>
       </View>
     </ImageBackground>
   );
