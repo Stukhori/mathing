@@ -1,80 +1,74 @@
 import * as React from "react";
 import {StyleSheet, View, Text, Image} from "react-native";
-import Search from "../assets/search.svg"
-import Ellipse4 from "../assets/ellipse-4.svg"
-import Image3 from "../assets/image3.svg"
-import Ellipse5 from "../assets/ellipse-5.svg"
-import Ellipse6 from "../assets/ellipse-6.svg"
-import Ellipse7 from "../assets/ellipse-7.svg"
-import Vuesaxlinearprofile from "../assets/vuesaxlinearprofile.svg"
-import Vuesaxlinearsetting2 from "../assets/vuesaxlinearsetting2.svg"
+import Search from "../assets/friendspage/search.svg"
+import Ellipse4 from "../assets/friendspage/ellipsefriends1.svg"
+import Ellipse5 from "../assets/friendspage/ellipsefriends2.svg"
+import Ellipse6 from "../assets/friendspage/ellipsefriends3.svg"
+import Ellipse7 from "../assets/friendspage/ellipsefriends4.svg"
+import Vuesaxlinearprofile from "../assets/profile.svg"
+import Vuesaxlinearsetting2 from "../assets/setting-2.svg"
 import Lisearch from "../assets/lisearch.svg"
-import Vuesaxlinearhome from "../assets/vuesaxlinearhome.svg"
-import Vuesaxlinearheart from "../assets/vuesaxlinearheart.svg"
+import Vuesaxlinearhome from "../assets/homecommon.svg"
+import Vuesaxlinearheart from "../assets/friendspage/heartbold.svg"
 
 const IPhone1314 = () => {
   	
   	return (
     		<View style={styles.iphone13149}>
       			<View style={[styles.iphone16Pro38, styles.iphone16Position]}>
-        				<View style={styles.iphone16Pro38Child} />
+        				<View style={styles.searchrectangle} />
         				<Text style={[styles.searchFriends, styles.friendsLayout]}>Search friends...</Text>
         				<Search style={styles.searchIcon} width={22} height={21} />
-        				<Text style={[styles.learnWithFriends, styles.learnFlexBox]}>Learn with friends</Text>
-        				<View style={styles.iphone16Pro38Item} />
+        				<View style={styles.friendsrectangle} />
         				<Text style={[styles.viewAll, styles.viewTypo]}>View all</Text>
         				<Text style={[styles.friends, styles.groupsLayout]}>Friends</Text>
-        				<Image style={[styles.imageIcon, styles.imageIconLayout]} resizeMode="cover" source="../assets/fox.png" />
-        				<Image style={[styles.imageIcon1, styles.imageIconLayout]} resizeMode="cover" source="../assets/men.png" />
-        				<Text style={styles.ayaulym}>Ayaulym</Text>
-        				<Text style={[styles.agzam, styles.agzamTypo]}>Agzam</Text>
-        				<Text style={styles.text}>(12)</Text>
-        				<Image style={[styles.imageIcon2, styles.imageIconLayout]} resizeMode="cover" source="../assets/women.png" />
-        				<Text style={[styles.daniyal, styles.agzamTypo]}>Daniyal</Text>
-        				<Text style={[styles.addNewFriends, styles.agzamTypo]}>{`Add new
-          					friends`}</Text>
-        				<Ellipse4 style={[styles.iphone16Pro38Inner, styles.imageIconLayout]} width={64} height={64} />
-        				<Image style={[styles.image3Icon, styles.iconLayout3]} resizeMode="cover" source="../assets/addfriends.png" />
+        				<Image style={[styles.friendsimageIcon2, styles.imageIconLayout]} resizeMode="cover" source={require("../assets/friendspage/foxprofile.png")} />
+        				<Image style={[styles.friendsimageIcon3, styles.imageIconLayout]} resizeMode="cover" source={require("../assets/friendspage/menprofile.png")} />
+        				<Text style={styles.friendstext3}>Ayaulym</Text>
+        				<Text style={[styles.friendstext2, styles.agzamTypo]}>Agzam</Text>
+        				<Text style={styles.friendsnumber}>(12)</Text>
+        				<Image style={[styles.friendsimageIcon1, styles.imageIconLayout]} resizeMode="cover" source={require("../assets/friendspage/womenprofile.png")} />
+        				<Text style={[styles.friendstext1, styles.agzamTypo]}>Daniyal</Text>
+        				<Text style={[styles.friendstext4, styles.agzamTypo]}>{`Add new 
+friends`}</Text>
+        				<Ellipse4 style={[styles.newfriendsellipse, styles.imageIconLayout]} width={64} height={64} />
+        				<Image style={[styles.newfriendsicon, styles.iconLayout3]} resizeMode="cover" source={require("../assets/friendspage/addfriends.png")} />
         				<Text style={[styles.groups, styles.groupsLayout]}>Groups</Text>
-        				<View style={[styles.rectangleView, styles.iphone16ChildBorder]} />
-        				<Image3 style={styles.imageIcon3} width={67} height={67} />
-        				<Ellipse5 style={[styles.ellipseIcon, styles.iphone16ChildLayout]} width={68} height={68} />
-        				<Image style={[styles.image5Icon, styles.iconLayout2]} resizeMode="cover" source="../assets/house.png" />
-        				<Text style={[styles.school, styles.schoolFlexBox]}>School</Text>
-        				<Ellipse6 style={[styles.iphone16Pro38Child1, styles.iphone16ChildLayout]} width={68} height={68} />
-        				<Ellipse7 style={[styles.iphone16Pro38Child2, styles.iphone16ChildLayout]} width={68} height={68} />
-        				<Text style={[styles.coolGuys, styles.schoolFlexBox]}>Cool guys</Text>
-        				<Image style={[styles.image6Icon, styles.iconLayout3]} resizeMode="cover" source="../assets/newfriends.png" />
-        				<Text style={[styles.createNewGroup, styles.schoolFlexBox]}>Create new group</Text>
-        				<Image style={[styles.image7Icon, styles.iconLayout2]} resizeMode="cover" source="../assets/group.png" />
-        				<Text style={[styles.learnWithFriends1, styles.learnFlexBox]}>Learn with friends</Text>
-        				<View style={[styles.iphone16Pro38Child3, styles.iphone16Position]} />
+        				<Ellipse5 style={[styles.group1ellipse, styles.groupellipses]} width={68} height={68} />
+        				<Image style={[styles.group1icon, styles.groupsicons]} resizeMode="cover" source={require("../assets/friendspage/schoolgroup.png")} />
+        				<Text style={[styles.group1text, styles.newgrouptext]}>School</Text>
+        				<Ellipse6 style={[styles.group2ellipse, styles.groupellipses]} width={68} height={68} />
+        				<Ellipse7 style={[styles.group3ellipse, styles.groupellipses]} width={68} height={68} />
+        				<Text style={[styles.group2text, styles.newgrouptext]}>Cool guys</Text>
+        				<Image style={[styles.group3icon, styles.iconLayout3]} resizeMode="cover" source={require("../assets/friendspage/newfriends.png")} />
+        				<Text style={[styles.group3text, styles.newgrouptext]}>Create new group</Text>
+        				<Image style={[styles.group2icon, styles.groupsicons]} resizeMode="cover" source={require("../assets/friendspage/coolguysgroup.png")} />
+        				<Text style={[styles.toptext, styles.learnFlexBox]}>Learn with friends</Text>
+        				<View style={[styles.menurectangle, styles.iphone16Position]} />
         				<Vuesaxlinearprofile style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} />
         				<Vuesaxlinearsetting2 style={[styles.vuesaxlinearsetting2Icon, styles.iconLayout]} />
-        				<Lisearch style={[styles.lisearchIcon, styles.iconPosition]} width={45} height={41} />
+        				<Lisearch style={[styles.lisearchIcon, styles.searchandheart]} width={45} height={41} />
         				<Vuesaxlinearhome style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} />
-        				<Vuesaxlinearheart style={[styles.vuesaxlinearheartIcon, styles.iconPosition]} width={45} height={45} />
-        				<Text style={[styles.viewAll1, styles.viewTypo]}>View all</Text>
+        				<Vuesaxlinearheart style={[styles.vuesaxlinearheartIcon, styles.searchandheart]} width={45} height={45} />
+        				<Text style={[styles.viewAlltextrankings, styles.viewTypo]}>View all</Text>
         				<Text style={styles.yourRankings}>Your Rankings</Text>
-        				<View style={[styles.iphone16Pro38Child4, styles.iphone16ChildBorder]} />
-        				<Text style={[styles.school1, styles.school1Typo]}>School</Text>
-        				<Text style={[styles.thOf150Container, styles.containerTypo]}>
+        				<Text style={[styles.rankgroup1name, styles.rankingsgroupname]}>School</Text>
+        				<Text style={[styles.group1rank, styles.rankplace]}>
           					<Text style={styles.thOf150Container1}>
             						<Text style={styles.th}>9th</Text>
             						<Text style={styles.of150}> of 150</Text>
           					</Text>
         				</Text>
-        				<Text style={[styles.text1, styles.textTypo]}>2</Text>
-        				<View style={[styles.iphone16Pro38Child5, styles.iphone16ChildBorder]} />
-        				<Text style={[styles.coolGuys1, styles.school1Typo]}>Cool guys</Text>
-        				<Text style={[styles.thOf22Container, styles.containerTypo]}>
+        				<Text style={[styles.text1, styles.groupnumber]}>2</Text>
+        				<Text style={[styles.rankgroup2name, styles.rankingsgroupname]}>Cool guys</Text>
+        				<Text style={[styles.group2rank, styles.rankplace]}>
           					<Text style={styles.thOf150Container1}>
             						<Text style={styles.th}>4th</Text>
             						<Text style={styles.of150}> of 22</Text>
           					</Text>
         				</Text>
-        				<Text style={[styles.text2, styles.textTypo]}>1</Text>
-        				<Image style={styles.iconParkSolidupOne} resizeMode="cover" source="../assets/arrowdown.svg" />
+        				<Text style={[styles.text2, styles.groupnumber]}>1</Text>
+        				<Image style={styles.iconParkSolidupOne} resizeMode="cover" source={require("../assets/friendspage/arrowdown.svg")} />
       			</View>
     		</View>);
 };
@@ -139,29 +133,19 @@ const styles = StyleSheet.create({
     		height: 39,
     		position: "absolute"
   	},
-  	iphone16ChildBorder: {
-    		width: 350,
-    		left: 15,
-    		borderColor: "#000",
-    		borderRadius: 15,
-    		borderWidth: 1,
-    		borderStyle: "solid",
-    		backgroundColor: "#fff",
-    		position: "absolute"
-  	},
-  	iphone16ChildLayout: {
+  	groupellipses: {
     		height: 68,
     		width: 68,
     		top: 407,
     		position: "absolute"
   	},
-  	iconLayout2: {
+  	groupsicons: {
     		height: 47,
     		width: 47,
     		position: "absolute"
   	},
-  	schoolFlexBox: {
-    		height: 30,
+  	newgrouptext: {
+    		height: 40,
     		top: 482,
     		color: "#000",
     		justifyContent: "center",
@@ -178,12 +162,12 @@ const styles = StyleSheet.create({
     		position: "absolute",
     		overflow: "hidden"
   	},
-  	iconPosition: {
-    		width: 45,
+  	searchandheart: {
+    		width: 35,
     		top: 790,
     		position: "absolute"
   	},
-  	school1Typo: {
+  	rankingsgroupname: {
     		color: "#676767",
     		fontSize: 24,
     		left: 30,
@@ -196,7 +180,7 @@ const styles = StyleSheet.create({
     		lineHeight: 38,
     		position: "absolute"
   	},
-  	containerTypo: {
+  	rankplace: {
     		width: 119,
     		fontSize: 26,
     		left: 30,
@@ -207,7 +191,7 @@ const styles = StyleSheet.create({
     		lineHeight: 38,
     		position: "absolute"
   	},
-  	textTypo: {
+  	groupnumber: {
     		width: 23,
     		fontSize: 45,
     		textAlign: "left",
@@ -215,10 +199,10 @@ const styles = StyleSheet.create({
     		alignItems: "center",
     		display: "flex",
     		fontFamily: "DoHyeon-Regular",
-    		lineHeight: 38,
+    		lineHeight: 43,
     		position: "absolute"
   	},
-  	iphone16Pro38Child: {
+  	searchrectangle: {
     		top: 95,
     		left: 45,
     		shadowColor: "rgba(0, 0, 0, 0)",
@@ -257,15 +241,7 @@ const styles = StyleSheet.create({
     		left: 61,
     		position: "absolute"
   	},
-  	learnWithFriends: {
-    		top: -261,
-    		left: 202,
-    		fontFamily: "JockeyOne-Regular",
-    		width: 258,
-    		height: 45,
-    		color: "#000"
-  	},
-  	iphone16Pro38Item: {
+  	friendsrectangle: {
     		top: 151,
     		left: 6,
     		width: 377,
@@ -287,13 +263,13 @@ const styles = StyleSheet.create({
     		top: 159,
     		left: 4
   	},
-  	imageIcon: {
+  	friendsimageIcon2: {
     		left: 120
   	},
-  	imageIcon1: {
+  	friendsimageIcon3: {
     		left: 213
   	},
-  	ayaulym: {
+  	friendstext3: {
     		left: 195,
     		height: 39,
     		width: 102,
@@ -308,13 +284,13 @@ const styles = StyleSheet.create({
     		lineHeight: 38,
     		position: "absolute"
   	},
-  	agzam: {
+  	friendstext2: {
     		left: 129,
     		top: 295,
     		fontSize: 16,
     		lineHeight: 38
   	},
-  	text: {
+  	friendsnumber: {
     		left: 114,
     		fontSize: 25,
     		color: "#898787",
@@ -324,27 +300,27 @@ const styles = StyleSheet.create({
     		lineHeight: 38,
     		position: "absolute"
   	},
-  	imageIcon2: {
+  	friendsimageIcon1: {
     		left: 26,
     		height: 64,
     		width: 64,
     		top: 226
   	},
-  	daniyal: {
+  	friendstext1: {
     		left: 33,
     		top: 295,
     		fontSize: 16,
     		lineHeight: 38
   	},
-  	addNewFriends: {
-    		top: 297,
-    		left: 309,
+  	friendstext4: {
+    		top: 295,
+    		left: 303,
     		lineHeight: 20
   	},
-  	iphone16Pro38Inner: {
+  	newfriendsellipse: {
     		left: 306
   	},
-  	image3Icon: {
+  	newfriendsicon: {
     		top: 239,
     		left: 322
   	},
@@ -352,23 +328,14 @@ const styles = StyleSheet.create({
     		top: 350,
     		left: -4
   	},
-  	rectangleView: {
-    		top: 390,
-    		height: 139
-  	},
-  	imageIcon3: {
-    		top: 414,
-    		left: 31,
-    		position: "absolute"
-  	},
-  	ellipseIcon: {
+  	group1ellipse: {
     		left: 37
   	},
-  	image5Icon: {
+  	group1icon: {
     		top: 415,
     		left: 48
   	},
-  	school: {
+  	group1text: {
     		left: 20,
     		width: 102,
     		height: 30,
@@ -376,13 +343,13 @@ const styles = StyleSheet.create({
     		lineHeight: 38,
     		fontSize: 18
   	},
-  	iphone16Pro38Child1: {
+  	group2ellipse: {
     		left: 156
   	},
-  	iphone16Pro38Child2: {
+  	group3ellipse: {
     		left: 278
   	},
-  	coolGuys: {
+  	group2text: {
     		left: 140,
     		width: 102,
     		height: 30,
@@ -390,21 +357,21 @@ const styles = StyleSheet.create({
     		lineHeight: 38,
     		fontSize: 18
   	},
-  	image6Icon: {
+  	group3icon: {
     		top: 423,
     		left: 296
   	},
-  	createNewGroup: {
+  	group3text: {
     		left: 252,
     		fontSize: 17,
     		width: 116,
     		lineHeight: 20
   	},
-  	image7Icon: {
+  	group2icon: {
     		top: 418,
     		left: 167
   	},
-  	learnWithFriends1: {
+  	toptext: {
     		top: 43,
     		left: 65,
     		height: 45,
@@ -413,7 +380,7 @@ const styles = StyleSheet.create({
     		fontFamily: "DoHyeon-Regular",
     		fontSize: 32
   	},
-  	iphone16Pro38Child3: {
+  	menurectangle: {
     		top: 779,
     		backgroundColor: "#ededed",
     		height: 65,
@@ -454,7 +421,7 @@ const styles = StyleSheet.create({
   	vuesaxlinearheartIcon: {
     		left: 92
   	},
-  	viewAll1: {
+  	viewAlltextrankings: {
     		top: 542,
     		left: 298
   	},
@@ -472,12 +439,8 @@ const styles = StyleSheet.create({
     		lineHeight: 38,
     		position: "absolute"
   	},
-  	iphone16Pro38Child4: {
-    		top: 580,
-    		height: 78
-  	},
-  	school1: {
-    		top: 590
+  	rankgroup1name: {
+    		top: 580
   	},
   	th: {
     		color: "#6637a1"
@@ -488,33 +451,22 @@ const styles = StyleSheet.create({
   	thOf150Container1: {
     		width: "100%"
   	},
-  	thOf150Container: {
+  	group1rank: {
     		top: 619
   	},
   	text1: {
     		top: 612,
     		left: 324
   	},
-  	iphone16Pro38Child5: {
-    		top: 669,
-    		height: 83
-  	},
-  	coolGuys1: {
+  	rankgroup2name: {
     		top: 675
   	},
-  	thOf22Container: {
+  	group2rank: {
     		top: 708
   	},
   	text2: {
     		top: 702,
     		left: 332
-  	},
-  	iconParkSolidupOne: {
-    		top: 694,
-    		width: 36,
-    		height: 36,
-    		left: 15,
-    		position: "absolute"
   	},
   	iphone16Pro38: {
     		top: 0,

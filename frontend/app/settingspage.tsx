@@ -12,7 +12,7 @@ import Iontoggleoutline from "../assets/settingspage/switchbutton.svg"
 import Iontoggleoutline1 from "../assets/settingspage/switchbutton1.svg"
 import Vuesaxlinearprofile from "../assets/profile.svg"
 import Lisearch from "../assets/lisearch.svg"
-import Vuesaxlinearhome from "../assets/settingspage/homecommon.svg"
+import Vuesaxlinearhome from "../assets/homecommon.svg"
 import Vuesaxboldsetting2 from "../assets/settingspage/boldsetting2.svg"
 import Vuesaxlinearheart from "../assets/heart.svg"
 
