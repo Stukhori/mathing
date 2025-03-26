@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
-
+import { Link } from "expo-router";
 
 const Signup = () => {
   const { control, handleSubmit, reset } = useForm();
@@ -111,8 +111,10 @@ const Signup = () => {
         </Text>
 
         <Text style={[styles.alreadyHaveAnContainer, styles.alreadyText]}>
-          <Text style={styles.alreadyHaveAn1}>ALREADY HAVE AN ACCOUNT? </Text>
-          <Text style={styles.logIn}>LOG IN</Text>
+    <Text style={styles.alreadyHaveAn1}>ALREADY HAVE AN ACCOUNT? </Text>
+    <TouchableOpacity onPress={() => router.push("/signin")}>
+      <Text style={styles.logIn}>LOG IN</Text>
+    </TouchableOpacity>
         </Text>
       </View>
     </View>
@@ -160,7 +162,7 @@ const styles = StyleSheet.create({
   alreadyText: {
     textAlign: "left",
     textTransform: "uppercase",
-    lineHeight: 18,
+    lineHeight: 28,
     letterSpacing: 1,
     position: "absolute",
   },
@@ -349,6 +351,9 @@ const styles = StyleSheet.create({
   },
   logIn: {
     color: "#007bff",
+    fontSize: 20,
+    fontFamily: "DoHyeon-Regular",
+    top: 5,
   },
   alreadyHaveAnContainer: {
     marginLeft: -167,
