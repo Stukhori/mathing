@@ -13,7 +13,7 @@ const IPhone1314 = () => {
     >
       <View style={[styles.frame, styles.frameLayout]}>
         <View style={[styles.frame1, styles.frame1ShadowBox]} />
-        <TouchableOpacity style={styles.frame2} onPress={() => router.push("/Identifierquestions")}>
+        <TouchableOpacity style={styles.frame2} onPress={() => router.push("/identifierquestions")}>
           <Text style={[styles.startTheTest, styles.startTheTestTypo]}>
             start the test
           </Text>
