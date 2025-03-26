@@ -99,7 +99,12 @@ const IPhone1314 = () => {
           <Text style={styles.signInWith}>Sign in with google</Text>
         </View>
       </View>
-
+      <View style={styles.signupContainer}>
+        <Text style={styles.signupText}>Don't have an account? </Text>
+        <TouchableOpacity onPress={() => router.push("/signup")}>
+          <Text style={styles.signupLink}>Sign up</Text>
+        </TouchableOpacity>
+      </View>
       <Text style={[styles.mathing, styles.frame5Position]}>Mathing</Text>
     </View>
   );
@@ -372,6 +377,26 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     backgroundColor: "#fff",
   },
+  signupContainer: {
+    flexDirection: 'row',
+    position: 'absolute',
+    top: 780, // Adjust this value based on your layout needs
+    left: '50%',
+    marginLeft: -110, // Half of total width to center
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  signupText: {
+    color: '#514880',
+    fontFamily: 'DoHyeon-Regular',
+    fontSize: 16,
+  },
+  signupLink: {
+    color: '#1da1f2',
+    fontFamily: 'DoHyeon-Regular',
+    fontSize: 16,
+    textDecorationLine: 'underline',
+  }
 });
 
 export default IPhone1314;
