@@ -8,14 +8,34 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import Eyeoff from "../assets/eye-off.svg";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
+import { useRouter } from "expo-router";
 import Image32lww from "../assets/image--32lww.svg";
 
 const IPhone1314 = () => {
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, reset } = useForm();
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = React.useState("");
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/users/login",
+        data
+      );
+      const { token } = response.data;
+      if (token) {
+        await AsyncStorage.setItem("authToken", token);
+      }
+      router.push("/home");
+      reset(); // Reset form fields after successful submission
+    } catch (error) {
+      console.log(error);
+      setErrorMessage(error.response.data.error || "Something went wrong");
+    }
   };
 
   return (
@@ -54,6 +74,10 @@ const IPhone1314 = () => {
         )}
       />
 
+      {errorMessage ? (
+        <Text style={styles.errorText}>{errorMessage}</Text>
+      ) : null}
+
       <TouchableOpacity style={styles.frame1} onPress={handleSubmit(onSubmit)}>
         <View style={[styles.frame2, styles.frameLayout]} />
         <View style={[styles.frame3, styles.framePosition]}>
@@ -82,6 +106,11 @@ const IPhone1314 = () => {
 };
 
 const styles = StyleSheet.create({
+  errorText: {
+    color: "red",
+    textAlign: "center",
+    marginTop: 5,
+  },
   orFlexBox: {
     justifyContent: "center",
     alignItems: "center",

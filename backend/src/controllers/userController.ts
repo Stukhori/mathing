@@ -21,7 +21,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     const { token, user } = await loginUser(email, password);
     res.status(200).json({ token, user });
   } catch (error) {
-    res.status(400).json({ error: (error as Error).message });
+    res.status(400).json({ error: "Invalid email or password" });
   }
 };
 

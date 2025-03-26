@@ -4,7 +4,6 @@ import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
-import { Link } from "expo-router";
 
 const Signup = () => {
   const { control, handleSubmit, reset } = useForm();
