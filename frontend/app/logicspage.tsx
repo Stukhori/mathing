@@ -1,12 +1,18 @@
 import * as React from "react";
-import {StyleSheet, View, Text, Image} from "react-native";
-import Group87 from "../assets/group-87.svg"
+import {StyleSheet, View, Text, Image, TouchableOpacity} from "react-native";
+import Vuesaxlinearprofile from "../assets/profile.svg"
+import Vuesaxlinearsetting2 from "../assets/setting-2.svg"
+import Lisearch from "../assets/lisearch.svg"
+import Vuesaxlinearhome from "../assets/homecommon.svg"
+import Vuesaxlinearheart from "../assets/friendspage/heartbold.svg"
+import { useRouter } from "expo-router";
 
 const IPhone1314 = () => {
-  	
+    const router = useRouter();
+
   	return (
     		<View style={styles.iphone131412}>
-      			<View style={[styles.iphone16Pro44, styles.groupIconPosition]}>
+      			<View style={[styles.iphone16Pro44, styles.iphone16Position]}>
         				<View style={[styles.iphone16Pro44Child, styles.iphone16ChildLayout]} />
         				<View style={[styles.iphone16Pro44Item, styles.imageIcon4Layout]} />
         				<Text style={[styles.lessons, styles.lessonsTypo]}>
@@ -19,33 +25,33 @@ const IPhone1314 = () => {
                 <View style={[styles.rectangleView, styles.imageIcon3Position]} />
                 <Text style={[styles.lessons2, styles.lessonsTypo]}>
           					<Text style={styles.text1}>{`15
-          					`}</Text>
+`}</Text>
                     <Text style={styles.lessons3}>Lessons</Text>
                 </Text>
                 <View style={[styles.iphone16Pro44Child1, styles.iphone16ChildPosition1]} />
-                <Image style={[styles.imageIcon, styles.imageIconLayout]} resizeMode="cover" source="image.png" />
+                <Image style={[styles.imageIcon, styles.imageIconLayout]} resizeMode="cover" source={require("../src/img/logics/truthtable.png")} />
                 <View style={[styles.iphone16Pro44Child2, styles.iphone16ChildPosition]} />
                 <Text style={[styles.lessons4, styles.lessonsTypo]}>
           					<Text style={styles.text1}>{`18
-          					`}</Text>
+`}</Text>
                     <Text style={styles.lessons3}>Lessons</Text>
                 </Text>
                 <Text style={[styles.puzzles, styles.puzzlesTypo]}>Puzzles</Text>
                 <View style={[styles.iphone16Pro44Child3, styles.iphone16ChildPosition1]} />
-                <Image style={[styles.imageIcon1, styles.imageIcon1Position]} resizeMode="cover" source="image.png" />
+                <Image style={[styles.imageIcon1, styles.imageIcon1Position]} resizeMode="cover" source={require("../src/img/logics/riddle.png")} />
                 <View style={[styles.iphone16Pro44Child4, styles.imageIcon1Position]} />
                 <Text style={[styles.lessons6, styles.lessonsPosition]}>
           					<Text style={styles.text1}>{`20
-          					`}</Text>
+`}</Text>
                     <Text style={styles.lessons3}>Lessons</Text>
                 </Text>
                 <Text style={[styles.puzzles1, styles.puzzlesTypo]}>Puzzles</Text>
                 <View style={[styles.iphone16Pro44Child5, styles.iphone16ChildPosition1]} />
-                <Image style={[styles.imageIcon2, styles.imageIcon2Position]} resizeMode="cover" source="image.png" />
+                <Image style={[styles.imageIcon2, styles.imageIcon2Position]} resizeMode="cover" source={require("../src/img/logics/paradox.png")} />
                 <View style={[styles.iphone16Pro44Child6, styles.imageIcon2Position]} />
                 <Text style={[styles.lessons8, styles.lessonsPosition]}>
           					<Text style={styles.text1}>{`15
-          					`}</Text>
+`}</Text>
                     <Text style={styles.lessons3}>Lessons</Text>
                 </Text>
                 <Text style={[styles.puzzles2, styles.puzzlesTypo]}>Puzzles</Text>
@@ -53,20 +59,54 @@ const IPhone1314 = () => {
                 <Text style={[styles.truthTables, styles.riddlesTypo]}>Truth Tables</Text>
                 <Text style={[styles.riddles, styles.riddlesTypo]}>Riddles</Text>
                 <Text style={[styles.paradoxes, styles.riddlesTypo]}>Paradoxes</Text>
-                <Image style={[styles.imageIcon3, styles.imageIconLayout]} resizeMode="cover" source="image.png" />
-                <Image style={[styles.imageIcon4, styles.imageIconLayout]} resizeMode="cover" source="image.png" />
+                <Image style={[styles.imageIcon3, styles.imageIconLayout]} resizeMode="cover" source={require("../src/img/logics/puzzle.png")} />
+                <Image style={[styles.imageIcon4, styles.imageIconLayout]} resizeMode="cover" source={require("../src/img/logics/diagram.png")} />
                 <View style={[styles.iphone16Pro44Child7, styles.iphone16ChildPosition1]} />
                 <Text style={[styles.text5, styles.textFlexBox]}>←</Text>
                 <View style={styles.iphone16Pro44Child8} />
                 <Text style={[styles.logics, styles.textFlexBox]}>LOGICS</Text>
                 <Text style={[styles.text6, styles.textFlexBox]}>←</Text>
-                <Group87 style={[styles.groupIcon, styles.groupIconPosition]} width={390} height={65} />
+                <View style={[styles.iphone16Pro44Child9, styles.iphone16Position]} />
+                <TouchableOpacity 
+          style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} 
+          onPress={() => router.push("/home")}
+        >
+          <Vuesaxlinearprofile />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={[styles.vuesaxlinearsetting2Icon, styles.iconLayout]} 
+          onPress={() => router.push("/settingspage")}
+        >
+          <Vuesaxlinearsetting2 />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={[styles.lisearchIcon, styles.iconPosition]} 
+          onPress={() => router.push("/home")}
+        >
+          <Lisearch width={45} height={41} />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} 
+          onPress={() => router.push("/home")}
+        >
+          <Vuesaxlinearhome />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={[styles.vuesaxlinearheartIcon, styles.iconPosition]} 
+          onPress={() => router.push("/home")}
+        >
+          <Vuesaxlinearheart width={45} height={45} />
+        </TouchableOpacity>
             </View>
         </View>);
 };
 
 const styles = StyleSheet.create({
-    groupIconPosition: {
+    iphone16Position: {
         width: 390,
         left: 0,
         position: "absolute"
@@ -157,6 +197,19 @@ const styles = StyleSheet.create({
         display: "flex",
         lineHeight: 38,
         textAlign: "center",
+        position: "absolute"
+    },
+    iconLayout: {
+        maxHeight: "100%",
+        maxWidth: "100%",
+        bottom: "1.37%",
+        width: "11.54%",
+        position: "absolute",
+        overflow: "hidden"
+    },
+    iconPosition: {
+        width: 45,
+        top: 791,
         position: "absolute"
     },
     iphone16Pro44Child: {
@@ -416,12 +469,49 @@ const styles = StyleSheet.create({
         height: 38,
         color: "#fff"
     },
-    groupIcon: {
+    iphone16Pro44Child9: {
         top: 780,
+        backgroundColor: "#ededed",
+        height: 65,
+        width: 390,
         left: 0
     },
+    vuesaxlinearprofileIcon: {
+        right: "23.29%",
+        left: "65.17%",
+        top: "93.37%",
+        height: "5.25%",
+        maxWidth: "100%",
+        bottom: "1.37%",
+        width: "11.54%"
+    },
+    vuesaxlinearsetting2Icon: {
+        right: "5.13%",
+        left: "83.33%",
+        top: "93.37%",
+        height: "5.25%",
+        maxWidth: "100%",
+        bottom: "1.37%",
+        width: "11.54%"
+    },
+    lisearchIcon: {
+        left: 20,
+        overflow: "hidden"
+    },
+    vuesaxlinearhomeIcon: {
+        height: "5.03%",
+        top: "93.6%",
+        right: "43.93%",
+        left: "44.53%",
+        maxWidth: "100%",
+        bottom: "1.37%",
+        width: "11.54%"
+    },
+    vuesaxlinearheartIcon: {
+        left: 92
+    },
     iphone16Pro44: {
-        top: 0,
+        top: -1,
         shadowColor: "rgba(0, 0, 0, 0.25)",
         shadowOffset: {
             width: 0,
