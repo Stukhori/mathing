@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text, StyleSheet, View, Image } from "react-native";
+import { Text, StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import Rectangle23 from "../assets/Rectangle-23.svg";
 import Fluentemojiflatfire from "../assets/fluentemojiflatfire.svg";
 import Rectangle232 from "../assets/Rectangle-232.svg";
@@ -11,8 +11,11 @@ import Lisearch from "../assets/lisearch.svg";
 import Vuesaxboldhome from "../assets/homebold.svg";
 import Vector from "../assets/vector.svg";
 import Heart from "../assets/heart.svg";
+import { useRouter } from "expo-router";
 
-const IPhone1314 = () => {
+const IPhone1314 = () => { 
+  const router = useRouter();
+  
   return (
     <View style={styles.iphone131417}>
       <View style={styles.iphone16Pro45}>
@@ -105,20 +108,40 @@ const IPhone1314 = () => {
           style={[styles.testYourLogicRiddles, styles.rewardsAvailableTypo]}
         >{`Test your logic!Riddles, puzzles, paradoxes and more`}</Text>
         <View style={styles.iphone16Pro45Child7} />
-        <Vuesaxlinearprofile
-          style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]}
-        />
-        <Vuesaxlinearsetting2
-          style={[styles.vuesaxlinearsetting2Icon, styles.iconLayout]}
-        />
-        <Lisearch style={styles.lisearchIcon} width={45} height={41} />
-        <Vuesaxboldhome
-          style={styles.vuesaxboldhomeIcon}
-          width={47}
-          height={48}
-        />
-        <Vector style={[styles.vectorIcon, styles.iconLayout1]} />
-        <Heart style={styles.heartIcon} />
+        <TouchableOpacity 
+        style={styles.heartIcon} 
+        onPress={() => router.push("/settingspage")}
+      >
+        <Heart />
+      </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={styles.vuesaxboldhomeIcon} 
+        onPress={() => router.push("/settingspage")}
+      >
+        <Vuesaxboldhome width={47} height={48} />
+      </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={styles.lisearchIcon} 
+        onPress={() => router.push("/settingspage")}
+      >
+        <Lisearch width={45} height={41} />
+      </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={[styles.vuesaxlinearsetting2Icon, styles.iconLayout]} 
+        onPress={() => router.push("/settingspage")}
+      >
+        <Vuesaxlinearsetting2 />
+      </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} 
+        onPress={() => router.push("/settingspage")}
+      >
+        <Vuesaxlinearprofile />
+      </TouchableOpacity>
       </View>
     </View>
   );
@@ -551,33 +574,6 @@ const styles = StyleSheet.create({
     left: 0,
     position: "absolute",
   },
-  vuesaxlinearprofileIcon: {
-    right: "23.48%",
-    left: "65.01%",
-  },
-  vuesaxlinearsetting2Icon: {
-    right: "5.37%",
-    left: "83.12%",
-  },
-  lisearchIcon: {
-    top: 790,
-    left: 20,
-    position: "absolute",
-    overflow: "hidden",
-  },
-  vuesaxboldhomeIcon: {
-    top: 786,
-    left: 172,
-    position: "absolute",
-  },
-  vectorIcon: {
-    height: "0.71%",
-    width: "0.95%",
-    top: "96.68%",
-    right: "49.06%",
-    bottom: "2.61%",
-    left: "49.99%",
-  },
   heartIcon: {
     height: "5.21%",
     top: "93.48%",
@@ -589,6 +585,43 @@ const styles = StyleSheet.create({
     maxWidth: "100%",
     position: "absolute",
     overflow: "hidden",
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  vuesaxboldhomeIcon: {
+    top: 786,
+    left: 172,
+    position: "absolute",
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  lisearchIcon: {
+    top: 790,
+    left: 20,
+    position: "absolute",
+    overflow: "hidden",
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  vuesaxlinearprofileIcon: {
+    right: "23.48%",
+    left: "65.01%",
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  vuesaxlinearsetting2Icon: {
+    right: "5.37%",
+    left: "83.12%",
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  vectorIcon: {
+    height: "0.71%",
+    width: "0.95%",
+    top: "96.68%",
+    right: "49.06%",
+    bottom: "2.61%",
+    left: "49.99%",
   },
   iphone16Pro45: {
     top: 0,
