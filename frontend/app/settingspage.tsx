@@ -50,7 +50,7 @@ const IPhone1314 = () => {
         				<Iontoggleoutline style={[styles.iontoggleOutlineIcon, styles.iontoggleIconLayout]} width={39} height={39} />
         				<Iontoggleoutline1 style={[styles.iontoggleOutlineIcon1, styles.iontoggleIconLayout]} width={39} height={39} />
         				<View style={[styles.rectangleView, styles.iphone16Position]} />
-						<TouchableOpacity 
+		<TouchableOpacity 
           style={[styles.vuesaxlinearheartIcon, styles.iconLayout]} 
           onPress={() => router.push("/learnwithfriends")}
         >
@@ -73,14 +73,14 @@ const IPhone1314 = () => {
 
         <TouchableOpacity 
           style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} 
-          onPress={() => router.push("/home")}
+          onPress={() => router.push("/profile")}
         >
           <Vuesaxlinearprofile />
         </TouchableOpacity>
 
         <TouchableOpacity 
           style={styles.vuesaxboldsetting2Icon} 
-          onPress={() => router.push("/home")}
+          onPress={() => {}}
         >
           <Vuesaxboldsetting2 width={47} height={48} />
         </TouchableOpacity>

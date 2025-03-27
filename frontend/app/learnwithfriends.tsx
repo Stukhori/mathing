@@ -1,5 +1,5 @@
 import * as React from "react";
-import {StyleSheet, View, Text, Image} from "react-native";
+import {StyleSheet, View, Text, Image, TouchableOpacity} from "react-native";
 import Search from "../assets/friendspage/search.svg"
 import Ellipse4 from "../assets/friendspage/ellipsefriends1.svg"
 import Ellipse5 from "../assets/friendspage/ellipsefriends2.svg"
@@ -10,9 +10,11 @@ import Vuesaxlinearsetting2 from "../assets/setting-2.svg"
 import Lisearch from "../assets/lisearch.svg"
 import Vuesaxlinearhome from "../assets/homecommon.svg"
 import Vuesaxlinearheart from "../assets/friendspage/heartbold.svg"
+import { useRouter } from "expo-router";
 
 const IPhone1314 = () => {
-  	
+	const router = useRouter();
+
   	return (
     		<View style={styles.iphone13149}>
       			<View style={[styles.iphone16Pro38, styles.iphone16Position]}>
@@ -45,11 +47,6 @@ friends`}</Text>
         				<Image style={[styles.group2icon, styles.groupsicons]} resizeMode="cover" source={require("../assets/friendspage/coolguysgroup.png")} />
         				<Text style={[styles.toptext, styles.learnFlexBox]}>Learn with friends</Text>
         				<View style={[styles.menurectangle, styles.iphone16Position]} />
-        				<Vuesaxlinearprofile style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} />
-        				<Vuesaxlinearsetting2 style={[styles.vuesaxlinearsetting2Icon, styles.iconLayout]} />
-        				<Lisearch style={[styles.lisearchIcon, styles.searchandheart]} width={45} height={41} />
-        				<Vuesaxlinearhome style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} />
-        				<Vuesaxlinearheart style={[styles.vuesaxlinearheartIcon, styles.searchandheart]} width={45} height={45} />
         				<Text style={[styles.viewAlltextrankings, styles.viewTypo]}>View all</Text>
         				<Text style={styles.yourRankings}>Your Rankings</Text>
         				<Text style={[styles.rankgroup1name, styles.rankingsgroupname]}>School</Text>
@@ -69,6 +66,40 @@ friends`}</Text>
         				</Text>
         				<Text style={[styles.text2, styles.groupnumber]}>1</Text>
         				<Image style={styles.iconParkSolidupOne} resizeMode="cover" source={require("../assets/friendspage/arrowdown.png")} />
+						<TouchableOpacity 
+          style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} 
+          onPress={() => router.push("/profile")} // Navigate to profile
+        >
+          <Vuesaxlinearprofile />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={[styles.vuesaxlinearsetting2Icon, styles.iconLayout]} 
+          onPress={() => router.push("/settingspage")} // Navigate to settings
+        >
+          <Vuesaxlinearsetting2 />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={[styles.lisearchIcon, styles.searchandheart]} 
+          onPress={() => router.push("/home")} // Navigate to home
+        >
+          <Lisearch width={45} height={41} />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} 
+          onPress={() => router.push("/home")} // Navigate to home
+        >
+          <Vuesaxlinearhome />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={[styles.vuesaxlinearheartIcon, styles.searchandheart]} 
+          onPress={() => {}} // Stay on current page (friends page)
+        >
+          <Vuesaxlinearheart width={45} height={45} />
+        </TouchableOpacity>
       			</View>
     		</View>);
 };

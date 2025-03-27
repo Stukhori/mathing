@@ -1,5 +1,5 @@
 import * as React from "react";
-import {StyleSheet, View, Image, Text} from "react-native";
+import {StyleSheet, View, Image, Text, TouchableOpacity} from "react-native";
 import Vuesaxlinearprofile from "../assets/profile/profilebold.svg"
 import Vuesaxlinearheart from "../assets/heart.svg"
 import Vuesaxlinearsetting2 from "../assets/setting-2.svg"
@@ -29,16 +29,14 @@ import Shadow2 from "../assets/profile/shadow2.svg"
 import Mask from "../assets/profile/mask.svg"
 import Group101 from "../assets/profile/Group-101.svg"
 import Vuesaxlinearhome from "../assets/homecommon.svg"
+import { useRouter } from "expo-router";
 
 const IPhone1314 = () => {
-  	
+	const router = useRouter();
+	
   	return (
     		<View style={styles.iphone131421}>
       			<View style={styles.menurectangle} />
-      			<Vuesaxlinearprofile style={[styles.vuesaxlinearprofileIcon, styles.groupIconLayout]} />
-      			<Vuesaxlinearheart style={[styles.vuesaxlinearheartIcon, styles.iconLayout]} />
-      			<Vuesaxlinearsetting2 style={[styles.vuesaxlinearsetting2Icon, styles.groupIconLayout]} />
-      			<Lisearch style={styles.lisearchIcon} width={48} height={41} />
       			<Image style={styles.imageIcon} resizeMode="cover" source={require("../src/img/profilepic.png")} />
       			<Text style={styles.username}>
         				<Text style={styles.stukhoriTxt}>
@@ -99,12 +97,45 @@ const IPhone1314 = () => {
       			<Group101 style={[styles.iphone131421Child16, styles.shadowIcon1Layout]} />
       			<Image style={[styles.groupIcon1, styles.groupIconLayout]} resizeMode="cover" source={require("../src/img/Group.png")} />
       			<Image style={[styles.fireIcon, styles.iphone131421ChildLayout1]} resizeMode="cover" source={require("../src/img/fire.png")} />
-      			<Vuesaxlinearhome style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} />
       			<View style={[styles.iphone131421Child17, styles.iphone131421ShadowBox]} />
       			<Image style={styles.iphone131421Child18} resizeMode="cover" source={require("../src/img/Group 1.png")} />
       			<Text style={[styles.currentCourse, styles.currentCourseLayout]}>Current course</Text>
       			<Text style={[styles.mathIntermediate, styles.currentCourseLayout]}>Math Intermediate</Text>
       			<Text style={styles.text6}>59%</Text>
+				  <TouchableOpacity 
+        style={[styles.vuesaxlinearprofileIcon, styles.groupIconLayout]} 
+        onPress={() => { /* Stay on same page */ }}
+      >
+        <Vuesaxlinearprofile />
+      </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={[styles.vuesaxlinearsetting2Icon, styles.groupIconLayout]} 
+        onPress={() => router.push("/settingspage")}
+      >
+        <Vuesaxlinearsetting2 />
+      </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={[styles.lisearchIcon, styles.iconPosition]} 
+        onPress={() => router.push("/home")}
+      >
+        <Lisearch width={48} height={41} />
+      </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} 
+        onPress={() => router.push("/home")}
+      >
+        <Vuesaxlinearhome />
+      </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={[styles.vuesaxlinearheartIcon, styles.iconLayout]} 
+        onPress={() => router.push("/learnwithfriends")}
+      >
+        <Vuesaxlinearheart />
+      </TouchableOpacity>
     		</View>);
 };
 
