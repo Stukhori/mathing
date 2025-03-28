@@ -6,167 +6,55 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
-import axios from "axios";
-import { useRouter } from 'expo-router';
-
-const API_BASE_URL = "http://localhost:4000/api";
+import { useRouter } from "expo-router";
+import { useQuiz } from "../context/QuizContext";
 
 const Component = () => {
   const router = useRouter();
+  const { addAnswer, score, resetQuiz } = useQuiz();
   const [lesson, setLesson] = React.useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
   const [selectedChoice, setSelectedChoice] = React.useState(null);
   const [showCorrectAnswer, setShowCorrectAnswer] = React.useState(false);
-  const [buttonState, setButtonState] = React.useState("continue"); // "continue", "next", "finish"
-  
-  // New state for tracking user answers and score
-  const [userAnswers, setUserAnswers] = React.useState([]);
-  const [score, setScore] = React.useState(0);
+  const [buttonState, setButtonState] = React.useState("continue");
 
   React.useEffect(() => {
-    const fetchLesson = async () => {
-      try {
-        const response = await axios.get(`${API_BASE_URL}/lessons/0`);
-        setLesson(response.data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    // fetchLesson();
+    // Mock data loading - replace with your actual data source
     setLoading(false);
     setLesson({
       id: 1,
       title: "Basic Math Quiz",
-      description: "Test your fundamental math skills",
-      createdAt: "2023-11-15T08:00:00.000Z",
-      updatedAt: "2023-11-15T08:00:00.000Z",
       questions: [
         {
-          id: 1,
+          id: "1",
           text: "What is 2 + 2?",
-          lessonId: 1,
-          createdAt: "2023-11-15T08:00:00.000Z",
-          updatedAt: "2023-11-15T08:00:00.000Z",
           choices: [
-            {
-              id: 1,
-              text: "3",
-              isCorrect: false,
-              questionId: 1,
-              createdAt: "2023-11-15T08:00:00.000Z",
-              updatedAt: "2023-11-15T08:00:00.000Z",
-            },
-            {
-              id: 2,
-              text: "4",
-              isCorrect: true,
-              questionId: 1,
-              createdAt: "2023-11-15T08:00:00.000Z",
-              updatedAt: "2023-11-15T08:00:00.000Z",
-            },
-            {
-              id: 3,
-              text: "5",
-              isCorrect: false,
-              questionId: 1,
-              createdAt: "2023-11-15T08:00:00.000Z",
-              updatedAt: "2023-11-15T08:00:00.000Z",
-            },
-            {
-              id: 4,
-              text: "6",
-              isCorrect: false,
-              questionId: 1,
-              createdAt: "2023-11-15T08:00:00.000Z",
-              updatedAt: "2023-11-15T08:00:00.000Z",
-            },
+            { id: "1", text: "3", isCorrect: false },
+            { id: "2", text: "4", isCorrect: true },
+            { id: "3", text: "5", isCorrect: false },
+            { id: "4", text: "6", isCorrect: false },
           ],
         },
         {
-          id: 2,
+          id: "2",
           text: "What is 5 × 3?",
-          lessonId: 1,
-          createdAt: "2023-11-15T08:00:00.000Z",
-          updatedAt: "2023-11-15T08:00:00.000Z",
           choices: [
-            {
-              id: 5,
-              text: "10",
-              isCorrect: false,
-              questionId: 2,
-              createdAt: "2023-11-15T08:00:00.000Z",
-              updatedAt: "2023-11-15T08:00:00.000Z",
-            },
-            {
-              id: 6,
-              text: "15",
-              isCorrect: true,
-              questionId: 2,
-              createdAt: "2023-11-15T08:00:00.000Z",
-              updatedAt: "2023-11-15T08:00:00.000Z",
-            },
-            {
-              id: 7,
-              text: "20",
-              isCorrect: false,
-              questionId: 2,
-              createdAt: "2023-11-15T08:00:00.000Z",
-              updatedAt: "2023-11-15T08:00:00.000Z",
-            },
-            {
-              id: 8,
-              text: "25",
-              isCorrect: false,
-              questionId: 2,
-              createdAt: "2023-11-15T08:00:00.000Z",
-              updatedAt: "2023-11-15T08:00:00.000Z",
-            },
+            { id: "5", text: "10", isCorrect: false },
+            { id: "6", text: "15", isCorrect: true },
+            { id: "7", text: "20", isCorrect: false },
+            { id: "8", text: "25", isCorrect: false },
           ],
         },
         {
-          id: 3,
+          id: "3",
           text: "What is 10 ÷ 2?",
-          lessonId: 1,
-          createdAt: "2023-11-15T08:00:00.000Z",
-          updatedAt: "2023-11-15T08:00:00.000Z",
           choices: [
-            {
-              id: 9,
-              text: "2",
-              isCorrect: false,
-              questionId: 3,
-              createdAt: "2023-11-15T08:00:00.000Z",
-              updatedAt: "2023-11-15T08:00:00.000Z",
-            },
-            {
-              id: 10,
-              text: "5",
-              isCorrect: true,
-              questionId: 3,
-              createdAt: "2023-11-15T08:00:00.000Z",
-              updatedAt: "2023-11-15T08:00:00.000Z",
-            },
-            {
-              id: 11,
-              text: "8",
-              isCorrect: false,
-              questionId: 3,
-              createdAt: "2023-11-15T08:00:00.000Z",
-              updatedAt: "2023-11-15T08:00:00.000Z",
-            },
-            {
-              id: 12,
-              text: "10",
-              isCorrect: false,
-              questionId: 3,
-              createdAt: "2023-11-15T08:00:00.000Z",
-              updatedAt: "2023-11-15T08:00:00.000Z",
-            },
+            { id: "9", text: "2", isCorrect: false },
+            { id: "10", text: "5", isCorrect: true },
+            { id: "11", text: "8", isCorrect: false },
+            { id: "12", text: "10", isCorrect: false },
           ],
         },
       ],
@@ -181,93 +69,80 @@ const Component = () => {
 
   const handleButtonPress = () => {
     if (buttonState === "continue") {
-      // First press - show correct answer and change button text
-      setShowCorrectAnswer(true);
-      
-      // Record the user's answer and check if it's correct
       const currentQuestion = lesson.questions[currentQuestionIndex];
-      const isCorrect = currentQuestion.choices.some(
-        choice => choice.id === selectedChoice && choice.isCorrect
+      const selectedChoiceObj = currentQuestion.choices.find(
+        (choice) => choice.id === selectedChoice
       );
-      
-      // Update user answers and score
-      setUserAnswers(prev => [
-        ...prev,
-        {
-          questionId: currentQuestion.id,
-          questionText: currentQuestion.text,
-          selectedChoiceId: selectedChoice,
-          selectedChoiceText: currentQuestion.choices.find(c => c.id === selectedChoice)?.text || '',
-          isCorrect,
-          correctChoiceId: currentQuestion.choices.find(c => c.isCorrect)?.id,
-          correctChoiceText: currentQuestion.choices.find(c => c.isCorrect)?.text || ''
-        }
-      ]);
-      
-      if (isCorrect) {
-        setScore(prev => prev + 1);
-      }
-      
+      const correctChoice = currentQuestion.choices.find(
+        (choice) => choice.isCorrect
+      );
+
+      if (!selectedChoiceObj) return;
+
+      const answer = {
+        questionId: currentQuestion.id,
+        questionText: currentQuestion.text,
+        selectedChoiceId: selectedChoice,
+        selectedChoiceText: selectedChoiceObj.text,
+        isCorrect: selectedChoiceObj.isCorrect,
+        correctChoiceId: correctChoice?.id,
+        correctChoiceText: correctChoice?.text,
+      };
+
+      console.log("Submitting answer:", answer);
+      addAnswer(answer);
+
+      setShowCorrectAnswer(true);
       setButtonState(
         currentQuestionIndex < lesson.questions.length - 1 ? "next" : "finish"
       );
     } else if (buttonState === "next") {
-      // Move to next question
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setSelectedChoice(null);
       setShowCorrectAnswer(false);
       setButtonState("continue");
     } else {
-      // Handle lesson completion - navigate to review page
-      console.log("Lesson completed!");
       router.push({
-        pathname: '/review',
+        pathname: "/quiz/review",
         params: {
-          userAnswers: JSON.stringify(userAnswers),
-          score,
           totalQuestions: lesson.questions.length,
-          lessonTitle: lesson.title
-        }
+          lessonTitle: lesson.title,
+        },
       });
+      // resetQuiz(); // Optional: Only reset if you want to clear progress
     }
   };
 
-  if (loading) {
+  // Loading and error states remain the same
+  if (loading)
     return (
       <View style={[styles.container, styles.center]}>
         <ActivityIndicator size="large" color="#6337a1" />
       </View>
     );
-  }
 
-  if (error) {
+  if (error)
     return (
       <View style={[styles.container, styles.center]}>
         <Text style={styles.errorText}>Error: {error}</Text>
       </View>
     );
-  }
 
-  if (!lesson) {
+  if (!lesson)
     return (
       <View style={[styles.container, styles.center]}>
         <Text style={styles.errorText}>No lesson data found</Text>
       </View>
     );
-  }
 
-  if (!lesson || currentQuestionIndex >= lesson.questions.length) {
+  if (currentQuestionIndex >= lesson.questions.length)
     return (
       <View style={[styles.container, styles.center]}>
         <Text style={styles.completionText}>Lesson Completed!</Text>
       </View>
     );
-  }
 
   const currentQuestion = lesson.questions[currentQuestionIndex];
-  const correctChoice = currentQuestion.choices.find(
-    (choice) => choice.isCorrect
-  );
 
   return (
     <View style={styles.container}>
@@ -316,7 +191,9 @@ const Component = () => {
         <TouchableOpacity
           style={[
             styles.continueButton,
-            !selectedChoice && buttonState === "continue" && styles.disabledButton
+            !selectedChoice &&
+              buttonState === "continue" &&
+              styles.disabledButton,
           ]}
           onPress={handleButtonPress}
           disabled={!selectedChoice && buttonState === "continue"}

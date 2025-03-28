@@ -69,7 +69,7 @@ const IPhone1314 = () => {
                 <View style={[styles.iphone16Pro44Child9, styles.iphone16Position]} />
                 <TouchableOpacity 
           style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} 
-          onPress={() => router.push("/home")}
+          onPress={() => router.push("/profile")}
         >
           <Vuesaxlinearprofile />
         </TouchableOpacity>
@@ -97,7 +97,7 @@ const IPhone1314 = () => {
 
         <TouchableOpacity 
           style={[styles.vuesaxlinearheartIcon, styles.iconPosition]} 
-          onPress={() => router.push("/home")}
+          onPress={() => router.push("/learnwithfriends")}
         >
           <Vuesaxlinearheart width={45} height={45} />
         </TouchableOpacity>

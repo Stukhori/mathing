@@ -84,7 +84,7 @@ friends`}</Text>
           style={[styles.lisearchIcon, styles.searchandheart]} 
           onPress={() => router.push("/home")} // Navigate to home
         >
-          <Lisearch width={45} height={41} />
+          <Lisearch width={45} height={45} />
         </TouchableOpacity>
 
         <TouchableOpacity 
@@ -436,10 +436,16 @@ const styles = StyleSheet.create({
     		maxWidth: "100%",
     		width: "11.54%"
   	},
-  	lisearchIcon: {
-    		left: 20,
-    		overflow: "hidden"
-  	},
+	  lisearchIcon: {
+		position: "absolute",
+		top: 790,
+		left: 25,
+		width: 45,
+		height: 45,
+		justifyContent: 'center',
+		alignItems: 'center',
+		overflow: 'visible'
+	  },
   	vuesaxlinearhomeIcon: {
     		height: "5.04%",
     		top: "93.59%",

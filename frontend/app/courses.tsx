@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Text, StyleSheet, View, Image} from "react-native";
+import {Text, StyleSheet, View, Image, TouchableOpacity} from "react-native";
 import Rectangle6 from "../assets/course/rectangle-6.svg"
 import Ellipse3 from "../assets/course/ellipsecourse1.svg"
 import Ellipse4 from "../assets/course/ellipsecourse2.svg"
@@ -17,9 +17,12 @@ import Ellipse12 from "../assets/course/ellipsecourse8.svg"
 import Rectangle184 from "../assets/course/rectangle-184.svg"
 import Ellipse6 from "../assets/course/ellipsecourse3.svg"
 import Ellipse7 from "../assets/course/ellipsecourse4.svg"
+import { useRouter } from "expo-router";
+
 
 const IPhone16Pro = () => {
-  	
+  		const router = useRouter();
+
   	return (
     		<View style={styles.iphone16Pro36}>
       			<Text style={[styles.courses, styles.coursesbox]}>Courses</Text>
@@ -52,11 +55,6 @@ const IPhone16Pro = () => {
       			<Text style={[styles.geometry, styles.coursesname]}>Geometry</Text>
       			<Text style={[styles.shapesFiguresAngles, styles.arithmetictext]}>Shapes, figures, angles, and key geometry concepts</Text>
       			<View style={styles.iphone16Pro36Child6} />
-      			<Vuesaxlinearheart style={[styles.vuesaxlinearheartIcon, styles.iconLayout]} />
-      			<Vuesaxlinearhome style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} />
-      			<Vuesaxlinearprofile style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} />
-      			<Vuesaxlinearsetting2 style={styles.vuesaxlinearsetting2Icon} width={49} height={46} />
-      			<Lisearch style={styles.lisearchIcon} width={48} height={41} />
       			<Ellipse8 style={[styles.geometrybluecircle, styles.iphone16ChildLayout4]} width={39} height={39} />
       			<Ellipse9 style={[styles.geometrygraycircle, styles.iphone16ChildLayout4]} width={42} height={42} />
       			<Text style={[styles.geometrypttext, styles.uppercategoriespt]}>28%</Text>
@@ -79,6 +77,40 @@ const IPhone16Pro = () => {
       			<View style={[styles.iphone16Pro36Child18, styles.iphone16ChildLayout]} />
       			<Text style={[styles.continue2, styles.continueTypo1]}>Continue</Text>
       			<Text style={[styles.continue3, styles.continueTypo]}>Continue</Text>
+								<TouchableOpacity 
+						  style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} 
+						  onPress={() => router.push("/profile")}
+						>
+						  <Vuesaxlinearprofile />
+						</TouchableOpacity>
+				
+						<TouchableOpacity 
+						  style={[styles.vuesaxlinearsetting2Icon, styles.iconLayout]} 
+						  onPress={() => router.push("/settingspage")}
+						>
+						  <Vuesaxlinearsetting2 />
+						</TouchableOpacity>
+				
+						<TouchableOpacity 
+						  style={[styles.lisearchIcon, styles.iconPosition]} 
+						  onPress={() => router.push("/home")}
+						>
+						  <Lisearch width={45} height={41} />
+						</TouchableOpacity>
+				
+						<TouchableOpacity 
+						  style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} 
+						  onPress={() => router.push("/home")}
+						>
+						  <Vuesaxlinearhome />
+						</TouchableOpacity>
+				
+						<TouchableOpacity 
+						  style={[styles.vuesaxlinearheartIcon, styles.iconPosition]} 
+						  onPress={() => router.push("/learnwithfriends")}
+						>
+						  <Vuesaxlinearheart width={45} height={45} />
+						</TouchableOpacity>
     		</View>);
 };
 

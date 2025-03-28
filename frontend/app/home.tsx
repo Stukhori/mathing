@@ -17,24 +17,54 @@ const IPhone1314 = () => {
   const router = useRouter();
   
   return (
-    <View style={styles.iphone131417}>
+<View style={styles.iphone131417}>
       <View style={styles.iphone16Pro45}>
         <Text style={styles.welcomeAgzam}>Welcome, Agzam!</Text>
-        <View style={[styles.iphone16Pro45Child, styles.iphone16ShadowBox]} />
-        <View
-          style={[styles.iphone16Pro45Item, styles.rectangleViewPosition]}
+
+        {/* White Rectangle - Math Intermediate Section */}
+        <TouchableOpacity 
+          style={[styles.iphone16Pro45Child, styles.iphone16ShadowBox]}
+          onPress={() => router.push("/courses")}
         />
+
+        {/* Purple Rectangle - Challenge of the Day */}
+        <TouchableOpacity 
+          style={[styles.iphone16Pro45Item, styles.rectangleViewPosition]}
+          onPress={() => router.push("/Daychallenge")}
+        />
+
+        {/* Continue Button */}
+        <TouchableOpacity 
+          style={[styles.rectangleIcon, styles.rectangleIconLayout]}
+          onPress={() => router.push("/courses")}
+        >
+          <Rectangle23 width={106} height={31} />
+          <Text style={styles.continue}>Continue</Text>
+        </TouchableOpacity>
+
+        {/* Start Button */}
+        <TouchableOpacity 
+          style={[styles.iphone16Pro45Child4, styles.iphone16Pro45Child4Layout]}
+          onPress={() => router.push("/logicspage")}
+        >
+          <Rectangle234 width={89} height={31} />
+          <Text style={[styles.start, styles.tryTypo]}>Start</Text>
+        </TouchableOpacity>
+
+        {/* Try Button */}
+        <TouchableOpacity 
+          style={[styles.iphone16Pro45Child6, styles.tryPosition]}
+          onPress={() => router.push("/Daychallenge")}
+        >
+          <Text style={[styles.try, styles.tryPosition]}>Try!</Text>
+        </TouchableOpacity>
+
+        {/* Rest of the components remain unchanged */}
         <Image
           style={styles.iphone16Pro45Inner}
           resizeMode="cover"
           source={require("../src/img/Group1.png")}
         />
-        <Rectangle23
-          style={[styles.rectangleIcon, styles.rectangleIconLayout]}
-          width={106}
-          height={31}
-        />
-        <Text style={styles.continue}>Continue</Text>
         <Text style={styles.mathIntermediate}>Math Intermediate</Text>
         <Text style={styles.challengeOfThe}>{`Challenge of the day`}</Text>
         <Text style={styles.text}>59%</Text>
