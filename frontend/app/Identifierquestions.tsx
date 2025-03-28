@@ -7,10 +7,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 import axios from "axios";
+import { useRouter } from 'expo-router';
 
 const API_BASE_URL = "http://localhost:4000/api";
 
-const Component = ({ route }) => {
+const Component = () => {
+  const router = useRouter();
   const [lesson, setLesson] = React.useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
   const [loading, setLoading] = React.useState(true);
@@ -18,6 +20,10 @@ const Component = ({ route }) => {
   const [selectedChoice, setSelectedChoice] = React.useState(null);
   const [showCorrectAnswer, setShowCorrectAnswer] = React.useState(false);
   const [buttonState, setButtonState] = React.useState("continue"); // "continue", "next", "finish"
+  
+  // New state for tracking user answers and score
+  const [userAnswers, setUserAnswers] = React.useState([]);
+  const [score, setScore] = React.useState(0);
 
   React.useEffect(() => {
     const fetchLesson = async () => {
@@ -177,6 +183,31 @@ const Component = ({ route }) => {
     if (buttonState === "continue") {
       // First press - show correct answer and change button text
       setShowCorrectAnswer(true);
+      
+      // Record the user's answer and check if it's correct
+      const currentQuestion = lesson.questions[currentQuestionIndex];
+      const isCorrect = currentQuestion.choices.some(
+        choice => choice.id === selectedChoice && choice.isCorrect
+      );
+      
+      // Update user answers and score
+      setUserAnswers(prev => [
+        ...prev,
+        {
+          questionId: currentQuestion.id,
+          questionText: currentQuestion.text,
+          selectedChoiceId: selectedChoice,
+          selectedChoiceText: currentQuestion.choices.find(c => c.id === selectedChoice)?.text || '',
+          isCorrect,
+          correctChoiceId: currentQuestion.choices.find(c => c.isCorrect)?.id,
+          correctChoiceText: currentQuestion.choices.find(c => c.isCorrect)?.text || ''
+        }
+      ]);
+      
+      if (isCorrect) {
+        setScore(prev => prev + 1);
+      }
+      
       setButtonState(
         currentQuestionIndex < lesson.questions.length - 1 ? "next" : "finish"
       );
@@ -187,12 +218,20 @@ const Component = ({ route }) => {
       setShowCorrectAnswer(false);
       setButtonState("continue");
     } else {
-      // Handle lesson completion
+      // Handle lesson completion - navigate to review page
       console.log("Lesson completed!");
-      // You might want to navigate away or show a completion screen here
-      return; // Exit early to prevent further execution
+      router.push({
+        pathname: '/review',
+        params: {
+          userAnswers: JSON.stringify(userAnswers),
+          score,
+          totalQuestions: lesson.questions.length,
+          lessonTitle: lesson.title
+        }
+      });
     }
   };
+
   if (loading) {
     return (
       <View style={[styles.container, styles.center]}>
@@ -218,7 +257,6 @@ const Component = ({ route }) => {
   }
 
   if (!lesson || currentQuestionIndex >= lesson.questions.length) {
-    // Handle completion state - you might want to show a completion screen instead
     return (
       <View style={[styles.container, styles.center]}>
         <Text style={styles.completionText}>Lesson Completed!</Text>
@@ -276,7 +314,10 @@ const Component = ({ route }) => {
         })}
 
         <TouchableOpacity
-          style={styles.continueButton}
+          style={[
+            styles.continueButton,
+            !selectedChoice && buttonState === "continue" && styles.disabledButton
+          ]}
           onPress={handleButtonPress}
           disabled={!selectedChoice && buttonState === "continue"}
         >
@@ -319,28 +360,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#e2e3e5", // Light gray
     borderColor: "#d6d8db", // Gray
   },
-
-  continueButton: {
-    position: "absolute",
-    top: 678,
-    left: 99,
-    backgroundColor: "#ffd980",
-    width: 193,
-    height: 41,
-    borderRadius: 15,
-    shadowColor: "rgba(0, 0, 0, 0)",
-    shadowOffset: { width: 0, height: 133 },
-    shadowRadius: 37,
-    elevation: 37,
-    shadowOpacity: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  continueText: {
-    fontSize: 20,
-    color: "#000",
-    textAlign: "center",
-    fontFamily: "DoHyeon-Regular",
+  disabledButton: {
+    opacity: 0.5,
   },
   center: {
     flex: 1,
@@ -476,6 +497,28 @@ const styles = StyleSheet.create({
     fontFamily: "DoHyeon-Regular",
     lineHeight: 38,
   },
+  // continueButton: {
+  //   position: "absolute",
+  //   top: 678,
+  //   left: 99,
+  //   backgroundColor: "#ffd980",
+  //   width: 193,
+  //   height: 41,
+  //   borderRadius: 15,
+  //   shadowColor: "rgba(0, 0, 0, 0)",
+  //   shadowOffset: { width: 0, height: 133 },
+  //   shadowRadius: 37,
+  //   elevation: 37,
+  //   shadowOpacity: 1,
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  // },
+  // continueText: {
+  //   fontSize: 20,
+  //   color: "#000",
+  //   textAlign: "center",
+  //   fontFamily: "DoHyeon-Regular",
+  // },
 });
 
 export default Component;
