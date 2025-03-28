@@ -3,132 +3,211 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-  // Create addition lesson
   await prisma.lesson.create({
     data: {
-      title: "Basic Addition",
-      description: "Master fundamental addition skills from simple sums to multi-digit problems",
-      difficulty: "BEGINNER",
-      order: 3,
+      title: "Comprehensive Math Diagnostic Test",
+      description: "Assess math skills across all levels (Ages 6-18)",
+      difficulty: "ADVANCED",
+      order: 8,
       questions: {
         create: [
-          // Simple type-in questions
+          // Math Explorers (BEGINNER) - Questions 1-5
           {
-            text: "5 + 3 =",
+            text: "What is 27 + 14 - 9?",
             order: 1,
+            difficulty: "BEGINNER",
             choices: {
               create: [
-                { text: "8", isCorrect: true }
+                { text: "32", isCorrect: true },
+                { text: "29", isCorrect: false },
+                { text: "30", isCorrect: false },
+                { text: "31", isCorrect: false }
               ]
             }
           },
           {
-            text: "12 + 7 =",
+            text: "If you have 4 boxes with 6 apples each, how many apples total?",
             order: 2,
+            difficulty: "BEGINNER",
             choices: {
               create: [
-                { text: "19", isCorrect: true }
+                { text: "20", isCorrect: false },
+                { text: "24", isCorrect: true },
+                { text: "28", isCorrect: false },
+                { text: "30", isCorrect: false }
               ]
             }
           },
           {
-            text: "25 + 14 =",
+            text: "What is 36 ÷ 6?",
             order: 3,
+            difficulty: "BEGINNER",
             choices: {
               create: [
-                { text: "39", isCorrect: true }
+                { text: "4", isCorrect: false },
+                { text: "5", isCorrect: false },
+                { text: "6", isCorrect: true },
+                { text: "7", isCorrect: false }
               ]
             }
           },
           {
-            text: "50 + 25 =",
+            text: "Which fraction is largest?",
             order: 4,
+            difficulty: "BEGINNER",
             choices: {
               create: [
-                { text: "75", isCorrect: true }
+                { text: "1/2", isCorrect: false },
+                { text: "3/4", isCorrect: true },
+                { text: "2/3", isCorrect: false },
+                { text: "1/3", isCorrect: false }
               ]
             }
           },
           {
-            text: "99 + 1 =",
+            text: "How many sides does a pentagon have?",
             order: 5,
+            difficulty: "BEGINNER",
             choices: {
               create: [
-                { text: "100", isCorrect: true }
+                { text: "4", isCorrect: false },
+                { text: "5", isCorrect: true },
+                { text: "6", isCorrect: false },
+                { text: "7", isCorrect: false }
               ]
             }
           },
-          
-          // Word problems and multiple choice
+
+          // Math Innovators (INTERMEDIATE) - Questions 6-10
           {
-            text: "You're packing snacks for a picnic with your friends. Jake brings 6 apples, and Emma brings 4. How many apples do they have together?",
+            text: "Solve for x: 3x + 7 = 16",
             order: 6,
-            explanation: "6 + 4 = 10",
+            difficulty: "INTERMEDIATE",
             choices: {
               create: [
-                { text: "10", isCorrect: true }
+                { text: "2", isCorrect: false },
+                { text: "3", isCorrect: true },
+                { text: "4", isCorrect: false },
+                { text: "5", isCorrect: false }
               ]
             }
           },
           {
-            text: "3,467 + 5,289 = ?",
+            text: "What is 25% of 160?",
             order: 7,
+            difficulty: "INTERMEDIATE",
             choices: {
               create: [
-                { text: "8,675", isCorrect: false },
-                { text: "8,765", isCorrect: false },
-                { text: "8,576", isCorrect: false },
-                { text: "8,756", isCorrect: true }
+                { text: "30", isCorrect: false },
+                { text: "40", isCorrect: true },
+                { text: "50", isCorrect: false },
+                { text: "60", isCorrect: false }
               ]
             }
           },
           {
-            text: "A store sold 215 apples in one week and 398 apples in the next week. How many apples were sold in total?",
+            text: "If ratio of boys:girls is 5:3 with 40 students, how many girls?",
             order: 8,
-            explanation: "215 + 398 = 613",
+            difficulty: "INTERMEDIATE",
             choices: {
               create: [
-                { text: "603", isCorrect: false },
-                { text: "613", isCorrect: true },
-                { text: "593", isCorrect: false },
-                { text: "623", isCorrect: false }
+                { text: "10", isCorrect: false },
+                { text: "15", isCorrect: true },
+                { text: "20", isCorrect: false },
+                { text: "25", isCorrect: false }
               ]
             }
           },
           {
-            text: "Add: 950 + 725 + 355",
+            text: "What is 2⁵?",
             order: 9,
+            difficulty: "INTERMEDIATE",
             choices: {
               create: [
-                { text: "2050", isCorrect: false },
-                { text: "2075", isCorrect: false },
-                { text: "2030", isCorrect: true },
-                { text: "1980", isCorrect: false }
+                { text: "10", isCorrect: false },
+                { text: "16", isCorrect: false },
+                { text: "25", isCorrect: false },
+                { text: "32", isCorrect: true }
               ]
             }
           },
           {
-            text: "A farmer has 3245 chickens and buys 1678 more. How many does he have now?",
+            text: "Triangle angles 50° and 60°, what is third angle?",
             order: 10,
-            explanation: "3245 + 1678 = 4923",
+            difficulty: "INTERMEDIATE",
             choices: {
               create: [
-                { text: "4823", isCorrect: false },
-                { text: "4923", isCorrect: true },
-                { text: "4973", isCorrect: false },
-                { text: "4843", isCorrect: false }
+                { text: "60°", isCorrect: false },
+                { text: "70°", isCorrect: true },
+                { text: "80°", isCorrect: false },
+                { text: "90°", isCorrect: false }
+              ]
+            }
+          },
+
+          // Math Masters (ADVANCED) - Questions 11-15
+          {
+            text: "Solve x² - 5x + 6 = 0",
+            order: 11,
+            difficulty: "ADVANCED",
+            choices: {
+              create: [
+                { text: "x = 2, x = 3", isCorrect: true },
+                { text: "x = 1, x = 6", isCorrect: false },
+                { text: "x = -2, x = -3", isCorrect: false },
+                { text: "x = 4, x = 5", isCorrect: false }
               ]
             }
           },
           {
-            text: "What is the sum of 7840 and 9625?",
-            order: 11,
+            text: "Solve log₂(32) = x",
+            order: 12,
+            difficulty: "ADVANCED",
             choices: {
               create: [
-                { text: "17365", isCorrect: false },
-                { text: "17465", isCorrect: true },
-                { text: "17425", isCorrect: false },
-                { text: "17485", isCorrect: false }
+                { text: "3", isCorrect: false },
+                { text: "4", isCorrect: false },
+                { text: "5", isCorrect: true },
+                { text: "6", isCorrect: false }
+              ]
+            }
+          },
+          {
+            text: "Probability of blue ball from 4 red, 3 blue, 5 green?",
+            order: 13,
+            difficulty: "ADVANCED",
+            choices: {
+              create: [
+                { text: "1/4", isCorrect: false },
+                { text: "1/3", isCorrect: false },
+                { text: "3/12", isCorrect: true },
+                { text: "3/10", isCorrect: false }
+              ]
+            }
+          },
+          {
+            text: "If sin θ = 0.5, what is θ in degrees?",
+            order: 14,
+            difficulty: "ADVANCED",
+            choices: {
+              create: [
+                { text: "15°", isCorrect: false },
+                { text: "30°", isCorrect: true },
+                { text: "45°", isCorrect: false },
+                { text: "60°", isCorrect: false }
+              ]
+            }
+          },
+          {
+            text: "Find d/dx (3x² + 5x - 7)",
+            order: 15,
+            difficulty: "ADVANCED",
+            choices: {
+              create: [
+                { text: "6x + 5", isCorrect: true },
+                { text: "3x + 5", isCorrect: false },
+                { text: "6x - 5", isCorrect: false },
+                { text: "5x² + 6", isCorrect: false }
               ]
             }
           }

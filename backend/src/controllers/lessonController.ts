@@ -1,41 +1,30 @@
 import { Request, Response } from 'express';
 import { getLesson, validateAnswer, getTip } from '../services/lessonService';
 
-/**
- * Get a lesson by ID
- */
 export const getLessonById = async (req: Request, res: Response) => {
   try {
-    const lessonId = parseInt(req.params.lessonId, 10);
-    const lesson = await getLesson(lessonId);
-    res.status(200).json({ lesson });
+    const lesson = await getLesson(parseInt(req.params.lessonId, 10));
+    res.json(lesson ? { lesson } : { error: 'Lesson not found' });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error instanceof Error ? error.message : 'Unknown error' });
   }
 };
 
-/**
- * Validate a user's answer to a problem
- */
 export const checkAnswer = async (req: Request, res: Response) => {
   try {
-    const { problemId, userAnswer } = req.body;
-    const result = await validateAnswer(problemId, userAnswer);
-    res.status(200).json({ result });
+    const { questionId, choiceId } = req.body;
+    const result = await validateAnswer(questionId, choiceId);
+    res.json(result);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: error instanceof Error ? error.message : 'Invalid answer' });
   }
 };
 
-/**
- * Get a tip for a problem
- */
 export const requestTip = async (req: Request, res: Response) => {
   try {
-    const { problemId } = req.body;
-    const tip = await getTip(problemId);
-    res.status(200).json({ tip });
+    const tip = await getTip(req.body.questionId);
+    res.json({ tip });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: error instanceof Error ? error.message : 'Tip unavailable' });
   }
 };
