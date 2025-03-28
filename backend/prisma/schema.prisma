@@ -43,31 +43,84 @@ model TaskSubmission {
 }
 
 model Lesson {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String
-  theory      String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  problems    Problem[] // A lesson can have many problems
+  id            Int            @id @default(autoincrement())
+  title         String
+  description   String?
+  order         Int            @unique()
+  difficulty    Difficulty     @default(BEGINNER)
+  tags          LessonTag[]
+  prerequisites Prerequisite[] @relation("PrerequisiteRelations")
+  requiredFor   Prerequisite[] @relation("RequiredForRelations")
+  theory        Theory[]
+  questions     Question[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
 }
 
-model Problem {
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+model LessonTag {
+  id       Int    @id @default(autoincrement())
+  name     String @unique()
+  lessons  Lesson[]
+}
+
+model Prerequisite {
+  id               Int     @id @default(autoincrement())
+  lesson           Lesson  @relation(fields: [lessonId], references: [id], name: "RequiredForRelations")
+  lessonId         Int
+  requiredLesson   Lesson  @relation(fields: [requiredLessonId], references: [id], name: "PrerequisiteRelations")
+  requiredLessonId Int
+  @@unique([lessonId, requiredLessonId])
+}
+
+model Question {
   id          Int      @id @default(autoincrement())
-  lessonId    Int
-  equation    String
-  solution    Solution? // A problem has one solution
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  text        String
+  explanation String?
+  difficulty  Difficulty @default(BEGINNER)
+  tags        QuestionTag[]
   lesson      Lesson   @relation(fields: [lessonId], references: [id])
-}
-
-model Solution {
-  id          Int      @id @default(autoincrement())
-  problemId   Int @unique
-  discriminant Float
-  roots       String[] // Store roots as an array of strings
+  lessonId    Int
+  order       Int
+  choices     Choice[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  problem     Problem  @relation(fields: [problemId], references: [id])
+  @@unique([lessonId, order])
+}
+
+model QuestionTag {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique()
+  questions Question[]
+}
+
+model Theory {
+  id          Int       @id @default(autoincrement())
+  title       String?
+  content     String    // Main theory text
+  examples    Json?     // Optional examples in JSON format
+  lesson      Lesson    @relation(fields: [lessonId], references: [id])
+  lessonId    Int
+  order       Int       // For ordering multiple theory sections
+  mediaUrl    String?   // Optional image/video URL
+  mediaType   String?   // 'image' or 'video'
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([lessonId, order])
+}
+
+model Choice {
+  id         Int      @id @default(autoincrement())
+  text       String
+  isCorrect  Boolean  @default(false)
+  question   Question @relation(fields: [questionId], references: [id])
+  questionId Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }

@@ -4,75 +4,72 @@ import config from '../config/env';
 
 const { OPENAI_API } = config;
 const prisma = new PrismaClient();
+const client = new OpenAI({ apiKey: OPENAI_API });
 
-// Initialize OpenAI API
-const client = new OpenAI({
-  apiKey: OPENAI_API,
-  organization: 'org-6DspDXuAsWqu59jIRtieUoLX',
-  project: 'proj_t6RrmQQH11jzDTn65wuSeoA2',
-});
-
-/**
- * Get a lesson by ID
- */
+// Updated to match new schema
 export const getLesson = async (lessonId: number) => {
-  const lesson = await prisma.lesson.findUnique({
+  return await prisma.lesson.findUnique({
     where: { id: lessonId },
-    include: { problems: { include: { solution: true } } },
+    include: {
+      questions: {
+        include: {
+          choices: true
+        },
+        orderBy: { order: 'asc' }
+      },
+      theory: {
+        orderBy: { order: 'asc' }
+      }
+    }
   });
-  return lesson;
 };
 
-/**
- * Validate a user's answer to a problem
- */
-export const validateAnswer = async (
-  problemId: number,
-  userAnswer: string[]
-) => {
-  const problem = await prisma.problem.findUnique({
-    where: { id: problemId },
-    include: { solution: true },
+export const validateAnswer = async (questionId: number, choiceId: number) => {
+  const choice = await prisma.choice.findUnique({
+    where: { id: choiceId },
+    select: { isCorrect: true, questionId: true }
   });
 
-  if (!problem || !problem.solution) {
-    throw new Error('Problem or solution not found');
+  if (!choice || choice.questionId !== questionId) {
+    throw new Error('Invalid answer submission');
   }
 
-  // Compare user's answer with the correct solution
-  const isCorrect =
-    userAnswer.sort().toString() === problem.solution.roots.sort().toString();
+  const correctAnswer = await prisma.choice.findFirst({
+    where: { 
+      questionId,
+      isCorrect: true 
+    },
+    select: { id: true, text: true }
+  });
 
-  return { isCorrect, correctAnswer: problem.solution.roots };
+  return {
+    isCorrect: choice.isCorrect,
+    correctAnswer: correctAnswer?.text || ''
+  };
 };
 
-/**
- * Get a tip from OpenAI
- */
-export const getTip = async (problemId: number) => {
-  const problem = await prisma.problem.findUnique({
-    where: { id: problemId },
-    include: { solution: true },
+export const getTip = async (questionId: number) => {
+  const question = await prisma.question.findUnique({
+    where: { id: questionId },
+    select: { text: true, explanation: true }
   });
 
-  if (!problem || !problem.solution) {
-    throw new Error('Problem or solution not found');
-  }
+  if (!question) throw new Error('Question not found');
 
-  const prompt = `The problem is: ${problem.equation}. The discriminant is ${problem.solution.discriminant}. Provide a brief tip to help solve this quadratic equation.`;
+  const prompt = `Question: ${question.text}. ${question.explanation ? `Explanation: ${question.explanation}` : ''}
+    Provide a brief tip to help solve this problem in 1-2 sentences.`;
 
   const response = await client.chat.completions.create({
-    model: 'gpt-4o-mini',
-    messages: [
-      {
-        role: 'system',
-        content:
-          'You are a math tutor. You must give tips to students, so that they progress.',
-      },
-      { role: 'user', content: prompt },
-    ],
-    max_tokens: 100,
+    model: 'gpt-4',
+    messages: [{
+      role: 'system',
+      content: 'You are a helpful math tutor. Provide a concise hint to help the student progress.'
+    }, {
+      role: 'user',
+      content: prompt
+    }],
+    max_tokens: 100
   });
-  return response.choices[0].message.content.trim();
-  // return response.data.choices[0].text.trim();
+
+  return response.choices[0].message.content?.trim() || 'Here\'s a hint: Look for patterns!';
 };
