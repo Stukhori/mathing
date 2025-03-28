@@ -1,23 +1,35 @@
 import * as React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity} from "react-native";
 import Rectangle176 from "../assets/rectangle-173.svg";
+import { useRouter } from "expo-router";
 
 const IPhone1314 = () => {
+  const router = useRouter();
+
   return (
     <View style={styles.iphone131413}>
-      <View style={[styles.purpleback, styles.toppurple]} />
-      <View style={[styles.iphone131413Item, styles.toppurple]} />
-      <Text style={[styles.challengeOfThe, styles.textFlexBox]}>
-        Challenge of the day
-      </Text>
-      <Text style={[styles.arrowtext, styles.textFlexBox]}>←</Text>
-      <Rectangle176
-        style={[styles.questionrectangle, styles.rectangleViewPosition]}
-        width={329}
-        height={230}
-      />
-      <Text
-        style={[styles.questiontext, styles.continueClr]}
+    <View style={[styles.purpleback, styles.toppurple]} />
+    <View style={[styles.iphone131413Item, styles.toppurple]} />
+    <Text style={[styles.challengeOfThe, styles.textFlexBox]}>
+      Challenge of the day
+    </Text>
+    
+    {/* Added TouchableOpacity for arrow navigation */}
+    <TouchableOpacity
+      style={[styles.arrowButton, styles.textFlexBox]}
+      onPress={() => router.push("/home")}
+    >
+      <Text style={styles.arrowtext}>←</Text>
+    </TouchableOpacity>
+
+    {/* Rest of the components remain unchanged */}
+    <Rectangle176
+      style={[styles.questionrectangle, styles.rectangleViewPosition]}
+      width={329}
+      height={230}
+    />
+    <Text
+      style={[styles.questiontext, styles.continueClr]}
       >{`Agzam wants to go on a vacation to Vietnam, the trip costs $1,200. She plans to save money every month for a year. In the first month, she saves $50, and each subsequent month, she increases her savings by $10. Will she have enough money by the end of the year to afford the trip?`}</Text>
       <View style={[styles.answerrectangle, styles.rectangleViewPosition]} />
       <Text style={[styles.yourAnswer, styles.continueClr]}>Your answer:</Text>
@@ -41,6 +53,13 @@ const IPhone1314 = () => {
 };
 
 const styles = StyleSheet.create({
+  arrowButton: {
+    top: -4,
+    left: 7,
+    width: 53,
+    height: 38,
+    position: "absolute",
+  },
   toppurple: {
     width: 390,
     left: 0,
