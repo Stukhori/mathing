@@ -1,5 +1,5 @@
 import * as React from "react";
-import {StyleSheet, View, Image, Text} from "react-native";
+import {StyleSheet, View, Image, Text, TouchableOpacity} from "react-native";
 import Radixiconscrosscircled from "../assets/reviewpage/cross-circled.svg"
 import Lucidetimer from "../assets/reviewpage/lucidetimer.svg"
 import Vuesaxlinearprofile from "../assets/profile.svg"
@@ -9,9 +9,11 @@ import Vuesaxlinearhome from "../assets/homecommon.svg"
 import Simplelineiconscheck from "../assets/reviewpage/icons_check.svg"
 import Materialsymbolsshareoutline from "../assets/reviewpage/share-outline.svg"
 import Vuesaxlinearheart from "../assets/heart.svg"
+import { useRouter } from "expo-router";
 
 const IPhone1314 = () => {
-  	
+  	const router = useRouter();
+	
   	return (
     		<View style={styles.iphone131410}>
       			<View style={styles.iphone16Pro44}>
@@ -47,14 +49,43 @@ const IPhone1314 = () => {
         				<Radixiconscrosscircled style={[styles.radixIconscrossCircled, styles.percentageLayout]} width={46} height={46} />
         				<Lucidetimer style={styles.lucidetimerIcon} width={54} height={54} />
         				<View style={[styles.iphone16Pro44Child5, styles.answersLayout]} />
-        				<Vuesaxlinearprofile style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} />
-        				<Vuesaxlinearsetting2 style={[styles.vuesaxlinearsetting2Icon, styles.iconLayout]} />
-        				<Lisearch style={[styles.lisearchIcon, styles.text1Layout]} width={45} height={41} />
-        				<Vuesaxlinearhome style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} />
         				<Simplelineiconscheck style={styles.simpleLineIconscheck} width={43} height={43} />
+										<TouchableOpacity 
+								  style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} 
+								  onPress={() => router.push("/home")}
+								>
+								  <Vuesaxlinearprofile />
+								</TouchableOpacity>
+						
+								<TouchableOpacity 
+								  style={[styles.vuesaxlinearsetting2Icon, styles.iconLayout]} 
+								  onPress={() => router.push("/settingspage")}
+								>
+								  <Vuesaxlinearsetting2 />
+								</TouchableOpacity>
+						
+								<TouchableOpacity 
+								  style={[styles.lisearchIcon, styles.iconPosition]} 
+								  onPress={() => router.push("/home")}
+								>
+								  <Lisearch width={45} height={41} />
+								</TouchableOpacity>
+						
+								<TouchableOpacity 
+								  style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} 
+								  onPress={() => router.push("/home")}
+								>
+								  <Vuesaxlinearhome />
+								</TouchableOpacity>
+						
+								<TouchableOpacity 
+								  style={[styles.vuesaxlinearheartIcon, styles.iconPosition]} 
+								  onPress={() => router.push("/home")}
+								>
+								  <Vuesaxlinearheart width={45} height={45} />
+								</TouchableOpacity>
       			</View>
       			<Materialsymbolsshareoutline style={[styles.materialSymbolsshareOutlineIcon, styles.viewLayout]} width={35} height={36} />
-      			<Vuesaxlinearheart style={[styles.vuesaxlinearheartIcon, styles.iconLayout]} />
     		</View>);
 };
 
