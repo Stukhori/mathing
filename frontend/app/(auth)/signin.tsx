@@ -10,7 +10,7 @@ import { useForm, Controller } from "react-hook-form";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { useRouter } from "expo-router";
-import Image32lww from "../assets/image--32lww.svg";
+import Image32lww from "../../assets/image--32lww.svg";
 
 const IPhone1314 = () => {
   const { control, handleSubmit, reset } = useForm();
