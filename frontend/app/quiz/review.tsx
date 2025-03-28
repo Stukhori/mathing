@@ -43,11 +43,6 @@ const IPhone1314 = () => {
           Lesson overview
         </Text>
         <Text style={[styles.score, styles.textTypo1]}>Score</Text>
-        <Image
-          style={styles.percentagecircle}
-          resizeMode="cover"
-          source={require("../../src/img/Group1.png")}
-        />
         <Text style={[styles.percentagetext, styles.percentageLayout]}>
           {percentage}%
         </Text>
