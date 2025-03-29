@@ -105,7 +105,7 @@ const Signup = () => {
           <Text style={styles.createAccountText}>Create Account</Text>
         </TouchableOpacity>
 
-        <Text style={[styles.byContinuingYou, styles.mathingFlexBox]}>
+        <Text style={[styles.byContinuingYou, styles.mathingFlexBox1]}>
           By continuing, you agree to our terms of service and privacy policy
         </Text>
 
@@ -189,6 +189,14 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   mathingFlexBox: {
+    justifyContent: "center",
+    alignItems: "center",
+    display: "flex",
+    textAlign: "center",
+    left: "10%",
+    position: "absolute",
+  },
+  mathingFlexBox1: {
     justifyContent: "center",
     alignItems: "center",
     display: "flex",

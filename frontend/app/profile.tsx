@@ -119,7 +119,7 @@ const IPhone1314 = () => {
 
       <TouchableOpacity 
         style={[styles.lisearchIcon, styles.iconPosition]} 
-        onPress={() => router.push("/home")}
+        onPress={() => router.push("/courses")}
       >
         <Lisearch width={48} height={41} />
       </TouchableOpacity>

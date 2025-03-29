@@ -82,7 +82,7 @@ friends`}</Text>
 
         <TouchableOpacity 
           style={[styles.lisearchIcon, styles.searchandheart]} 
-          onPress={() => router.push("/home")} // Navigate to home
+          onPress={() => router.push("/courses")} // Navigate to home
         >
           <Lisearch width={45} height={45} />
         </TouchableOpacity>
