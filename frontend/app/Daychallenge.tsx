@@ -1,57 +1,77 @@
 import * as React from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity} from "react-native";
-import Rectangle176 from "../assets/rectangle-173.svg";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import { useRouter } from "expo-router";
 
 const IPhone1314 = () => {
+  const dailyQuestion = `Agzam wants to go on a vacation to Vietnam, the trip costs $1,200. She plans to save money every month for a year. In the first month, she saves $50, and each subsequent month, she increases her savings by $10. Will she have enough money by the end of the year to afford the trip?`;
   const router = useRouter();
+  const [answerText, setAnswerText] = React.useState(""); // State to store the answer
+
+  const handleSubmit = () => {
+    // Here you would typically send answerText to your API
+    console.log("Submitting answer:", answerText);
+
+    // router.push("/home"); // Or wherever you want to navigate after submission
+  };
 
   return (
     <View style={styles.iphone131413}>
-    <View style={[styles.purpleback, styles.toppurple]} />
-    <View style={[styles.iphone131413Item, styles.toppurple]} />
-    <Text style={[styles.challengeOfThe, styles.textFlexBox]}>
-      Challenge of the day
-    </Text>
-    
-    {/* Added TouchableOpacity for arrow navigation */}
-    <TouchableOpacity
-      style={[styles.arrowButton, styles.textFlexBox]}
-      onPress={() => router.push("/home")}
-    >
-      <Text style={styles.arrowtext}>←</Text>
-    </TouchableOpacity>
+      <View style={[styles.purpleback, styles.toppurple]} />
+      <View style={[styles.iphone131413Item, styles.toppurple]} />
+      <Text style={[styles.challengeOfThe, styles.textFlexBox]}>
+        Challenge of the day
+      </Text>
 
-    {/* Rest of the components remain unchanged */}
-    <Rectangle176
-      style={[styles.questionrectangle, styles.rectangleViewPosition]}
-      width={329}
-      height={230}
-    />
-    <Text
-      style={[styles.questiontext, styles.continueClr]}
-      >{`Agzam wants to go on a vacation to Vietnam, the trip costs $1,200. She plans to save money every month for a year. In the first month, she saves $50, and each subsequent month, she increases her savings by $10. Will she have enough money by the end of the year to afford the trip?`}</Text>
-      <View style={[styles.answerrectangle, styles.rectangleViewPosition]} />
-      <Text style={[styles.yourAnswer, styles.continueClr]}>Your answer:</Text>
-      <View style={[styles.continuebutton, styles.continuePosition]} />
-      <Text style={[styles.continue, styles.continuePosition]}>Continue</Text>
-      <View
-        style={[styles.hintbutton, styles.hintandhelpbuttons]}
+      <TouchableOpacity
+        style={[styles.arrowButton, styles.textFlexBox]}
+        onPress={() => router.push("/home")}
+      >
+        <Text style={styles.arrowtext}>←</Text>
+      </TouchableOpacity>
+
+      <Text style={[styles.questiontext, styles.continueClr]}>
+        {dailyQuestion}
+      </Text>
+
+      {/* Replaced View with TextInput */}
+      <TextInput
+        style={[styles.answerInput, styles.rectangleViewPosition]}
+        multiline={true}
+        numberOfLines={8}
+        placeholder="Type your answer here..."
+        placeholderTextColor="#999"
+        value={answerText}
+        onChangeText={setAnswerText}
       />
+
+      <Text style={[styles.yourAnswer, styles.continueClr]}>Your answer:</Text>
+
+      <TouchableOpacity
+        style={[styles.continuebutton, styles.continuePosition]}
+        onPress={handleSubmit}
+      >
+        <Text style={styles.continue}>Continue</Text>
+      </TouchableOpacity>
+
+      <View style={[styles.hintbutton, styles.hintandhelpbuttons]} />
       <Text style={[styles.hint, styles.hintTypo]}>Hint!</Text>
       <Image
         style={[styles.roboticon, styles.continuePosition]}
         resizeMode="cover"
         source={require("../src/img/robot.png")}
       />
-      <View
-        style={[styles.helpbutton, styles.hintandhelpbuttons]}
-      />
+      <View style={[styles.helpbutton, styles.hintandhelpbuttons]} />
       <Text style={[styles.needHelp, styles.hintTypo]}>Need help?</Text>
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   arrowButton: {
     top: -4,
@@ -76,7 +96,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   continueClr: {
-    color: "#000",
+    color: "#fff",
     fontFamily: "DoHyeon-Regular",
   },
   continuePosition: {
@@ -163,7 +183,7 @@ const styles = StyleSheet.create({
     width: 291,
     height: 186,
     fontSize: 20,
-    color: "#000",
+    color: "#fff",
     alignItems: "center",
     display: "flex",
     left: "50%",
@@ -194,21 +214,40 @@ const styles = StyleSheet.create({
     color: "#000",
     position: "absolute",
   },
+  // Replace answerrectangle with answerInput
+  answerInput: {
+    marginLeft: -166,
+    top: 461,
+    backgroundColor: "#fff",
+    borderStyle: "solid",
+    borderColor: "#b786f1",
+    borderWidth: 2,
+    width: 333,
+    height: 188,
+    borderRadius: 15,
+    padding: 15,
+    textAlignVertical: "top", // Align text to top (like textarea)
+    fontSize: 16,
+    color: "#000",
+  },
+
   continuebutton: {
     backgroundColor: "#efb22e",
     width: 193,
     height: 41,
     left: 31,
     borderRadius: 15,
+    justifyContent: "center", // Center vertically
+    alignItems: "center", // Center horizontally
+    top: 700,
+    position: "absolute",
   },
   continue: {
-    left: 92,
     fontSize: 20,
     color: "#000",
     fontFamily: "DoHyeon-Regular",
     textAlign: "center",
     lineHeight: 38,
-    top: 700,
   },
   hintbutton: {
     left: 31,
