@@ -21,6 +21,7 @@
     "react-hook-form": "^7.54.2",
     "react-native": "0.76.7",
     "react-native-async-storage": "^0.0.1",
+    "react-native-push-notification": "^8.1.1",
     "react-native-svg": "^15.11.2",
     "react-native-web": "~0.19.13"
   },
