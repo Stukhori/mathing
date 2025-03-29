@@ -1,10 +1,9 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { PrismaClient } from '@prisma/client';
 import config from '../config/env';
+import prisma from '../prisma';
 
 const { SECRET_KEY } = config;
-const prisma = new PrismaClient();
 
 /**
  * Sign up a new user
@@ -63,4 +62,17 @@ export const getUserProfile = async (userId: number) => {
     throw new Error('User not found');
   }
   return user;
+};
+
+export const getUserById = async (userId: number) => {
+  return await prisma.user.findUnique({
+    where: { id: userId },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      streak: true
+      // Only non-sensitive fields
+    }
+  });
 };

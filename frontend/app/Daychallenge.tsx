@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Modal, ActivityIndicator } from "react-native";
 import {
   StyleSheet,
   View,
@@ -6,19 +7,69 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
+  Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
+import { getCurrentUserId } from "../src/utils/auth";
+import api from "../src/api/client";
 
 const IPhone1314 = () => {
   const dailyQuestion = `Agzam wants to go on a vacation to Vietnam, the trip costs $1,200. She plans to save money every month for a year. In the first month, she saves $50, and each subsequent month, she increases her savings by $10. Will she have enough money by the end of the year to afford the trip?`;
   const router = useRouter();
   const [answerText, setAnswerText] = React.useState(""); // State to store the answer
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const taskId = 1;
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [result, setResult] = React.useState<{
+    isCorrect: boolean;
+    feedback: string;
+  } | null>(null);
 
-  const handleSubmit = () => {
-    // Here you would typically send answerText to your API
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    setModalVisible(true); // Show modal when submitting
+
+    const userId = await getCurrentUserId(); // Get the user ID from AsyncStorage
+    if (!userId) {
+      Alert.alert("Error", "You need to be logged in to submit answers");
+      router.push("/signin"); // Redirect to login if userId is not found
+      return;
+    }
+
     console.log("Submitting answer:", answerText);
 
-    // router.push("/home"); // Or wherever you want to navigate after submission
+    const data = {
+      submittedAnswer: answerText,
+      userId: userId,
+      taskId: taskId,
+    };
+
+    try {
+      const response = await api.post("/tasks/submit-task", data);
+      const { result } = response.data;
+      if (result) {
+        console.log(result);
+      } else {
+        console.log("No result found");
+      }
+
+      console.log(response.data.result.isCorrect);
+      console.log(response.data.result.feedback);
+
+      setResult({
+        isCorrect: response.data.result.isCorrect,
+        feedback: response.data.result.feedback,
+      });
+    } catch (error) {
+      console.log(error);
+
+      setResult({
+        isCorrect: false,
+        feedback: error.response?.data?.message || "Something went wrong",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -69,10 +120,122 @@ const IPhone1314 = () => {
       />
       <View style={[styles.helpbutton, styles.hintandhelpbuttons]} />
       <Text style={[styles.needHelp, styles.hintTypo]}>Need help?</Text>
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            {isSubmitting ? (
+              <>
+                <ActivityIndicator size="large" color="#6637a1" />
+                <Text style={styles.modalText}>Checking your answer...</Text>
+              </>
+            ) : result ? (
+              <>
+                <Text
+                  style={[
+                    styles.resultTitle,
+                    { color: result.isCorrect ? "#4CAF50" : "#F44336" },
+                  ]}
+                >
+                  {result.isCorrect ? "Correct! 🎉" : "Incorrect 😕"}
+                </Text>
+                <Text style={styles.feedbackText}>{result.feedback}</Text>
+                <TouchableOpacity
+                  style={styles.modalButton}
+                  onPress={() => {
+                    setModalVisible(false);
+                    setResult(null);
+                    if (result.isCorrect) {
+                      router.push("/home"); // Navigate on success if desired
+                    }
+                  }}
+                >
+                  <Text style={styles.modalButtonText}>
+                    {result.isCorrect ? "Continue" : "Try Again"}
+                  </Text>
+                </TouchableOpacity>
+              </>
+            ) : null}
+          </View>
+          <TouchableOpacity
+            style={styles.closeButton}
+            onPress={() => setModalVisible(false)}
+          >
+            <Text style={styles.closeButtonText}>✕</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   );
 };
 const styles = StyleSheet.create({
+  closeButton: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    padding: 5,
+  },
+  closeButtonText: {
+    fontSize: 18,
+    color: "#999",
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  modalContent: {
+    width: "80%",
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 25,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    marginTop: 15,
+    fontSize: 18,
+    textAlign: "center",
+    color: "#333",
+  },
+  resultTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 15,
+    textAlign: "center",
+  },
+  feedbackText: {
+    fontSize: 16,
+    textAlign: "center",
+    marginBottom: 20,
+    color: "#555",
+  },
+  modalButton: {
+    backgroundColor: "#6637a1",
+    borderRadius: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 30,
+    elevation: 2,
+  },
+  modalButtonText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 16,
+    textAlign: "center",
+  },
   arrowButton: {
     top: -4,
     left: 7,

@@ -28,6 +28,7 @@ const IPhone1314 = () => {
       const { token } = response.data;
       if (token) {
         await AsyncStorage.setItem("authToken", token);
+        await AsyncStorage.setItem("userId", response.data.user.id);
       }
       router.push("/home");
       reset(); // Reset form fields after successful submission
