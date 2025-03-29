@@ -27,7 +27,7 @@ interface Lesson {
 const QuizComponent = () => {
   const router = useRouter();
   const params = useLocalSearchParams();
-  const { addAnswer } = useQuiz();
+  const { addAnswer, resetQuiz } = useQuiz();
   const [lesson, setLesson] = React.useState<Lesson | null>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
   const [loading, setLoading] = React.useState(true);
@@ -39,14 +39,19 @@ const QuizComponent = () => {
   const [buttonState, setButtonState] = React.useState<
     "continue" | "next" | "finish"
   >("continue");
+  const [isReset, setIsReset] = React.useState(false);
 
   React.useEffect(() => {
+    if (!isReset) {
+      resetQuiz();
+      setIsReset(true);
+    }
+
+    resetQuiz(); // Reset quiz state when component mounts
     const fetchLesson = async () => {
       try {
         setLoading(true);
-        const response = await api.get(
-          `/lessons/1`
-        );
+        const response = await api.get(`/lessons/1`);
         // console.log("Lesson data:", response.data.lesson.questions.length);
         if (response.data?.lesson?.questions?.length <= 0) {
           throw new Error("Lesson has no questions");

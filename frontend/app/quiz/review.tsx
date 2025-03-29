@@ -553,6 +553,13 @@ const styles = StyleSheet.create({
     left: 21,
     overflow: "hidden",
   },
+  iconPosition: {
+    maxHeight: "100%",
+    maxWidth: "100%",
+    width: "11.54%",
+    position: "absolute",
+    overflow: "hidden",
+  },
   vuesaxlinearhomeIcon: {
     height: "5.03%",
     top: "93.6%",
@@ -590,7 +597,7 @@ const styles = StyleSheet.create({
   },
   vuesaxlinearheartIcon: {
     height: "5.21%",
-    top: "93.72%",
+    top: "93.6%",
     right: "64.62%",
     bottom: "1.07%",
     left: "23.85%",
