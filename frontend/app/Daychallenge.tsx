@@ -9,8 +9,8 @@ import {
   Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
-import axios from "axios";
 import { getCurrentUserId } from "../src/utils/auth";
+import api from "../src/api/client";
 
 const IPhone1314 = () => {
   const dailyQuestion = `Agzam wants to go on a vacation to Vietnam, the trip costs $1,200. She plans to save money every month for a year. In the first month, she saves $50, and each subsequent month, she increases her savings by $10. Will she have enough money by the end of the year to afford the trip?`;
@@ -37,10 +37,7 @@ const IPhone1314 = () => {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:4000/api/tasks/submit-task",
-        data
-      );
+      const response = await api.post("/tasks/submit-task", data);
       const { result } = response.data;
       if (result) {
         console.log(result);
