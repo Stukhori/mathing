@@ -45,7 +45,7 @@ const QuizComponent = () => {
       try {
         setLoading(true);
         const response = await api.get(
-          `/lessons/10`
+          `/lessons/1`
         );
         // console.log("Lesson data:", response.data.lesson.questions.length);
         if (response.data?.lesson?.questions?.length <= 0) {
