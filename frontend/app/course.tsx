@@ -10,7 +10,7 @@ import Vuesaxlinearsetting2 from "../assets/setting-2.svg"
 import Lisearch from "../assets/lisearch.svg"
 import Rectangle184 from "../assets/course/rectangle-184.svg"
 import { useRouter } from "expo-router";
-
+import Image5 from "../assets/blackcircle.svg"
 const IPhone1314 = () => {
   	const router = useRouter();
 
@@ -49,6 +49,7 @@ const IPhone1314 = () => {
         				<Rectangle184 style={[styles.iphone16Pro36Child10, styles.imageIconPosition12]} />
         				<Image style={[styles.imageIcon4, styles.imageIconPosition]} resizeMode="cover" source={require("../src/img/courses/arithmetic.png")} />
         				<View style={[styles.iphone16Pro36Child11, styles.imageIconPosition13]} />
+						<Image5 style={styles.imageIcon5} width={21} height={20} />
         				<Text style={[styles.arithmetic, styles.logicsLayout]}>Arithmetic</Text>
         				<Text style={[styles.fundamentalOperationsOf, styles.shapesFiguresAnglesLayout]}>Fundamental operations of numbers</Text>
         				<Text style={[styles.text3, styles.textPosition]}>36%</Text>
@@ -61,11 +62,40 @@ const IPhone1314 = () => {
         				<Text style={[styles.continue2, styles.continueTypo1]}>Continue</Text>
         				<Text style={[styles.continue3, styles.continueTypo]}>Continue</Text>
         				<View style={[styles.iphone16Pro36Child18, styles.iphone16Position]} />
-        				<Vuesaxlinearprofile style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} />
-        				<Lisearch style={[styles.lisearchIcon, styles.iphone16ChildLayout2]} width={45} height={41} />
-        				<Vuesaxlinearhome style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} />
-        				<Vuesaxlinearsetting2 style={styles.vuesaxboldsetting2Icon} width={47} height={48} />
-        				<Vuesaxlinearheart style={[styles.vuesaxlinearheartIcon, styles.iconLayout]} />
+				<TouchableOpacity 
+		  style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} 
+		  onPress={() => router.push("/profile")}
+		>
+		  <Vuesaxlinearprofile width={45} height={41}/>
+		</TouchableOpacity>
+
+		<TouchableOpacity 
+		  style={[styles.vuesaxlinearsetting2Icon, styles.iconLayout]} 
+		  onPress={() => router.push("/settingspage")}
+		>
+		  <Vuesaxlinearsetting2 width={45} height={41}/>
+		</TouchableOpacity >
+
+		<TouchableOpacity 
+		  style={[styles.lisearchIcon, styles.iconPositionsearch]} 
+		  onPress={() => router.push("/courses")}
+		>
+		  <Lisearch width={45} height={41} />
+		</TouchableOpacity>
+
+		<TouchableOpacity 
+		  style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} 
+		  onPress={() => router.push("/home")}
+		>
+		  <Vuesaxlinearhome width={45} height={41}/>
+		</TouchableOpacity>
+
+		<TouchableOpacity 
+		  style={[styles.vuesaxlinearheartIcon, styles.iconPosition]} 
+		  onPress={() => router.push("/learnwithfriends")}
+		>
+		  <Vuesaxlinearheart width={45} height={45} />
+		</TouchableOpacity>
       			</View>
     		</View>);
 };
@@ -116,6 +146,11 @@ const styles = StyleSheet.create({
     		left: 25,
     		position: "absolute"
   	},
+	  iconPositionsearch: {
+		width: 163,
+		left: 95,
+		position: "absolute"
+  },
 	  iconPosition11: {
 		top: 266,
 		width: 163,
@@ -345,8 +380,8 @@ const styles = StyleSheet.create({
   	categories: {
     		top: 205,
     		fontSize: 28,
-    		fontFamily: "JockeyOne-Regular",
-    		width: 114,
+    		fontFamily: "DoHyeon-Regular",
+    		width: 124,
     		height: 38,
     		justifyContent: "center",
     		alignItems: "center",
@@ -388,6 +423,15 @@ const styles = StyleSheet.create({
     		fontSize: 12,
     		position: "absolute"
   	},
+	  vuesaxlinearsetting2Icon: {
+		right: "5.13%",
+		left: "83.33%",
+		bottom: "1.38%",
+		top: "93.36%",
+		height: "5.26%",
+		maxWidth: "100%",
+		width: "11.54%"
+  },
   	iphone16Pro36Child2: {},
 	imageIcon2Position11: {
 		top: 521,
@@ -481,6 +525,12 @@ const styles = StyleSheet.create({
     		top: 626,
     		borderRadius: 40
   	},
+	  imageIcon5: {
+		top: 799,
+		left: 105,
+		zIndex: 9999,
+		position: "absolute"
+  },
   	text2: {
     		left: 142,
     		fontFamily: "DoHyeon-Regular"
@@ -563,7 +613,7 @@ const styles = StyleSheet.create({
   	},
   	lisearchIcon: {
     		top: 790,
-    		left: 20,
+    		left: 70,
     		overflow: "hidden"
   	},
   	vuesaxlinearhomeIcon: {
