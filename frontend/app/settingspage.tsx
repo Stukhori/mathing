@@ -1,5 +1,5 @@
 import * as React from "react";
-import {StyleSheet, View, Image, Text, TouchableOpacity} from "react-native";
+import {StyleSheet, View, Image, Text, TouchableOpacity, Linking} from "react-native";
 import { useRouter } from "expo-router";
 import Rectangle1stroke from "../assets/settingspage/rectangle-email.svg"
 import Rectangle194 from "../assets/settingspage/rectangle-lang.svg"
@@ -20,6 +20,10 @@ import Vuesaxlinearheart from "../assets/heart.svg"
 const IPhone1314 = () => {
 	const router = useRouter();
 
+
+	const handleContactSupport = () => {
+		Linking.openURL('mailto:nurali.kalliev@gmail.com');
+	  };	
   	return (
     		<View style={[styles.iphone131411, styles.iphone131411Bg]}>
       			<View style={[styles.iphone16Pro44, styles.iphone16Position]}>
@@ -31,9 +35,19 @@ const IPhone1314 = () => {
         				<Text style={[styles.notifications, styles.faqTypo]}>Notifications</Text>
         				<Text style={[styles.vibrations, styles.faqTypo]}>Vibrations</Text>
         				<Text style={[styles.faq, styles.faqTypo]}>FAQ</Text>
-        				<Rectangle1 style={[styles.iphone16Pro44Inner, styles.contactSupportPosition]} width={159} height={38} />
-        				<Text style={[styles.contactSupport, styles.contactSupportPosition]}>Contact support</Text>
-        				<Image style={[styles.image4Icon, styles.rectangle1Layout]} resizeMode="cover" source={require("../src/img/contact.png")} />
+						<TouchableOpacity 
+        style={styles.contactSupportButton}
+        onPress={handleContactSupport}
+      >
+        <View style={styles.buttonContentContainer}>
+          <Image 
+            style={styles.image4Icon} 
+            resizeMode="cover" 
+            source={require("../src/img/contact.png")} 
+          />
+          <Text style={styles.contactSupportText}>Contact support</Text>
+        </View>
+      </TouchableOpacity>
         				<Text style={styles.personalInformation}>Personal information</Text>
         				<Text style={[styles.changeLanguage, styles.settingsPosition]}>Change language</Text>
         				<Text style={[styles.english, styles.englishTypo]}>English</Text>
@@ -229,11 +243,33 @@ const styles = StyleSheet.create({
     		fontFamily: "DoHyeon-Regular",
     		lineHeight: 38
   	},
-  	image4Icon: {
-    		top: 709,
-    		left: 223,
-    		width: 22
-  	},
+	  contactSupportButton: {
+		position: 'absolute',
+		top: 700,
+		left: 209,
+		backgroundColor: '#86c0fa', // Add background color to make it visible
+		borderRadius: 8,
+		padding: 10,
+		width: 159,
+		height: 38,
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+	  },
+	  buttonContentContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 8,
+	  },
+	  contactSupportText: {
+		fontSize: 15,
+		color: '#000',
+		fontFamily: "DoHyeon-Regular",
+	  },
+	  image4Icon: {
+		width: 22,
+		height: 22,
+	  },
   	personalInformation: {
     		marginLeft: -172.5,
     		top: 241,
