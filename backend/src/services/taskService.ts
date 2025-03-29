@@ -1,8 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '../prisma';
 import { OpenAI } from 'openai';
 import config from '../config/env';
 
-const prisma = new PrismaClient();
 const { OPENAI_API } = config;
 const client = new OpenAI({ apiKey: OPENAI_API });
 
