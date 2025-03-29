@@ -50,24 +50,34 @@ const IPhone1314 = () => {
           <Rectangle234 width={89} height={31} />
           <Text style={[styles.start, styles.tryTypo]}>Start</Text>
         </TouchableOpacity>
-
+        
         {/* Try Button */}
         <TouchableOpacity 
           style={[styles.iphone16Pro45Child6, styles.tryPosition]}
           onPress={() => router.push("/Daychallenge")}
-        >
-          <Text style={[styles.try, styles.tryPosition]}>Try!</Text>
+        ><TouchableOpacity onPress={() => router.push("/Daychallenge")}>
+        <Text style={[styles.try, styles.tryPosition]}>Try!</Text>
         </TouchableOpacity>
-
-        {/* Rest of the components remain unchanged */}
-        <Image
-          style={styles.iphone16Pro45Inner}
-          resizeMode="cover"
-          source={require("../src/img/Group1.png")}
-        />
-        <Text style={styles.mathIntermediate}>Math Intermediate</Text>
-        <Text style={styles.challengeOfThe}>{`Challenge of the day`}</Text>
-        <Text style={styles.text}>59%</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+  style={styles.group1Container} 
+  onPress={() => router.push("/courses")}
+>
+  <Image 
+    source={require("../src/img/Group1.png")} 
+    style={styles.group1Image}
+    resizeMode="contain"
+  />
+</TouchableOpacity>
+<TouchableOpacity onPress={() => router.push("/courses")}>
+  <Text style={styles.mathIntermediate}>Math Intermediate</Text>
+</TouchableOpacity>
+<TouchableOpacity onPress={() => router.push("/courses")}>
+<Text style={styles.challengeOfThe}>{`Challenge of the day`}</Text>
+</TouchableOpacity>
+<TouchableOpacity onPress={() => router.push("/courses")}>
+<Text style={styles.text}>59%</Text>
+</TouchableOpacity>
         <View style={[styles.rectangleView, styles.rectangleViewLayout]} />
         <Fluentemojiflatfire
           style={[
@@ -79,7 +89,7 @@ const IPhone1314 = () => {
         />
         <View style={styles.iphone16Pro45Child1} />
         <Text style={styles.streak14Days}>Streak: 14 days</Text>
-        <Text style={styles.keepGoing}>Keep going!</Text>
+        <Text style={styles.keepGoing}>Keep going! Solve today's challenge</Text>
         <Text style={[styles.rewardsAvailable, styles.rewardsAvailableTypo]}>
           Rewards available
         </Text>
@@ -121,19 +131,29 @@ const IPhone1314 = () => {
           Brainstorm
         </Text>
         <Text style={[styles.minutes, styles.minutesLayout]}>5 minutes</Text>
-        <Rectangle234
-          style={[styles.iphone16Pro45Child4, styles.iphone16Pro45Child4Layout]}
-          width={89}
-          height={31}
-        />
+        <TouchableOpacity 
+  style={[styles.iphone16Pro45Child4, styles.iphone16Pro45Child4Layout]}
+  onPress={() => router.push("/logicspage")}
+>
+  <Rectangle234 width={89} height={31} />
+  <Text style={[styles.start, styles.tryTypo]}>Start</Text>
+</TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/Daychallenge")}>
         <Text style={[styles.start, styles.tryTypo]}>Start</Text>
-        <View
-          style={[styles.iphone16Pro45Child5, styles.iphone16ChildLayout]}
-        />
-        <Text style={[styles.more, styles.tryTypo]}>More</Text>
-        <Group style={[styles.groupIcon, styles.iconLayout1]} />
-        <View style={[styles.iphone16Pro45Child6, styles.tryPosition]} />
-        <Text style={[styles.try, styles.tryPosition]}>Try!</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+  style={[styles.groupIcon, styles.iconLayout1]}
+  onPress={() => router.push("/courses")}
+>
+  <Group/>
+</TouchableOpacity>
+<TouchableOpacity 
+  style={[styles.tryButtonContainer, styles.tryPosition]}
+  onPress={() => router.push("/Daychallenge")}
+>
+  <View style={styles.iphone16Pro45Child6} />
+  <Text style={styles.tryText}>Try!</Text>
+</TouchableOpacity>
         <Text
           style={[styles.testYourLogicRiddles, styles.rewardsAvailableTypo]}
         >{`Test your logic!Riddles, puzzles, paradoxes and more`}</Text>
@@ -281,10 +301,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     overflow: "hidden",
   },
-  tryPosition: {
-    top: 340,
-    position: "absolute",
-  },
   iconLayout: {
     bottom: "1.38%",
     top: "93.36%",
@@ -361,8 +377,8 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   continue: {
-    top: 169,
-    left: 68,
+    top: -7,
+    left: 21,
     width: 69,
     height: 55,
     justifyContent: "center",
@@ -431,11 +447,11 @@ const styles = StyleSheet.create({
     left: 295,
   },
   iphone16Pro45Child1: {
-    top: 552,
+    top: 562,
     left: 208,
     backgroundColor: "#339624",
     width: 175,
-    height: 192,
+    height: 142,
     borderRadius: 26,
     position: "absolute",
   },
@@ -457,8 +473,8 @@ const styles = StyleSheet.create({
     top: 436,
     color: "#725d2f",
     fontSize: 20,
-    width: 291,
-    left: 34,
+    width: 295,
+    left: 20,
     height: 77,
     lineHeight: 81,
     alignItems: "center",
@@ -571,11 +587,13 @@ const styles = StyleSheet.create({
     right: "10.38%",
     bottom: "55.83%",
     left: "60.61%",
+    position: "absolute",
+    overflow: "hidden",
   },
   iphone16Pro45Child6: {
     backgroundColor: "#ffe168",
     height: 35,
-    width: 89,
+    width: 59,
     borderRadius: 17,
     left: 32,
   },
@@ -676,6 +694,36 @@ const styles = StyleSheet.create({
     width: "100%",
     overflow: "hidden",
     height: 844,
+  },
+  group1Container: {
+    position: 'absolute',
+    top: 112,
+    left: 270,
+    zIndex: 1,
+  },
+  group1Image: {
+    width: 100,
+    height: 100,
+  },
+  tryButtonContainer: {
+    left: 32, // Match original button position
+    height: 35,
+    width: 89,
+  },
+  tryText: {
+    position: 'absolute',
+    top: -5,
+    left: 32,
+    textAlign: "center",
+    color: "#000",
+    fontSize: 15,
+    fontFamily: "DoHyeon-Regular",
+    lineHeight: 38,
+  },
+
+  tryPosition: {
+    top: 340,
+    position: "absolute",
   },
 });
 
