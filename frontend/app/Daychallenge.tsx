@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Modal, ActivityIndicator } from "react-native";
+import ChatBot, { ChatBotHandle } from "../src/components/Chatbot";
 import {
   StyleSheet,
   View,
@@ -20,10 +21,15 @@ const IPhone1314 = () => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const taskId = 1;
   const [modalVisible, setModalVisible] = React.useState(false);
+  const chatBotRef = React.useRef<ChatBotHandle>(null);
   const [result, setResult] = React.useState<{
     isCorrect: boolean;
     feedback: string;
   } | null>(null);
+
+  const handleHelpPress = () => {
+    chatBotRef.current?.toggleChat();
+  };
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
@@ -113,13 +119,26 @@ const IPhone1314 = () => {
 
       <View style={[styles.hintbutton, styles.hintandhelpbuttons]} />
       <Text style={[styles.hint, styles.hintTypo]}>Hint!</Text>
-      <Image
+      <TouchableOpacity
+        onPress={handleHelpPress}
         style={[styles.roboticon, styles.continuePosition]}
-        resizeMode="cover"
-        source={require("../src/img/robot.png")}
+      >
+        <Image
+          style={styles.robotImage}
+          source={require("../src/img/robot.png")}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={handleHelpPress}
+        style={[styles.helpbutton, styles.hintandhelpbuttons]}
+      >
+        <Text style={styles.needHelp}>Need help?</Text>
+      </TouchableOpacity>
+
+      <ChatBot
+        ref={chatBotRef}
+        taskId={taskId} // Pass the current task ID
       />
-      <View style={[styles.helpbutton, styles.hintandhelpbuttons]} />
-      <Text style={[styles.needHelp, styles.hintTypo]}>Need help?</Text>
 
       <Modal
         animationType="fade"
@@ -173,6 +192,7 @@ const IPhone1314 = () => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   closeButton: {
     position: "absolute",
@@ -422,16 +442,31 @@ const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
   },
-  roboticon: {
-    left: 287,
-    width: 66,
-    height: 62,
-  },
   helpbutton: {
     left: 227,
+    height: 42,
+    width: 120,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#6637a1",
+    borderRadius: 20,
+    shadowOpacity: 1,
+    elevation: 4,
+    shadowRadius: 4,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowColor: "rgba(0, 0, 0, 0.25)",
+    top: 774,
+    position: "absolute",
   },
   needHelp: {
-    left: 249,
+    fontSize: 17,
+    textAlign: "center",
+    color: "#fff",
+    fontFamily: "DoHyeon-Regular",
+    lineHeight: 38,
   },
   iphone131413: {
     backgroundColor: "#fdfcff",
@@ -439,6 +474,21 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 844,
     overflow: "hidden",
+  },
+  roboticon: {
+    left: 287,
+    width: 66, // Reduced from 66
+    height: 62, // Reduced from 62
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+  },
+
+  // Add this new style for the image inside
+  robotImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain",
   },
 });
 
