@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router"; // Import directly instead of useRouter
 
 const api = axios.create({
-  baseURL: "http://localhost:4000/api",
+  baseURL: "https://mathing-backend.onrender.com/api",
 });
 
 let isRefreshing = false;
@@ -23,12 +23,12 @@ api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
-    
+
     if (error.response?.status === 401 && !originalRequest._retry) {
       if (isRefreshing) {
         return Promise.reject(error);
       }
-      
+
       isRefreshing = true;
       originalRequest._retry = true;
 

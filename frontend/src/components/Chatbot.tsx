@@ -11,7 +11,7 @@ import {
   TextInputKeyPressEventData,
   NativeSyntheticEvent,
 } from "react-native";
-import api from "../api/client"; // Your configured axios instance
+import api from "../api/client";
 
 type Message = {
   text: string;

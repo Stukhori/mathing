@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
+import api from "../../src/api/client";
 import { useRouter } from "expo-router";
 import Image32lww from "../../assets/image--32lww.svg";
 
@@ -21,8 +21,8 @@ const IPhone1314 = () => {
     console.log(data);
 
     try {
-      const response = await axios.post(
-        "http://localhost:4000/api/users/login",
+      const response = await api.post(
+        "/users/login",
         data
       );
       const { token } = response.data;

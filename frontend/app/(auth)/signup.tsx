@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text, StyleSheet, View, TextInput, TouchableOpacity, Animated } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import axios from "axios";
+import api from "../../src/api/client";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 
@@ -34,7 +34,7 @@ const Signup = () => {
     setErrorMessage("");
 
     try {
-      const response = await axios.post("http://localhost:4000/api/users/signup", data);
+      const response = await api.post("/users/signup", data);
       const {token} = response.data;
       if (token) {
         await AsyncStorage.setItem("authToken", token);

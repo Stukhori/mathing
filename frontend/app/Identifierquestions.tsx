@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useQuiz } from "../context/QuizContext";
-import axios from "axios";
+import api from "../src/api/client";
 
 interface Lesson {
   id: number;
@@ -44,8 +44,8 @@ const QuizComponent = () => {
     const fetchLesson = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(
-          `http://localhost:4000/api/lessons/10`
+        const response = await api.get(
+          `/lessons/10`
         );
         // console.log("Lesson data:", response.data.lesson.questions.length);
         if (response.data?.lesson?.questions?.length <= 0) {
@@ -100,7 +100,7 @@ const QuizComponent = () => {
       if (!selectedChoiceObj) return;
 
       // Submit answer to backend
-      await axios.post(`http://localhost:4000/api/lessons/check-answer`, {
+      await api.post(`/lessons/check-answer`, {
         questionId: currentQuestion.id,
         choiceId: selectedChoice,
       });
