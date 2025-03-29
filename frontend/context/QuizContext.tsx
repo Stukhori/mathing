@@ -2,12 +2,12 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Answer = {
-  questionId: string;
+  questionId: number;
   questionText: string;
-  selectedChoiceId: string;
+  selectedChoiceId: number;
   selectedChoiceText: string;
   isCorrect: boolean;
-  correctChoiceId?: string;
+  correctChoiceId?: number;
   correctChoiceText?: string;
 };
 
