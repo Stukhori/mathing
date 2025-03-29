@@ -20,6 +20,8 @@ model User {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   submissions     TaskSubmission[] // Relation to TaskSubmission
+
+  ChatSession ChatSession[]
 }
 
 model DailyTask {
@@ -29,6 +31,8 @@ model DailyTask {
   answer          String
   createdAt       DateTime @default(now())
   submissions     TaskSubmission[] // Relation to TaskSubmission
+
+  ChatSession ChatSession[]
 }
 
 model TaskSubmission {
@@ -124,4 +128,35 @@ model Choice {
   questionId Int
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+}
+
+model ChatSession {
+  id          String       @id @default(uuid())
+  userId      Int
+  taskId      Int
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  expiresAt   DateTime     @default(now())
+  messages    ChatMessage[]
+  user        User         @relation(fields: [userId], references: [id])
+  task        DailyTask    @relation(fields: [taskId], references: [id])
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model ChatMessage {
+  id          String      @id @default(uuid())
+  content     String
+  role        MessageRole // user or assistant
+  session     ChatSession @relation(fields: [sessionId], references: [id])
+  sessionId   String
+  createdAt   DateTime    @default(now())
+
+  @@index([sessionId])
+}
+
+enum MessageRole {
+  USER
+  ASSISTANT
 }
