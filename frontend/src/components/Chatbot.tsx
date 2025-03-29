@@ -102,7 +102,10 @@ const ChatBot = forwardRef<ChatBotHandle, ChatBotProps>(({ taskId }, ref) => {
   }));
 
   const sendMessage = async () => {
-    if (!inputText.trim() || !sessionId || isLoading) return;
+    if (!inputText.trim() || !sessionId || isLoading) {
+      console.log("niggas");
+      return;
+    }
 
     const userMessage = { text: inputText, isBot: false };
     setMessages((prev) => [...prev, userMessage]);
@@ -140,10 +143,12 @@ const ChatBot = forwardRef<ChatBotHandle, ChatBotProps>(({ taskId }, ref) => {
   const handleKeyPress = (
     e: NativeSyntheticEvent<TextInputKeyPressEventData>
   ) => {
+    // Check if Enter was pressed without Shift
     if (e.nativeEvent.key === "Enter" && !e.nativeEvent.shiftKey) {
-      e.preventDefault();
-      sendMessage();
+      e.preventDefault(); // Prevent default newline behavior
+      sendMessage(); // Submit the message
     }
+    // Shift+Enter will naturally create a new line
   };
 
   return (
@@ -157,7 +162,6 @@ const ChatBot = forwardRef<ChatBotHandle, ChatBotProps>(({ taskId }, ref) => {
         </TouchableOpacity>
       </View>
 
-      {/* Replace View with ScrollView for messages container */}
       <ScrollView
         ref={messagesEndRef}
         style={styles.messagesContainer}
@@ -196,6 +200,9 @@ const ChatBot = forwardRef<ChatBotHandle, ChatBotProps>(({ taskId }, ref) => {
           placeholder="Ask me about the problem..."
           placeholderTextColor="#888"
           editable={!isLoading && !!sessionId}
+          onKeyPress={handleKeyPress}
+          multiline
+          blurOnSubmit={false} // Important to prevent keyboard dismissal
         />
         <TouchableOpacity
           style={styles.sendButton}
