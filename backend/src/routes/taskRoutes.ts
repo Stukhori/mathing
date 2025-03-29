@@ -1,6 +1,6 @@
 import express from 'express';
 import { getDailyTask, submitTask } from '../controllers/taskController';
-import { authenticate } from '@/middleware/authMiddleware';
+import { authenticate } from '../middleware/authMiddleware';
 
 const router = express.Router();
 
