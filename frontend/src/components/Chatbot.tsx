@@ -7,6 +7,9 @@ import {
   StyleSheet,
   Animated,
   ActivityIndicator,
+  ScrollView,
+  TextInputKeyPressEventData,
+  NativeSyntheticEvent,
 } from "react-native";
 import api from "../api/client"; // Your configured axios instance
 
@@ -30,6 +33,13 @@ const ChatBot = forwardRef<ChatBotHandle, ChatBotProps>(({ taskId }, ref) => {
   const [sessionId, setSessionId] = React.useState<string | null>(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const slideAnim = React.useRef(new Animated.Value(300)).current;
+  const messagesEndRef = React.useRef<ScrollView>(null);
+
+  React.useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollToEnd({ animated: true });
+    }
+  }, [messages]);
 
   // Initialize or reset chat when opening
   React.useEffect(() => {
@@ -127,6 +137,15 @@ const ChatBot = forwardRef<ChatBotHandle, ChatBotProps>(({ taskId }, ref) => {
     }
   };
 
+  const handleKeyPress = (
+    e: NativeSyntheticEvent<TextInputKeyPressEventData>
+  ) => {
+    if (e.nativeEvent.key === "Enter" && !e.nativeEvent.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+
   return (
     <Animated.View
       style={[styles.container, { transform: [{ translateX: slideAnim }] }]}
@@ -138,7 +157,12 @@ const ChatBot = forwardRef<ChatBotHandle, ChatBotProps>(({ taskId }, ref) => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.messagesContainer}>
+      {/* Replace View with ScrollView for messages container */}
+      <ScrollView
+        ref={messagesEndRef}
+        style={styles.messagesContainer}
+        contentContainerStyle={styles.messagesContentContainer}
+      >
         {messages.map((message, index) => (
           <View
             key={index}
@@ -162,7 +186,7 @@ const ChatBot = forwardRef<ChatBotHandle, ChatBotProps>(({ taskId }, ref) => {
             <ActivityIndicator size="small" color="#6637a1" />
           </View>
         )}
-      </View>
+      </ScrollView>
 
       <View style={styles.inputContainer}>
         <TextInput
