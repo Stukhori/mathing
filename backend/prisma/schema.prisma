@@ -51,7 +51,7 @@ model Lesson {
   id            Int            @id @default(autoincrement())
   title         String
   description   String?
-  order         Int            @unique()
+  order         Int            
   difficulty    Difficulty     @default(BEGINNER)
   tags          LessonTag[]
   prerequisites Prerequisite[] @relation("PrerequisiteRelations")
