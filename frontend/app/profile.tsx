@@ -44,10 +44,11 @@ const IPhone1314 = () => {
           					<Text style={styles.stukhori1}>@stukhori</Text>
         				</Text>
       			</Text>
-      			<Text style={[styles.activityHistory7, styles.awards5Layout]}>Activity history (7)</Text>
-      			<Text style={[styles.viewAll, styles.viewTypo]}>View all</Text>
-      			<Text style={[styles.viewAll1, styles.viewTypo]}>View all</Text>
-      			<Text style={[styles.awards5, styles.awards5Layout]}>Awards (5)</Text>
+      			<Text style={[styles.activityHistory7, styles.awards5Layout]}>Activity history</Text>
+				<TouchableOpacity onPress={() => router.push("/awards")}>
+				<Text style={[styles.viewAll1, styles.viewTypo]}>View all</Text>
+				</TouchableOpacity>
+      			<Text style={[styles.awards5, styles.awards5Layout]}>Awards (4)</Text>
       			<View style={styles.currencyrectangle} />
       			<Image style={styles.diamondicon} resizeMode="cover" source={require("../src/img/diamond.png")} />
       			<Image style={styles.staricon} resizeMode="cover" source={require("../src/img/star.png")} />

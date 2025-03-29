@@ -1,8 +1,6 @@
 import * as React from "react";
 import {Text, StyleSheet, View, Image, TouchableOpacity} from "react-native";
 import Rectangle6 from "../assets/course/rectangle-6.svg"
-import Ellipse3 from "../assets/course/ellipsecourse1.svg"
-import Ellipse4 from "../assets/course/ellipsecourse2.svg"
 import Rectangle181 from "../assets/course/rectangle-181.svg"
 import Rectangle178 from "../assets/course/rectangle-178.svg"
 import Vuesaxlinearheart from "../assets/heart.svg"
@@ -10,123 +8,90 @@ import Vuesaxlinearhome from "../assets/homecommon.svg"
 import Vuesaxlinearprofile from "../assets/profile.svg"
 import Vuesaxlinearsetting2 from "../assets/setting-2.svg"
 import Lisearch from "../assets/lisearch.svg"
-import Ellipse8 from "../assets/course/ellipsecourse5.svg"
-import Ellipse9 from "../assets/course/ellipsecourse6.svg"
-import Ellipse11 from "../assets/course/ellipsecourse7.svg"
-import Ellipse12 from "../assets/course/ellipsecourse8.svg"
 import Rectangle184 from "../assets/course/rectangle-184.svg"
-import Ellipse6 from "../assets/course/ellipsecourse3.svg"
-import Ellipse7 from "../assets/course/ellipsecourse4.svg"
 import { useRouter } from "expo-router";
 
-
-const IPhone16Pro = () => {
-  		const router = useRouter();
+const IPhone1314 = () => {
+  	const router = useRouter();
 
   	return (
-    		<View style={styles.iphone16Pro36}>
-      			<Text style={[styles.courses, styles.coursesbox]}>Courses</Text>
-      			<View style={[styles.iphone16Pro36Child, styles.coursesrectangles]} />
-      			<Image style={styles.maskGroupIcon} resizeMode="cover" source={require("../src/img/courses/beginner.png")} />
-      			<View style={[styles.iphone16Pro36Item, styles.coursesrectangles]} />
-      			<View style={[styles.iphone16Pro36Inner, styles.coursesrectangles]} />
-      			<Image style={[styles.intermediateicon, styles.coursesicons]} resizeMode="cover" source={require("../src/img/courses/intermediate.png")} />
-      			<Image style={[styles.advancedicon, styles.coursesicons]} resizeMode="cover" source={require("../src/img/courses/advanced.png")} />
-      			<Text style={[styles.beginner, styles.beginnerLayout]}>Beginner</Text>
-      			<Text style={[styles.intermediate, styles.advancedFlexBox]}>Intermediate</Text>
-      			<Text style={[styles.advanced, styles.advancedFlexBox]}>Advanced</Text>
-      			<Rectangle6 style={[styles.algebrarectangle, styles.algebraicon]} width={163} height={229} />
-      			<Text style={styles.categories}>Categories</Text>
-      			<Image style={[styles.algebraicon1, styles.algebraicon]} resizeMode="cover" source={require("../src/img/courses/algebra.png")} />
-      			<View style={[styles.algebrarectangle1, styles.categorieswhitebox]} />
-      			<Text style={[styles.algebra, styles.coursesname]}>Algebra</Text>
-      			<Ellipse3 style={styles.ellipseIcon} width={38} height={38} />
-      			<Ellipse4 style={styles.ellipseIcon} width={38} height={38} />
-      			<Text style={[styles.simpleEquationsNumbers, styles.simpleEquationsNumbersLayout]}>Simple equations, numbers, and basic laws</Text>
-      			<Rectangle181 style={[styles.logicsrectangle, styles.logicsicon]} width={223} height={349} />
-      			<Image style={[styles.logicsicon2, styles.logicsicon]} resizeMode="cover" source={require("../src/img/courses/logics.png")} />
-      			<View style={[styles.logicswhite, styles.categorieswhitebox]} />
-      			<Text style={[styles.logics, styles.coursesname]}>Logics</Text>
-      			<Text style={[styles.reasoningProblemSolvingAn, styles.logicstext]}>Reasoning, problem-solving, and critical thinking</Text>
-      			<Text style={[styles.algebrapt, styles.uppercategoriespt]}>59%</Text>
-      			<Rectangle178 style={[styles.geometryrectangle, styles.rightctgicons]} width={163} height={229} />
-      			<Image style={[styles.geometryimage, styles.rightctgicons]} resizeMode="cover" source={require("../src/img/courses/geometry.png")} />
-      			<View style={[styles.iphone16Pro36Child5, styles.rightctgicons]} />
-      			<Text style={[styles.geometry, styles.coursesname]}>Geometry</Text>
-      			<Text style={[styles.shapesFiguresAngles, styles.arithmetictext]}>Shapes, figures, angles, and key geometry concepts</Text>
-      			<View style={styles.iphone16Pro36Child6} />
-      			<Ellipse8 style={[styles.geometrybluecircle, styles.iphone16ChildLayout4]} width={39} height={39} />
-      			<Ellipse9 style={[styles.geometrygraycircle, styles.iphone16ChildLayout4]} width={42} height={42} />
-      			<Text style={[styles.geometrypttext, styles.uppercategoriespt]}>28%</Text>
-      			<Ellipse11 style={[styles.logicsbluecircle, styles.lowerctgcircle]} width={38} height={38} />
-      			<Ellipse12 style={[styles.iphone16Pro36Child10, styles.iphone16ChildLayout2]} width={41} height={41} />
-      			<Text style={[styles.text2, styles.textPosition]}>66%</Text>
-      			<Rectangle184 style={[styles.iphone16Pro36Child11, styles.rightctgicons]} width={163} height={229} />
-      			<Image style={[styles.arithmeticicon, styles.rightctgicons]} resizeMode="cover" source={require("../src/img/courses/arithmetic.png")} />
-      			<View style={[styles.iphone16Pro36Child12, styles.rightctgicons]} />
-      			<Text style={[styles.arithmetic, styles.coursesname]}>Arithmetic</Text>
-      			<Text style={[styles.fundamentalOperationsOf, styles.arithmetictext]}>Fundamental operations of numbers</Text>
-      			<Ellipse6 style={[styles.iphone16Pro36Child13, styles.lowerctgcircle]} width={38} height={38} />
-      			<Ellipse7 style={[styles.iphone16Pro36Child14, styles.iphone16ChildLayout2]} width={41} height={41} />
-      			<Text style={[styles.text3, styles.textPosition]}>36%</Text>
-      			<View style={[styles.iphone16Pro36Child15, styles.iphone16ChildLayout1]} />
-      			<View style={[styles.iphone16Pro36Child16, styles.iphone16ChildLayout1]} />
-      			<Text style={[styles.continue, styles.continueTypo1]}>Continue</Text>
-      			<Text style={[styles.continue1, styles.continueTypo]}>Continue</Text>
-      			<View style={[styles.iphone16Pro36Child17, styles.iphone16ChildLayout]} />
-      			<View style={[styles.iphone16Pro36Child18, styles.iphone16ChildLayout]} />
-      			<Text style={[styles.continue2, styles.continueTypo1]}>Continue</Text>
-      			<Text style={[styles.continue3, styles.continueTypo]}>Continue</Text>
-								<TouchableOpacity 
-						  style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} 
-						  onPress={() => router.push("/profile")}
-						>
-						  <Vuesaxlinearprofile />
-						</TouchableOpacity>
-				
-						<TouchableOpacity 
-						  style={[styles.vuesaxlinearsetting2Icon, styles.iconLayout]} 
-						  onPress={() => router.push("/settingspage")}
-						>
-						  <Vuesaxlinearsetting2 />
-						</TouchableOpacity>
-				
-						<TouchableOpacity 
-						  style={[styles.lisearchIcon, styles.iconPosition]} 
-						  onPress={() => router.push("/home")}
-						>
-						  <Lisearch width={45} height={41} />
-						</TouchableOpacity>
-				
-						<TouchableOpacity 
-						  style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} 
-						  onPress={() => router.push("/home")}
-						>
-						  <Vuesaxlinearhome />
-						</TouchableOpacity>
-				
-						<TouchableOpacity 
-						  style={[styles.vuesaxlinearheartIcon, styles.iconPosition]} 
-						  onPress={() => router.push("/learnwithfriends")}
-						>
-						  <Vuesaxlinearheart width={45} height={45} />
-						</TouchableOpacity>
+    		<View style={[styles.iphone131434, styles.iphone131434Layout]}>
+      			<View style={[styles.iphone16Pro36, styles.iphone16Position]}>
+        				<Text style={[styles.courses, styles.textFlexBox]}>Courses</Text>
+        				<View style={[styles.iphone16Pro36Child, styles.iphone16Layout]} />
+        				<Image style={styles.maskGroupIcon} resizeMode="cover" source={require("../src/img/courses/beginner.png")} />
+        				<View style={[styles.iphone16Pro36Item, styles.iphone16Layout]} />
+        				<View style={[styles.iphone16Pro36Inner, styles.iphone16Layout]} />
+        				<Image style={[styles.maskGroupIcon1, styles.iconLayout1]} resizeMode="cover" source={require("../src/img/courses/intermediate.png")} />
+        				<Image style={[styles.imageIcon, styles.iconLayout1]} resizeMode="cover" source={require("../src/img/courses/advanced.png")} />
+        				<Text style={[styles.beginner, styles.beginnerLayout]}>Beginner</Text>
+        				<Text style={[styles.intermediate, styles.advancedFlexBox]}>Intermediate</Text>
+        				<Text style={[styles.advanced, styles.advancedFlexBox]}>Advanced</Text>
+        				<Rectangle6 style={[styles.rectangleIcon, styles.iconPosition11]} />
+        				<Text style={styles.categories}>Categories</Text>
+        				<Image style={[styles.imageIcon1, styles.imageIconPosition1]} resizeMode="cover" source={require("../src/img/courses/algebra.png")} />
+        				<View style={[styles.rectangleView, styles.rectangleViewPosition]} />
+        				<Text style={[styles.algebra, styles.logicsLayout]}>Algebra</Text>
+        				<Text style={[styles.simpleEquationsNumbers, styles.simpleEquationsNumbersLayout]}>Simple equations, numbers, and basic laws</Text>
+        				<Rectangle181 style={[styles.iphone16Pro36Child2, styles.imageIcon2Position11]} />
+        				<Image style={[styles.imageIcon2, styles.imageIcon2Position]} resizeMode="cover" source={require("../src/img/courses/logics.png")} />
+        				<View style={[styles.iphone16Pro36Child3, styles.iconPosition]} />
+        				<Text style={[styles.logics, styles.logicsLayout]}>Logics</Text>
+        				<Text style={[styles.reasoningProblemSolvingAn, styles.fundamentalOperationsOfTypo]}>Reasoning, problem-solving, and critical thinking</Text>
+        				<Text style={[styles.text, styles.textTypo]}>59%</Text>
+        				<Rectangle178 style={[styles.iphone16Pro36Child4, styles.imageIconPosition11]}/>
+        				<Image style={[styles.imageIcon3, styles.imageIconPosition]} resizeMode="cover" source={require("../src/img/courses/geometry.png")} />
+        				<View style={[styles.iphone16Pro36Child5, styles.imageIconPosition]} />
+        				<Text style={[styles.geometry, styles.logicsLayout]}>Geometry</Text>
+        				<Text style={[styles.shapesFiguresAngles, styles.shapesFiguresAnglesLayout]}>Shapes, figures, angles, and key geometry concepts</Text>
+        				<Text style={[styles.text1, styles.textTypo]}>28%</Text>
+        				<Text style={[styles.text2, styles.textPosition]}>66%</Text>
+        				<Rectangle184 style={[styles.iphone16Pro36Child10, styles.imageIconPosition12]} />
+        				<Image style={[styles.imageIcon4, styles.imageIconPosition]} resizeMode="cover" source={require("../src/img/courses/arithmetic.png")} />
+        				<View style={[styles.iphone16Pro36Child11, styles.imageIconPosition13]} />
+        				<Text style={[styles.arithmetic, styles.logicsLayout]}>Arithmetic</Text>
+        				<Text style={[styles.fundamentalOperationsOf, styles.shapesFiguresAnglesLayout]}>Fundamental operations of numbers</Text>
+        				<Text style={[styles.text3, styles.textPosition]}>36%</Text>
+        				<View style={[styles.iphone16Pro36Child14, styles.iphone16ChildLayout1]} />
+        				<View style={[styles.iphone16Pro36Child15, styles.iphone16ChildLayout1]} />
+        				<Text style={[styles.continue, styles.continueTypo1]}>Continue</Text>
+        				<Text style={[styles.continue1, styles.continueTypo]}>Continue</Text>
+        				<View style={[styles.iphone16Pro36Child16, styles.iphone16ChildLayout]} />
+        				<View style={[styles.iphone16Pro36Child17, styles.iphone16ChildLayout]} />
+        				<Text style={[styles.continue2, styles.continueTypo1]}>Continue</Text>
+        				<Text style={[styles.continue3, styles.continueTypo]}>Continue</Text>
+        				<View style={[styles.iphone16Pro36Child18, styles.iphone16Position]} />
+        				<Vuesaxlinearprofile style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} />
+        				<Lisearch style={[styles.lisearchIcon, styles.iphone16ChildLayout2]} width={45} height={41} />
+        				<Vuesaxlinearhome style={[styles.vuesaxlinearhomeIcon, styles.iconLayout]} />
+        				<Vuesaxlinearsetting2 style={styles.vuesaxboldsetting2Icon} width={47} height={48} />
+        				<Vuesaxlinearheart style={[styles.vuesaxlinearheartIcon, styles.iconLayout]} />
+      			</View>
     		</View>);
 };
 
 const styles = StyleSheet.create({
-  	coursesbox: {
+  	iphone131434Layout: {
+    		height: 844,
+    		overflow: "hidden"
+  	},
+  	iphone16Position: {
+    		width: 390,
+    		left: 0,
+    		position: "absolute"
+  	},
+  	textFlexBox: {
     		textAlign: "center",
     		color: "#000",
     		lineHeight: 38
   	},
-  	coursesrectangles: {
+  	iphone16Layout: {
     		height: 36,
     		borderRadius: 20,
     		top: 158,
     		position: "absolute"
   	},
-  	coursesicons: {
+  	iconLayout1: {
     		height: 29,
     		width: 29,
     		top: 162,
@@ -146,16 +111,27 @@ const styles = StyleSheet.create({
     		lineHeight: 38,
     		position: "absolute"
   	},
-  	algebraicon: {
+  	iconPosition: {
     		width: 163,
     		left: 25,
     		position: "absolute"
   	},
-  	categorieswhitebox: {
+	  iconPosition11: {
+		top: 266,
+		width: 163,
+		left: 0,
+		position: "absolute"
+  },
+  	imageIconPosition1: {
+    		top: 266,
+    		borderRadius: 15
+  	},
+  	rectangleViewPosition: {
+    		top: 357,
     		height: 48,
     		backgroundColor: "#fff"
   	},
-  	coursesname: {
+  	logicsLayout: {
     		height: 26,
     		width: 116,
     		fontSize: 17,
@@ -167,6 +143,7 @@ const styles = StyleSheet.create({
     		position: "absolute"
   	},
   	simpleEquationsNumbersLayout: {
+			top: 411,
     		height: 37,
     		width: 150,
     		lineHeight: 15,
@@ -176,28 +153,46 @@ const styles = StyleSheet.create({
     		display: "flex",
     		color: "#fff"
   	},
-  	logicsicon: {
-    		top: 531,
+  	imageIcon2Position: {
+    		top: 521,
     		width: 163,
     		borderRadius: 15,
     		left: 25,
     		position: "absolute"
   	},
-  	logicstext: {
-    		fontFamily: "Roboto-Bold",
-    		fontWeight: "600"
+  	fundamentalOperationsOfTypo: {
+    		fontFamily: "DoHyeon-Regular",
+    		fontWeight: "600",
+			fontSize: 13
   	},
-  	uppercategoriespt: {
-    		fontSize: 11,
+  	textTypo: {
+    		fontSize: 15,
     		position: "absolute"
   	},
-  	rightctgicons: {
-    		left: 211,
+  	imageIconPosition: {
+    		left: 206,
     		width: 163,
     		position: "absolute"
   	},
-  	arithmetictext: {
-    		left: 218,
+	  imageIconPosition12: {
+		top: 521,
+		left: 166,
+		width: 163,
+		position: "absolute"
+  },
+  imageIconPosition13: {
+	top: 606,
+	left: 206,
+	width: 163,
+	position: "absolute"
+},
+	  imageIconPosition11: {
+		left: 166,
+		width: 163,
+		position: "absolute"
+  },
+  	shapesFiguresAnglesLayout: {
+    		left: 213,
     		height: 37,
     		width: 150,
     		lineHeight: 15,
@@ -208,18 +203,11 @@ const styles = StyleSheet.create({
     		color: "#fff",
     		position: "absolute"
   	},
-  	iconLayout: {
-    		maxHeight: "100%",
-    		maxWidth: "100%",
-    		bottom: "1.49%",
-    		position: "absolute",
-    		overflow: "hidden"
-  	},
-  	iphone16ChildLayout4: {
+  	iphone16ChildLayout6: {
     		borderRadius: 40,
     		position: "absolute"
   	},
-  	lowerctgcircle: {
+  	iphone16ChildLayout5: {
     		top: 628,
     		width: 38,
     		borderRadius: 40,
@@ -227,15 +215,12 @@ const styles = StyleSheet.create({
     		position: "absolute"
   	},
   	iphone16ChildLayout2: {
-    		width: 11,
-    		top: 626,
-    		height: 1,
-    		borderRadius: 40,
+    		height: 41,
     		position: "absolute"
   	},
   	textPosition: {
-    		top: 627,
-    		fontSize: 11,
+    		top: 618,
+    		fontSize: 15,
     		textAlign: "center",
     		color: "#000",
     		lineHeight: 38,
@@ -258,7 +243,7 @@ const styles = StyleSheet.create({
     		position: "absolute"
   	},
   	continueTypo: {
-    		left: 241,
+    		left: 234,
     		fontSize: 15,
     		textAlign: "center",
     		color: "#000",
@@ -272,6 +257,13 @@ const styles = StyleSheet.create({
     		width: 89,
     		borderRadius: 17,
     		position: "absolute"
+  	},
+  	iconLayout: {
+    		maxHeight: "100%",
+    		maxWidth: "100%",
+    		width: "11.54%",
+    		position: "absolute",
+    		overflow: "hidden"
   	},
   	courses: {
     		top: 95,
@@ -291,30 +283,30 @@ const styles = StyleSheet.create({
   	},
   	maskGroupIcon: {
     		top: 163,
-    		left: 97,
-    		width: 27,
-    		height: 27,
+    		left: 94,
+    		width: 30,
+    		height: 22,
     		position: "absolute"
   	},
   	iphone16Pro36Item: {
-    		left: 158,
+    		left: 153,
     		backgroundColor: "rgba(239, 238, 238, 0.93)",
     		width: 103,
     		borderRadius: 20,
     		top: 158
   	},
   	iphone16Pro36Inner: {
-    		left: 275,
+    		left: 268,
     		backgroundColor: "#efeeee",
     		width: 104,
     		borderRadius: 20,
     		top: 158
   	},
-  	intermediateicon: {
-    		left: 229
+  	maskGroupIcon1: {
+    		left: 224
   	},
-  	advancedicon: {
-    		left: 346
+  	imageIcon: {
+    		left: 336
   	},
   	beginner: {
     		left: 10,
@@ -332,30 +324,29 @@ const styles = StyleSheet.create({
   	},
   	intermediate: {
     		top: 158,
-    		left: 164,
+    		left: 159,
     		width: 83,
-    		height: 52,
+    		height: 32,
     		textAlign: "left",
     		fontSize: 12
   	},
   	advanced: {
-    		left: 282,
+    		left: 275,
     		textAlign: "left",
     		width: 105,
     		fontSize: 14,
     		top: 157,
     		color: "#272727"
   	},
-  	algebrarectangle: {
-    		borderRadius: 45,
-    		top: 356,
-			width: 155
+  	rectangleIcon: {
+    		top: 270,
+    		borderRadius: 15
   	},
   	categories: {
     		top: 205,
     		fontSize: 28,
-    		fontFamily: "DoHyeon-Regular",
-    		width: 124,
+    		fontFamily: "JockeyOne-Regular",
+    		width: 114,
     		height: 38,
     		justifyContent: "center",
     		alignItems: "center",
@@ -366,13 +357,13 @@ const styles = StyleSheet.create({
     		lineHeight: 38,
     		position: "absolute"
   	},
-  	algebraicon1: {
+  	imageIcon1: {
     		height: 103,
-    		borderRadius: 15,
-    		top: 266
+    		width: 163,
+    		left: 25,
+    		position: "absolute"
   	},
-  	algebrarectangle1: {
-    		top: 357,
+  	rectangleView: {
     		height: 48,
     		width: 163,
     		left: 25,
@@ -386,7 +377,7 @@ const styles = StyleSheet.create({
     		textAlign: "left"
   	},
   	ellipseIcon: {
-    		left: 134,
+    		left: 132,
     		borderRadius: 40,
     		top: 362,
     		position: "absolute"
@@ -397,20 +388,25 @@ const styles = StyleSheet.create({
     		fontSize: 12,
     		position: "absolute"
   	},
-  	logicsrectangle: {
-		left: 34
+  	iphone16Pro36Child2: {},
+	imageIcon2Position11: {
+		top: 521,
+		width: 163,
+		borderRadius: 15,
+		left: 0,
+		position: "absolute"
 	},
-  	logicsicon2: {
+  	imageIcon2: {
     		height: 102
   	},
-  	logicswhite: {
-    		top: 622,
-    		width: 163,
-    		left: 25,
-    		position: "absolute"
+  	iphone16Pro36Child3: {
+    		top: 607,
+			left: 25,
+    		height: 48,
+    		backgroundColor: "#fff"
   	},
   	logics: {
-    		top: 633,
+    		top: 623,
     		left: 11,
     		justifyContent: "center",
     		textAlign: "center"
@@ -428,126 +424,84 @@ const styles = StyleSheet.create({
     		display: "flex",
     		color: "#fff"
   	},
-  	algebrapt: {
-    		left: 143,
-    		top: 362,
+  	text: {
+    		left: 141,
+    		top: 364,
     		textAlign: "center",
     		color: "#000",
     		lineHeight: 38,
     		fontFamily: "DoHyeon-Regular"
   	},
-  	geometryrectangle: {
-    		borderRadius: 15,
-    		top: 356
+  	iphone16Pro36Child4: {
+    		top: 266,
+    		borderRadius: 15
   	},
-  	geometryimage: {
+  	imageIcon3: {
     		height: 109,
-    		borderRadius: 15,
-    		top: 266
+    		top: 266,
+    		borderRadius: 15
   	},
   	iphone16Pro36Child5: {
     		height: 48,
-    		backgroundColor: "#fff",
-    		top: 357
+    		top: 357,
+    		backgroundColor: "#fff"
   	},
   	geometry: {
-    		left: 231,
+    		left: 226,
     		top: 368,
     		width: 116,
     		fontSize: 17,
     		textAlign: "left"
   	},
   	shapesFiguresAngles: {
-    		top: 405,
+    		top: 410,
     		fontFamily: "DoHyeon-Regular"
   	},
   	iphone16Pro36Child6: {
-    		top: 784,
-    		left: 0,
-    		backgroundColor: "#ededed",
-    		width: 402,
-    		height: 70,
-    		position: "absolute"
-  	},
-  	vuesaxlinearheartIcon: {
-    		width: "11.19%",
-    		right: "64.43%",
-    		left: "24.38%",
-    		top: "93.6%",
-    		height: "5.03%",
-    		maxWidth: "100%",
-    		bottom: "1.49%"
-  	},
-  	vuesaxlinearhomeIcon: {
-    		width: "11.44%",
-    		right: "44.03%",
-    		left: "44.53%",
-    		top: "93.48%",
-    		height: "5.03%",
-    		maxWidth: "100%",
-    		bottom: "1.49%"
-  	},
-  	vuesaxlinearprofileIcon: {
-    		height: "5.26%",
-    		width: "11.69%",
-    		top: "93.5%",
-    		right: "23.63%",
-    		left: "64.68%"
-  	},
-  	vuesaxlinearsetting2Icon: {
-    		top: 788,
-    		left: 318,
-    		position: "absolute"
-  	},
-  	lisearchIcon: {
-    		top: 791,
-    		left: 29,
-    		position: "absolute",
-    		overflow: "hidden"
-  	},
-  	geometrybluecircle: {
-    		left: 318,
+    		left: 311,
     		top: 362
   	},
-  	geometrygraycircle: {
+  	iphone16Pro36Child7: {
     		top: 360,
-    		left: 317
+    		left: 309
   	},
-  	geometrypttext: {
-    		left: 329,
+  	text1: {
+    		left: 321,
     		fontFamily: "DoHyeon-Regular",
-    		top: 362,
+    		top: 364,
     		textAlign: "center",
     		color: "#000",
     		lineHeight: 38
   	},
-  	logicsbluecircle: {
-    		left: 128
-  	},
-  	iphone16Pro36Child10: {
+  	iphone16Pro36Child8: {
     		left: 133
   	},
+  	iphone16Pro36Child9: {
+    		left: 131,
+    		top: 626,
+    		borderRadius: 40
+  	},
   	text2: {
-    		left: 144,
+    		left: 142,
     		fontFamily: "DoHyeon-Regular"
   	},
-  	iphone16Pro36Child11: {
-    		top: 613,
+  	iphone16Pro36Child10: {
+    		top: 533,
     		borderRadius: 15
   	},
-  	arithmeticicon: {
-    		top: 532,
+  	imageIcon4: {
+    		top: 522,
     		borderRadius: 11,
     		height: 102
   	},
-  	iphone16Pro36Child12: {
+  	iphone16Pro36Child11: {
     		top: 624,
     		height: 48,
     		backgroundColor: "#fff"
   	},
   	arithmetic: {
-    		top: 635,
-    		left: 227,
+    		top: 623,
+    		left: 222,
     		textAlign: "left"
   	},
   	fundamentalOperationsOf: {
@@ -555,23 +509,25 @@ const styles = StyleSheet.create({
     		fontFamily: "Roboto-Bold",
     		fontWeight: "600"
   	},
-  	iphone16Pro36Child13: {
-    		left: 323
+  	iphone16Pro36Child12: {
+    		left: 313
   	},
-  	iphone16Pro36Child14: {
-    		left: 324.5
+  	iphone16Pro36Child13: {
+    		top: 626,
+    		borderRadius: 40,
+    		left: 311
   	},
   	text3: {
-    		left: 332,
+    		left: 322,
     		fontFamily: "DoHyeon-Regular"
   	},
-  	iphone16Pro36Child15: {
+  	iphone16Pro36Child14: {
     		backgroundColor: "#96abff",
     		left: 40
   	},
-  	iphone16Pro36Child16: {
+  	iphone16Pro36Child15: {
     		backgroundColor: "#fbbb9c",
-    		left: 225
+    		left: 220
   	},
   	continue: {
     		top: 715
@@ -579,13 +535,13 @@ const styles = StyleSheet.create({
   	continue1: {
     		top: 715
   	},
-  	iphone16Pro36Child17: {
+  	iphone16Pro36Child16: {
     		backgroundColor: "#dd97ff",
     		left: 40
   	},
-  	iphone16Pro36Child18: {
+  	iphone16Pro36Child17: {
     		backgroundColor: "#97fe88",
-    		left: 225
+    		left: 220
   	},
   	continue2: {
     		top: 448
@@ -593,7 +549,44 @@ const styles = StyleSheet.create({
   	continue3: {
     		top: 449
   	},
+  	iphone16Pro36Child18: {
+    		top: 779,
+    		backgroundColor: "#ededed",
+    		height: 65
+  	},
+  	vuesaxlinearprofileIcon: {
+    		height: "5.26%",
+    		top: "93.36%",
+    		right: "23.29%",
+    		bottom: "1.38%",
+    		left: "65.17%"
+  	},
+  	lisearchIcon: {
+    		top: 790,
+    		left: 20,
+    		overflow: "hidden"
+  	},
+  	vuesaxlinearhomeIcon: {
+    		height: "5.04%",
+    		top: "93.59%",
+    		right: "43.93%",
+    		bottom: "1.37%",
+    		left: "44.53%"
+  	},
+  	vuesaxboldsetting2Icon: {
+    		top: 787,
+    		left: 324,
+    		position: "absolute"
+  	},
+  	vuesaxlinearheartIcon: {
+    		height: "5.21%",
+    		top: "93.6%",
+    		right: "64.62%",
+    		bottom: "1.18%",
+    		left: "23.85%"
+  	},
   	iphone16Pro36: {
+    		top: 0,
     		shadowColor: "rgba(0, 0, 0, 0.25)",
     		shadowOffset: {
       			width: 0,
@@ -602,12 +595,16 @@ const styles = StyleSheet.create({
     		shadowRadius: 4,
     		elevation: 4,
     		shadowOpacity: 1,
+    		backgroundColor: "#fff",
+    		overflow: "hidden",
+    		height: 844
+  	},
+  	iphone131434: {
+    		backgroundColor: "#ffc1c1",
     		flex: 1,
     		width: "100%",
-    		height: 874,
-    		overflow: "hidden",
-    		backgroundColor: "#fff"
+    		overflow: "hidden"
   	}
 });
 
-export default IPhone16Pro;
+export default IPhone1314;

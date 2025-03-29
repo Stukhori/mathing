@@ -72,7 +72,7 @@ const IPhone1314 = () => {
 <TouchableOpacity onPress={() => router.push("/courses")}>
   <Text style={styles.mathIntermediate}>Math Intermediate</Text>
 </TouchableOpacity>
-<TouchableOpacity onPress={() => router.push("/courses")}>
+<TouchableOpacity onPress={() => router.push("/Daychallenge")}>
 <Text style={styles.challengeOfThe}>{`Challenge of the day`}</Text>
 </TouchableOpacity>
 <TouchableOpacity onPress={() => router.push("/courses")}>
@@ -135,15 +135,10 @@ const IPhone1314 = () => {
   style={[styles.iphone16Pro45Child4, styles.iphone16Pro45Child4Layout]}
   onPress={() => router.push("/logicspage")}
 >
-  <Rectangle234 width={89} height={31} />
-  <Text style={[styles.start, styles.tryTypo]}>Start</Text>
 </TouchableOpacity>
-        <TouchableOpacity onPress={() => router.push("/Daychallenge")}>
-        <Text style={[styles.start, styles.tryTypo]}>Start</Text>
-        </TouchableOpacity>
         <TouchableOpacity 
   style={[styles.groupIcon, styles.iconLayout1]}
-  onPress={() => router.push("/courses")}
+  onPress={() => router.push("/Daychallenge")}
 >
   <Group/>
 </TouchableOpacity>
@@ -192,6 +187,13 @@ const IPhone1314 = () => {
       >
         <Vuesaxlinearprofile />
       </TouchableOpacity>
+      <TouchableOpacity 
+  style={[styles.startButtonContainer, styles.iphone16Pro45Child4Layout]}
+  onPress={() => router.push("/logicspage")}
+>
+  <Rectangle234 width={89} height={31} />
+  <Text style={styles.startButtonText}>Start</Text>
+</TouchableOpacity>
       </View>
     </View>
   );
@@ -596,6 +598,21 @@ const styles = StyleSheet.create({
     width: 59,
     borderRadius: 17,
     left: 32,
+  },
+  startButtonContainer: {
+    top: 696,
+    left: 32,
+    borderRadius: 17,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  startButtonText: {
+    position: 'absolute',
+    textAlign: "center",
+    color: "#000",
+    fontSize: 15,
+    fontFamily: "DoHyeon-Regular",
+    lineHeight: 38,
   },
   try: {
     left: 64,
