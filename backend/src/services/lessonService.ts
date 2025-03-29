@@ -3,8 +3,8 @@ import { OpenAI } from 'openai';
 import config from '../config/env';
 
 const { OPENAI_API } = config;
-const prisma = new PrismaClient();
 const client = new OpenAI({ apiKey: OPENAI_API });
+const prisma = new PrismaClient();
 
 // Updated to match new schema
 export const getLesson = async (lessonId: number) => {
@@ -60,7 +60,7 @@ export const getTip = async (questionId: number) => {
     Provide a brief tip to help solve this problem in 1-2 sentences.`;
 
   const response = await client.chat.completions.create({
-    model: 'gpt-4',
+    model: 'gpt-4o-mini',
     messages: [{
       role: 'system',
       content: 'You are a helpful math tutor. Provide a concise hint to help the student progress.'

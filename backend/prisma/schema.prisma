@@ -40,6 +40,7 @@ model TaskSubmission {
   submittedAt     DateTime @default(now())
   user            User     @relation(fields: [userId], references: [id])
   task            DailyTask @relation(fields: [taskId], references: [id])
+  aiFeedback String?
 }
 
 model Lesson {
