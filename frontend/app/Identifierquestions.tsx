@@ -6,78 +6,108 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
-import { useRouter } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import { useQuiz } from "../context/QuizContext";
+import axios from "axios";
 
-const Component = () => {
+interface Lesson {
+  id: number;
+  title: string;
+  questions: {
+    id: number;
+    text: string;
+    choices: {
+      id: number;
+      text: string;
+      isCorrect: boolean;
+    }[];
+  }[];
+}
+
+const QuizComponent = () => {
   const router = useRouter();
-  const { addAnswer, score, resetQuiz } = useQuiz();
-  const [lesson, setLesson] = React.useState(null);
+  const params = useLocalSearchParams();
+  const { addAnswer } = useQuiz();
+  const [lesson, setLesson] = React.useState<Lesson | null>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
   const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
-  const [selectedChoice, setSelectedChoice] = React.useState(null);
+  const [error, setError] = React.useState<string | null>(null);
+  const [selectedChoice, setSelectedChoice] = React.useState<number | null>(
+    null
+  );
   const [showCorrectAnswer, setShowCorrectAnswer] = React.useState(false);
-  const [buttonState, setButtonState] = React.useState("continue");
+  const [buttonState, setButtonState] = React.useState<
+    "continue" | "next" | "finish"
+  >("continue");
 
   React.useEffect(() => {
-    // Mock data loading - replace with your actual data source
-    setLoading(false);
-    setLesson({
-      id: 1,
-      title: "Basic Math Quiz",
-      questions: [
-        {
-          id: "1",
-          text: "What is 2 + 2?",
-          choices: [
-            { id: "1", text: "3", isCorrect: false },
-            { id: "2", text: "4", isCorrect: true },
-            { id: "3", text: "5", isCorrect: false },
-            { id: "4", text: "6", isCorrect: false },
-          ],
-        },
-        {
-          id: "2",
-          text: "What is 5 × 3?",
-          choices: [
-            { id: "5", text: "10", isCorrect: false },
-            { id: "6", text: "15", isCorrect: true },
-            { id: "7", text: "20", isCorrect: false },
-            { id: "8", text: "25", isCorrect: false },
-          ],
-        },
-        {
-          id: "3",
-          text: "What is 10 ÷ 2?",
-          choices: [
-            { id: "9", text: "2", isCorrect: false },
-            { id: "10", text: "5", isCorrect: true },
-            { id: "11", text: "8", isCorrect: false },
-            { id: "12", text: "10", isCorrect: false },
-          ],
-        },
-      ],
-    });
+    const fetchLesson = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          `http://localhost:4000/api/lessons/10`
+        );
+        // console.log("Lesson data:", response.data.lesson.questions.length);
+        if (response.data?.lesson?.questions?.length <= 0) {
+          throw new Error("Lesson has no questions");
+        }
+
+        setLesson(response.data?.lesson);
+      } catch (err) {
+        console.error("Failed to fetch lesson:", err);
+        setError(err.message || "Failed to load lesson");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLesson();
   }, []);
 
-  const handleChoiceSelect = (choiceId) => {
-    if (!showCorrectAnswer) {
+  const handleChoiceSelect = (choiceId: number) => {
+    if (!showCorrectAnswer && lesson?.questions?.[currentQuestionIndex]) {
       setSelectedChoice(choiceId);
     }
   };
 
-  const handleButtonPress = () => {
-    if (buttonState === "continue") {
+  const handleButtonPress = async () => {
+    if (!lesson || !lesson.questions) return;
+
+    // If we're showing the correct answer (after first button press)
+    if (showCorrectAnswer) {
+      if (currentQuestionIndex < lesson.questions.length - 1) {
+        // Move to next question
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        setSelectedChoice(null);
+        setShowCorrectAnswer(false);
+        setButtonState("continue");
+      } else {
+        // Quiz is finished
+        router.push("/quiz/review");
+      }
+      return;
+    }
+
+    // Original logic for submitting answer (first button press)
+    if (selectedChoice === null) return;
+
+    try {
       const currentQuestion = lesson.questions[currentQuestionIndex];
       const selectedChoiceObj = currentQuestion.choices.find(
         (choice) => choice.id === selectedChoice
       );
+
+      if (!selectedChoiceObj) return;
+
+      // Submit answer to backend
+      await axios.post(`http://localhost:4000/api/lessons/check-answer`, {
+        questionId: currentQuestion.id,
+        choiceId: selectedChoice,
+      });
+
       const correctChoice = currentQuestion.choices.find(
         (choice) => choice.isCorrect
       );
-
-      if (!selectedChoiceObj) return;
 
       const answer = {
         questionId: currentQuestion.id,
@@ -85,62 +115,64 @@ const Component = () => {
         selectedChoiceId: selectedChoice,
         selectedChoiceText: selectedChoiceObj.text,
         isCorrect: selectedChoiceObj.isCorrect,
-        correctChoiceId: correctChoice?.id,
-        correctChoiceText: correctChoice?.text,
+        correctChoiceId: correctChoice?.id || 0,
+        correctChoiceText: correctChoice?.text || "",
       };
 
-      console.log("Submitting answer:", answer);
       addAnswer(answer);
-
       setShowCorrectAnswer(true);
-      setButtonState(
-        currentQuestionIndex < lesson.questions.length - 1 ? "next" : "finish"
-      );
-    } else if (buttonState === "next") {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setSelectedChoice(null);
-      setShowCorrectAnswer(false);
-      setButtonState("continue");
-    } else {
-      router.push({
-        pathname: "/quiz/review",
-        params: {
-          totalQuestions: lesson.questions.length,
-          lessonTitle: lesson.title,
-        },
-      });
-      // resetQuiz(); // Optional: Only reset if you want to clear progress
+
+      // Determine next button state
+      if (currentQuestionIndex < lesson.questions.length - 1) {
+        setButtonState("next");
+      } else {
+        setButtonState("finish");
+      }
+    } catch (err) {
+      setError(err.response?.data?.error || err.message || "An error occurred");
     }
   };
 
-  // Loading and error states remain the same
-  if (loading)
+  if (loading) {
     return (
       <View style={[styles.container, styles.center]}>
         <ActivityIndicator size="large" color="#6337a1" />
+        <Text style={styles.loadingText}>Loading lesson...</Text>
       </View>
     );
+  }
 
-  if (error)
+  if (error) {
     return (
       <View style={[styles.container, styles.center]}>
-        <Text style={styles.errorText}>Error: {error}</Text>
+        <Text style={styles.errorText}>{error}</Text>
+        <TouchableOpacity
+          style={styles.retryButton}
+          onPress={() => window.location.reload()}
+        >
+          <Text style={styles.retryButtonText}>Try Again</Text>
+        </TouchableOpacity>
       </View>
     );
+  }
 
-  if (!lesson)
+  if (!lesson || lesson.questions?.length <= 0) {
     return (
       <View style={[styles.container, styles.center]}>
-        <Text style={styles.errorText}>No lesson data found</Text>
+        <Text style={styles.errorText}>
+          No questions available for this lesson
+        </Text>
       </View>
     );
+  }
 
-  if (currentQuestionIndex >= lesson.questions.length)
+  if (currentQuestionIndex >= lesson.questions.length) {
     return (
       <View style={[styles.container, styles.center]}>
         <Text style={styles.completionText}>Lesson Completed!</Text>
       </View>
     );
+  }
 
   const currentQuestion = lesson.questions[currentQuestionIndex];
 
@@ -398,4 +430,4 @@ const styles = StyleSheet.create({
   // },
 });
 
-export default Component;
+export default QuizComponent;
