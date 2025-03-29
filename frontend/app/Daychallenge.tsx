@@ -8,15 +8,40 @@ import {
   TextInput,
 } from "react-native";
 import { useRouter } from "expo-router";
+import axios from "axios";
 
 const IPhone1314 = () => {
   const dailyQuestion = `Agzam wants to go on a vacation to Vietnam, the trip costs $1,200. She plans to save money every month for a year. In the first month, she saves $50, and each subsequent month, she increases her savings by $10. Will she have enough money by the end of the year to afford the trip?`;
   const router = useRouter();
   const [answerText, setAnswerText] = React.useState(""); // State to store the answer
+  const userId = 13;
+  const taskId = 1;
 
-  const handleSubmit = () => {
-    // Here you would typically send answerText to your API
+  const handleSubmit = async () => {
     console.log("Submitting answer:", answerText);
+
+    const data = {
+      submittedAnswer: answerText,
+      userId: userId,
+      taskId: taskId,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/tasks/submit-task",
+        data
+      );
+      const { result } = response.data;
+      if (result) {
+        console.log(result);
+      } else {
+        console.log("No result found");
+      }
+      // router.push("/home"); // Reset form fields after successful submission
+    } catch (error) {
+      console.log(error);
+      // setErrorMessage(error.response.data.error || "Something went wrong");
+    }
 
     // router.push("/home"); // Or wherever you want to navigate after submission
   };
