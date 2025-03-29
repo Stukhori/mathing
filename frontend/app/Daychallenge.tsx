@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Modal, ActivityIndicator } from "react-native";
-import ChatBot from "../src/components/Chatbot";
+import ChatBot, { ChatBotHandle } from "../src/components/Chatbot";
 import {
   StyleSheet,
   View,
@@ -21,7 +21,7 @@ const IPhone1314 = () => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const taskId = 1;
   const [modalVisible, setModalVisible] = React.useState(false);
-  const chatBotRef = React.useRef<{ toggleChat: () => void }>(null);
+  const chatBotRef = React.useRef<ChatBotHandle>(null);
   const [result, setResult] = React.useState<{
     isCorrect: boolean;
     feedback: string;
@@ -135,7 +135,10 @@ const IPhone1314 = () => {
         <Text style={styles.needHelp}>Need help?</Text>
       </TouchableOpacity>
 
-      <ChatBot ref={chatBotRef} />
+      <ChatBot
+        ref={chatBotRef}
+        taskId={taskId} // Pass the current task ID
+      />
 
       <Modal
         animationType="fade"
@@ -443,9 +446,9 @@ const styles = StyleSheet.create({
     left: 227,
     height: 42,
     width: 120,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#6637a1',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#6637a1",
     borderRadius: 20,
     shadowOpacity: 1,
     elevation: 4,

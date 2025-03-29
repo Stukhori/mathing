@@ -6,49 +6,124 @@ import {
   TouchableOpacity,
   StyleSheet,
   Animated,
+  ActivityIndicator,
 } from "react-native";
+import api from "../api/client"; // Your configured axios instance
 
 type Message = {
   text: string;
   isBot: boolean;
 };
 
-type ChatBotHandle = {
+type ChatBotProps = {
+  taskId: number; // Explicitly define the expected prop
+};
+
+export type ChatBotHandle = {
   toggleChat: () => void;
 };
 
-const ChatBot = forwardRef((props, ref) => {
+const ChatBot = forwardRef<ChatBotHandle, ChatBotProps>(({ taskId }, ref) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [messages, setMessages] = React.useState<Message[]>([
-    {
-      text: "Hi! I'm your math helper. Ask me anything about the problem!",
-      isBot: true,
-    },
-  ]);
+  const [messages, setMessages] = React.useState<Message[]>([]);
   const [inputText, setInputText] = React.useState("");
+  const [sessionId, setSessionId] = React.useState<string | null>(null);
+  const [isLoading, setIsLoading] = React.useState(false);
   const slideAnim = React.useRef(new Animated.Value(300)).current;
 
+  // Initialize or reset chat when opening
   React.useEffect(() => {
-    Animated.timing(slideAnim, {
-      toValue: isOpen ? 0 : 300,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
+    if (isOpen) {
+      Animated.timing(slideAnim, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+
+      if (!sessionId) {
+        initializeChat();
+      }
+    } else {
+      Animated.timing(slideAnim, {
+        toValue: 300,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }
   }, [isOpen]);
 
-  const toggleChat = () => setIsOpen(!isOpen);
+  const initializeChat = async () => {
+    try {
+      setIsLoading(true);
+      const response = await api.post("/chat/sessions", { taskId });
+
+      if (response.data?.id) {
+        setSessionId(response.data.id);
+        const initialMessage =
+          response.data.initialMessage ||
+          "Hello! I'm here to help you with this math problem. What part are you struggling with?";
+
+        setMessages([{ text: initialMessage, isBot: true }]);
+      } else {
+        throw new Error("No session ID received");
+      }
+    } catch (error) {
+      console.error("Chat initialization failed:", error);
+
+      let errorMessage = "Sorry, I couldn't connect to the chat service.";
+      if (error.response?.status === 401) {
+        errorMessage = "Please sign in to use the chat feature.";
+      } else if (error.response?.data?.message) {
+        errorMessage = error.response.data.message;
+      }
+
+      setMessages([{ text: errorMessage, isBot: true }]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const toggleChat = () => {
+    setIsOpen((prev) => !prev);
+  };
 
   useImperativeHandle(ref, () => ({
-    toggleChat: () => {
-      setIsOpen(prev => !prev);
-    }
+    toggleChat,
   }));
 
-  const sendMessage = () => {
-    if (inputText.trim()) {
-      setMessages([...messages, { text: inputText, isBot: false }]);
-      setInputText("");
-      // Here you'll later add the API call to your chatbot
+  const sendMessage = async () => {
+    if (!inputText.trim() || !sessionId || isLoading) return;
+
+    const userMessage = { text: inputText, isBot: false };
+    setMessages((prev) => [...prev, userMessage]);
+    setInputText("");
+
+    try {
+      setIsLoading(true);
+      const response = await api.post("/chat/messages", {
+        sessionId,
+        message: inputText,
+      });
+
+      if (response.data?.response) {
+        setMessages((prev) => [
+          ...prev,
+          { text: response.data.response, isBot: true },
+        ]);
+      }
+    } catch (error) {
+      console.error("Message sending failed:", error);
+
+      let errorMessage = "Sorry, I couldn't process your message.";
+      if (error.response?.status === 401) {
+        errorMessage = "Session expired. Please refresh the chat.";
+      } else if (error.response?.data?.message) {
+        errorMessage = error.response.data.message;
+      }
+
+      setMessages((prev) => [...prev, { text: errorMessage, isBot: true }]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -72,9 +147,21 @@ const ChatBot = forwardRef((props, ref) => {
               message.isBot ? styles.botMessage : styles.userMessage,
             ]}
           >
-            <Text style={styles.messageText}>{message.text}</Text>
+            <Text
+              style={[
+                styles.messageText,
+                message.isBot ? {} : { color: "#fff" },
+              ]}
+            >
+              {message.text}
+            </Text>
           </View>
         ))}
+        {isLoading && (
+          <View style={[styles.messageBubble, styles.botMessage]}>
+            <ActivityIndicator size="small" color="#6637a1" />
+          </View>
+        )}
       </View>
 
       <View style={styles.inputContainer}>
@@ -84,8 +171,13 @@ const ChatBot = forwardRef((props, ref) => {
           onChangeText={setInputText}
           placeholder="Ask me about the problem..."
           placeholderTextColor="#888"
+          editable={!isLoading && !!sessionId}
         />
-        <TouchableOpacity style={styles.sendButton} onPress={sendMessage}>
+        <TouchableOpacity
+          style={styles.sendButton}
+          onPress={sendMessage}
+          disabled={!inputText.trim() || isLoading || !sessionId}
+        >
           <Text style={styles.sendButtonText}>↑</Text>
         </TouchableOpacity>
       </View>
@@ -94,6 +186,13 @@ const ChatBot = forwardRef((props, ref) => {
 });
 
 const styles = StyleSheet.create({
+  loadingBubble: {
+    alignSelf: "flex-start",
+    padding: 12,
+    borderRadius: 12,
+    backgroundColor: "#f0f0f0",
+    marginBottom: 8,
+  },
   container: {
     position: "absolute",
     right: 0,
