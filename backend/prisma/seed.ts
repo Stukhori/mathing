@@ -1,224 +1,159 @@
 import prisma from '../src/prisma';
-async function main() {
 
+async function main() {
   await prisma.lesson.create({
     data: {
-      title: "Comprehensive Math Diagnostic Test",
-      description: "Assess math skills across all levels (Ages 6-18)",
-      difficulty: "BEGINNER",
-      order: 8,
+      title: 'Essential Addition',
+      description: 'Master addition fundamentals from basic facts to multi-digit problems',
+      difficulty: 'BEGINNER',
+      order: 1, // Changed to 1 since subtraction was 4
+      theory: {
+        create: [
+          {
+            title: 'Understanding Addition',
+            content: 'Addition is the process of combining numbers to find a total sum. It answers questions like "How many in total?" or "What is the combined amount?"',
+            order: 1,
+            examples: JSON.stringify({
+              'Basic Example': '3 apples + 2 apples = 5 apples',
+              'Number Line': 'Start at 5, move forward 4: 5 → 6 → 7 → 8 → 9'
+            }),
+          },
+          {
+            title: 'Carrying Over',
+            content: 'When adding larger numbers, sometimes you need to carry over to the next higher place value:',
+            order: 2,
+            examples: JSON.stringify({
+              'Example 1': '15 + 7 = 22 (Carry 1 to tens place)',
+              'Example 2': '386 + 497 = 883 (Multiple carry-over steps)'
+            }),
+          },
+          {
+            title: 'Problem Solving Strategies',
+            content: '1. Use counting objects for visualization\n2. Break numbers into tens and ones\n3. Use known facts to solve unknown problems\n4. Check using inverse operations (subtraction)',
+            order: 3,
+            mediaUrl: 'https://example.com/addition-strategies.png',
+            mediaType: 'image',
+          },
+        ],
+      },
       questions: {
         create: [
-          // Math Explorers (BEGINNER) - Questions 1-5
           {
-            text: "What is 27 + 14 - 9?",
+            text: '5 + 3 =',
             order: 1,
-            difficulty: "BEGINNER",
             choices: {
-              create: [
-                { text: "32", isCorrect: true },
-                { text: "29", isCorrect: false },
-                { text: "30", isCorrect: false },
-                { text: "31", isCorrect: false }
-              ]
-            }
+              create: [{ text: '8', isCorrect: true }],
+            },
           },
           {
-            text: "If you have 4 boxes with 6 apples each, how many apples total?",
+            text: '7 + 6 =',
             order: 2,
-            difficulty: "BEGINNER",
             choices: {
-              create: [
-                { text: "20", isCorrect: false },
-                { text: "24", isCorrect: true },
-                { text: "28", isCorrect: false },
-                { text: "30", isCorrect: false }
-              ]
-            }
+              create: [{ text: '13', isCorrect: true }],
+            },
           },
           {
-            text: "What is 36 ÷ 6?",
+            text: '12 + 15 =',
             order: 3,
-            difficulty: "BEGINNER",
             choices: {
-              create: [
-                { text: "4", isCorrect: false },
-                { text: "5", isCorrect: false },
-                { text: "6", isCorrect: true },
-                { text: "7", isCorrect: false }
-              ]
-            }
+              create: [{ text: '27', isCorrect: true }],
+            },
           },
           {
-            text: "Which fraction is largest?",
+            text: '30 + 40 =',
             order: 4,
-            difficulty: "BEGINNER",
             choices: {
-              create: [
-                { text: "1/2", isCorrect: false },
-                { text: "3/4", isCorrect: true },
-                { text: "2/3", isCorrect: false },
-                { text: "1/3", isCorrect: false }
-              ]
-            }
+              create: [{ text: '70', isCorrect: true }],
+            },
           },
           {
-            text: "How many sides does a pentagon have?",
+            text: '25 + 50 =',
             order: 5,
-            difficulty: "BEGINNER",
             choices: {
-              create: [
-                { text: "4", isCorrect: false },
-                { text: "5", isCorrect: true },
-                { text: "6", isCorrect: false },
-                { text: "7", isCorrect: false }
-              ]
-            }
+              create: [{ text: '75', isCorrect: true }],
+            },
           },
-
-          // Math Innovators (INTERMEDIATE) - Questions 6-10
           {
-            text: "Solve for x: 3x + 7 = 16",
+            text: 'A farmer has 14 chickens and buys 8 more. How many chickens does he have now?',
             order: 6,
-            difficulty: "INTERMEDIATE",
+            explanation: '14 + 8 = 22',
             choices: {
               create: [
-                { text: "2", isCorrect: false },
-                { text: "3", isCorrect: true },
-                { text: "4", isCorrect: false },
-                { text: "5", isCorrect: false }
-              ]
-            }
+                { text: '20', isCorrect: false },
+                { text: '22', isCorrect: true },
+                { text: '24', isCorrect: false },
+                { text: '26', isCorrect: false },
+              ],
+            },
           },
           {
-            text: "What is 25% of 160?",
+            text: '125 + 378 =',
             order: 7,
-            difficulty: "INTERMEDIATE",
             choices: {
               create: [
-                { text: "30", isCorrect: false },
-                { text: "40", isCorrect: true },
-                { text: "50", isCorrect: false },
-                { text: "60", isCorrect: false }
-              ]
-            }
+                { text: '503', isCorrect: true },
+                { text: '493', isCorrect: false },
+                { text: '513', isCorrect: false },
+                { text: '403', isCorrect: false },
+              ],
+            },
           },
           {
-            text: "If ratio of boys:girls is 5:3 with 40 students, how many girls?",
+            text: 'A bookstore sold 342 books on Monday and 459 on Tuesday. How many books were sold in total?',
             order: 8,
-            difficulty: "INTERMEDIATE",
+            explanation: '342 + 459 = 801',
             choices: {
               create: [
-                { text: "10", isCorrect: false },
-                { text: "15", isCorrect: true },
-                { text: "20", isCorrect: false },
-                { text: "25", isCorrect: false }
-              ]
-            }
+                { text: '791', isCorrect: false },
+                { text: '801', isCorrect: true },
+                { text: '811', isCorrect: false },
+                { text: '701', isCorrect: false },
+              ],
+            },
           },
           {
-            text: "What is 2⁵?",
+            text: '625 + 789 =',
             order: 9,
-            difficulty: "INTERMEDIATE",
             choices: {
-              create: [
-                { text: "10", isCorrect: false },
-                { text: "16", isCorrect: false },
-                { text: "25", isCorrect: false },
-                { text: "32", isCorrect: true }
-              ]
-            }
+              create: [{ text: '1414', isCorrect: true }],
+            },
           },
           {
-            text: "Triangle angles 50° and 60°, what is third angle?",
+            text: 'A school has 1234 students in primary and 876 in secondary. What is the total number of students?',
             order: 10,
-            difficulty: "INTERMEDIATE",
+            explanation: '1234 + 876 = 2110',
             choices: {
               create: [
-                { text: "60°", isCorrect: false },
-                { text: "70°", isCorrect: true },
-                { text: "80°", isCorrect: false },
-                { text: "90°", isCorrect: false }
-              ]
-            }
+                { text: '2010', isCorrect: false },
+                { text: '2110', isCorrect: true },
+                { text: '2210', isCorrect: false },
+                { text: '2000', isCorrect: false },
+              ],
+            },
           },
-
-          // Math Masters (ADVANCED) - Questions 11-15
           {
-            text: "Solve x² - 5x + 6 = 0",
+            text: 'What is 2508 + 3997?',
             order: 11,
-            difficulty: "ADVANCED",
             choices: {
               create: [
-                { text: "x = 2, x = 3", isCorrect: true },
-                { text: "x = 1, x = 6", isCorrect: false },
-                { text: "x = -2, x = -3", isCorrect: false },
-                { text: "x = 4, x = 5", isCorrect: false }
-              ]
-            }
+                { text: '6405', isCorrect: false },
+                { text: '6505', isCorrect: true },
+                { text: '6495', isCorrect: false },
+                { text: '6515', isCorrect: false },
+              ],
+            },
           },
-          {
-            text: "Solve log₂(32) = x",
-            order: 12,
-            difficulty: "ADVANCED",
-            choices: {
-              create: [
-                { text: "3", isCorrect: false },
-                { text: "4", isCorrect: false },
-                { text: "5", isCorrect: true },
-                { text: "6", isCorrect: false }
-              ]
-            }
-          },
-          {
-            text: "Probability of blue ball from 4 red, 3 blue, 5 green?",
-            order: 13,
-            difficulty: "ADVANCED",
-            choices: {
-              create: [
-                { text: "1/4", isCorrect: false },
-                { text: "1/3", isCorrect: false },
-                { text: "3/12", isCorrect: true },
-                { text: "3/10", isCorrect: false }
-              ]
-            }
-          },
-          {
-            text: "If sin θ = 0.5, what is θ in degrees?",
-            order: 14,
-            difficulty: "ADVANCED",
-            choices: {
-              create: [
-                { text: "15°", isCorrect: false },
-                { text: "30°", isCorrect: true },
-                { text: "45°", isCorrect: false },
-                { text: "60°", isCorrect: false }
-              ]
-            }
-          },
-          {
-            text: "Find d/dx (3x² + 5x - 7)",
-            order: 15,
-            difficulty: "ADVANCED",
-            choices: {
-              create: [
-                { text: "6x + 5", isCorrect: true },
-                { text: "3x + 5", isCorrect: false },
-                { text: "6x - 5", isCorrect: false },
-                { text: "5x² + 6", isCorrect: false }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  })
+        ],
+      },
+    },
+  });
 }
 
 main()
-  .catch(e => {
-    console.error(e)
-    process.exit(1)
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
   })
   .finally(async () => {
-    await prisma.$disconnect()
+    await prisma.$disconnect();
+  });
