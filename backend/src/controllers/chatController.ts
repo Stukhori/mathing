@@ -1,14 +1,30 @@
 import { Request, Response } from 'express';
 import * as chatService from '../services/chatService';
 
-export async function startChat(req: Request, res: Response) {
-  try {
-    const { taskId } = req.body;
-    const result = await chatService.startSession(req.userId, taskId);
-    res.json(result);
-  } catch (error) {
-    res.status(400).json({ error: 'Failed to start session' });
-  }
+import prisma from '../prisma';
+
+const SESSION_TTL_HOURS = 24;
+
+interface CreateSessionOptions {
+  taskId?: number;
+  lessonId?: number;
+}
+
+export async function createSession(
+  userId: number,
+  options: CreateSessionOptions
+) {
+  const expiresAt = new Date();
+  expiresAt.setHours(expiresAt.getHours() + SESSION_TTL_HOURS);
+
+  return await prisma.chatSession.create({
+    data: {
+      userId,
+      taskId: options.taskId ?? null,
+      lessonId: options.lessonId ?? null,
+      expiresAt,
+    },
+  });
 }
 
 export async function postChatMessage(req: Request, res: Response) {
