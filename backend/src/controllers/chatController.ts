@@ -1,25 +1,31 @@
 import { Request, Response } from 'express';
 import * as chatService from '../services/chatService';
+import { createSession } from '@/services/sessionService';
 
-export async function startChat(req: Request, res: Response) {
+export const startChat = async (req: Request, res: Response) => {
   try {
-    const { taskId } = req.body;
-    const result = await chatService.startSession(req.userId, taskId);
-    res.json(result);
-  } catch (error) {
-    res.status(400).json({ error: 'Failed to start session' });
-  }
-}
+    const { taskId, lessonId } = req.body;
+    const userId = req.user.id; // From auth middleware
 
-export async function postChatMessage(req: Request, res: Response) {
-  try {
-    const { sessionId, message } = req.body;
-    const response = await chatService.postMessage(sessionId, message);
-    res.json({ response });
+    if (!taskId && !lessonId) {
+      return res.status(400).json({
+        message: 'Either taskId or lessonId is required',
+      });
+    }
+
+    const session = await createSession(userId, { taskId, lessonId });
+
+    res.status(201).json({
+      sessionId: session.id,
+      taskId: session.taskId,
+      lessonId: session.lessonId,
+      expiresAt: session.expiresAt,
+    });
   } catch (error) {
-    res.status(400).json({ error: 'Message processing failed' });
+    console.error('Error starting chat:', error);
+    res.status(500).json({ message: 'Error starting chat session' });
   }
-}
+};
 
 export async function endChat(req: Request, res: Response) {
   try {

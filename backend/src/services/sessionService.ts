@@ -3,16 +3,20 @@ import prisma from '../prisma';
 
 const SESSION_TTL_HOURS = 24; // 24 hour expiration
 
-export async function createSession(userId: number, taskId: number) {
+export async function createSession(
+  userId: number,
+  options: { taskId?: number; lessonId?: number }
+) {
   const expiresAt = new Date();
   expiresAt.setHours(expiresAt.getHours() + SESSION_TTL_HOURS);
 
   return await prisma.chatSession.create({
     data: {
       userId,
-      taskId,
-      expiresAt
-    }
+      taskId: options.taskId,
+      lessonId: options.lessonId,
+      expiresAt,
+    },
   });
 }
 
@@ -21,9 +25,9 @@ export async function cleanupExpiredSessions() {
   await prisma.chatSession.deleteMany({
     where: {
       expiresAt: {
-        lte: now
-      }
-    }
+        lte: now,
+      },
+    },
   });
 }
 
