@@ -13,71 +13,73 @@ import Vector from "../assets/vector.svg";
 import Heart from "../assets/heart.svg";
 import { useRouter } from "expo-router";
 
-const IPhone1314 = () => { 
+const IPhone1314 = () => {
   const router = useRouter();
-  
+  const id = 13;
+
   return (
-<View style={styles.iphone131417}>
+    <View style={styles.iphone131417}>
       <View style={styles.iphone16Pro45}>
         <Text style={styles.welcomeAgzam}>Welcome, Agzam!</Text>
 
         {/* White Rectangle - Math Intermediate Section */}
-        <TouchableOpacity 
+        <TouchableOpacity
           style={[styles.iphone16Pro45Child, styles.iphone16ShadowBox]}
-          onPress={() => router.push("/courses")}
+          onPress={() => router.push(`/quiz/${id}`)}
         />
 
         {/* Purple Rectangle - Challenge of the Day */}
-        <TouchableOpacity 
+        <TouchableOpacity
           style={[styles.iphone16Pro45Item, styles.rectangleViewPosition]}
           onPress={() => router.push("/Daychallenge")}
         />
 
         {/* Continue Button */}
-        <TouchableOpacity 
+        <TouchableOpacity
           style={[styles.rectangleIcon, styles.rectangleIconLayout]}
-          onPress={() => router.push("/courses")}
+          onPress={() => router.push(`/quiz/${id}`)}
         >
           <Rectangle23 width={106} height={31} />
           <Text style={styles.continue}>Continue</Text>
         </TouchableOpacity>
 
         {/* Start Button */}
-        <TouchableOpacity 
+        <TouchableOpacity
           style={[styles.iphone16Pro45Child4, styles.iphone16Pro45Child4Layout]}
           onPress={() => router.push("/logicspage")}
         >
           <Rectangle234 width={89} height={31} />
           <Text style={[styles.start, styles.tryTypo]}>Start</Text>
         </TouchableOpacity>
-        
+
         {/* Try Button */}
-        <TouchableOpacity 
+        <TouchableOpacity
           style={[styles.iphone16Pro45Child6, styles.tryPosition]}
           onPress={() => router.push("/Daychallenge")}
-        ><TouchableOpacity onPress={() => router.push("/Daychallenge")}>
-        <Text style={[styles.try, styles.tryPosition]}>Try!</Text>
+        >
+          <TouchableOpacity onPress={() => router.push("/Daychallenge")}>
+            <Text style={[styles.try, styles.tryPosition]}>Try!</Text>
+          </TouchableOpacity>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.group1Container}
+          onPress={() => router.push(`/quiz/${id}`)}
+        >
+          <Image
+            source={require("../src/img/Group1.png")}
+            style={styles.group1Image}
+            resizeMode="contain"
+          />
         </TouchableOpacity>
-        <TouchableOpacity 
-  style={styles.group1Container} 
-  onPress={() => router.push("/courses")}
->
-  <Image 
-    source={require("../src/img/Group1.png")} 
-    style={styles.group1Image}
-    resizeMode="contain"
-  />
-</TouchableOpacity>
-<TouchableOpacity onPress={() => router.push("/courses")}>
-  <Text style={styles.mathIntermediate}>Math Intermediate</Text>
-</TouchableOpacity>
-<TouchableOpacity onPress={() => router.push("/Daychallenge")}>
-<Text style={styles.challengeOfThe}>{`Challenge of the day`}</Text>
-</TouchableOpacity>
-<TouchableOpacity onPress={() => router.push("/courses")}>
-<Text style={styles.text}>59%</Text>
-</TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push(`/quiz/${id}`)}>
+          <Text style={styles.mathIntermediate}>Math Intermediate</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/Daychallenge")}>
+          <Text style={styles.challengeOfThe}>{`Challenge of the day`}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/courses")}>
+          <Text style={styles.text}>59%</Text>
+        </TouchableOpacity>
         <View style={[styles.rectangleView, styles.rectangleViewLayout]} />
         <Fluentemojiflatfire
           style={[
@@ -89,7 +91,9 @@ const IPhone1314 = () => {
         />
         <View style={styles.iphone16Pro45Child1} />
         <Text style={styles.streak14Days}>Streak: 14 days</Text>
-        <Text style={styles.keepGoing}>Keep going! Solve today's challenge</Text>
+        <Text style={styles.keepGoing}>
+          Keep going! Solve today's challenge
+        </Text>
         <Text style={[styles.rewardsAvailable, styles.rewardsAvailableTypo]}>
           Rewards available
         </Text>
@@ -131,69 +135,68 @@ const IPhone1314 = () => {
           Brainstorm
         </Text>
         <Text style={[styles.minutes, styles.minutesLayout]}>5 minutes</Text>
-        <TouchableOpacity 
-  style={[styles.iphone16Pro45Child4, styles.iphone16Pro45Child4Layout]}
-  onPress={() => router.push("/logicspage")}
->
-</TouchableOpacity>
-        <TouchableOpacity 
-  style={[styles.groupIcon, styles.iconLayout1]}
-  onPress={() => router.push("/Daychallenge")}
->
-  <Group/>
-</TouchableOpacity>
-<TouchableOpacity 
-  style={[styles.tryButtonContainer, styles.tryPosition]}
-  onPress={() => router.push("/Daychallenge")}
->
-  <View style={styles.iphone16Pro45Child6} />
-  <Text style={styles.tryText}>Try!</Text>
-</TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.iphone16Pro45Child4, styles.iphone16Pro45Child4Layout]}
+          onPress={() => router.push("/logicspage")}
+        ></TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.groupIcon, styles.iconLayout1]}
+          onPress={() => router.push("/Daychallenge")}
+        >
+          <Group />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.tryButtonContainer, styles.tryPosition]}
+          onPress={() => router.push("/Daychallenge")}
+        >
+          <View style={styles.iphone16Pro45Child6} />
+          <Text style={styles.tryText}>Try!</Text>
+        </TouchableOpacity>
         <Text
           style={[styles.testYourLogicRiddles, styles.rewardsAvailableTypo]}
         >{`Test your logic!Riddles, puzzles, paradoxes and more`}</Text>
         <View style={styles.iphone16Pro45Child7} />
-        <TouchableOpacity 
-        style={styles.heartIcon} 
-        onPress={() => router.push("/learnwithfriends")}
-      >
-        <Heart width={47} height={48}/>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.heartIcon}
+          onPress={() => router.push("/learnwithfriends")}
+        >
+          <Heart width={47} height={48} />
+        </TouchableOpacity>
 
-      <TouchableOpacity 
-        style={styles.vuesaxboldhomeIcon} 
-        onPress={() => {}}
-      >
-        <Vuesaxboldhome width={47} height={48} />
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.vuesaxboldhomeIcon} onPress={() => {}}>
+          <Vuesaxboldhome width={47} height={48} />
+        </TouchableOpacity>
 
-      <TouchableOpacity 
-        style={styles.lisearchIcon} 
-        onPress={() => router.push("/courses")}
-      >
-        <Lisearch width={45} height={41} />
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.lisearchIcon}
+          onPress={() => router.push("/courses")}
+        >
+          <Lisearch width={45} height={41} />
+        </TouchableOpacity>
 
-      <TouchableOpacity 
-        style={[styles.vuesaxlinearsetting2Icon, styles.iconLayout]} 
-        onPress={() => router.push("/settingspage")}
-      >
-        <Vuesaxlinearsetting2 />
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.vuesaxlinearsetting2Icon, styles.iconLayout]}
+          onPress={() => router.push("/settingspage")}
+        >
+          <Vuesaxlinearsetting2 />
+        </TouchableOpacity>
 
-      <TouchableOpacity 
-        style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]} 
-        onPress={() => router.push("/profile")}
-      >
-        <Vuesaxlinearprofile />
-      </TouchableOpacity>
-      <TouchableOpacity 
-  style={[styles.startButtonContainer, styles.iphone16Pro45Child4Layout]}
-  onPress={() => router.push("/logicspage")}
->
-  <Rectangle234 width={89} height={31} />
-  <Text style={styles.startButtonText}>Start</Text>
-</TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.vuesaxlinearprofileIcon, styles.iconLayout]}
+          onPress={() => router.push("/profile")}
+        >
+          <Vuesaxlinearprofile />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.startButtonContainer,
+            styles.iphone16Pro45Child4Layout,
+          ]}
+          onPress={() => router.push("/logicspage")}
+        >
+          <Rectangle234 width={89} height={31} />
+          <Text style={styles.startButtonText}>Start</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -603,11 +606,11 @@ const styles = StyleSheet.create({
     top: 696,
     left: 32,
     borderRadius: 17,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   startButtonText: {
-    position: 'absolute',
+    position: "absolute",
     textAlign: "center",
     color: "#000",
     fontSize: 15,
@@ -650,35 +653,35 @@ const styles = StyleSheet.create({
     maxWidth: "100%",
     position: "absolute",
     overflow: "hidden",
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   vuesaxboldhomeIcon: {
     top: 786,
     left: 172,
     position: "absolute",
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   lisearchIcon: {
     top: 790,
     left: 20,
     position: "absolute",
     overflow: "hidden",
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   vuesaxlinearprofileIcon: {
     right: "23.48%",
     left: "65.01%",
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   vuesaxlinearsetting2Icon: {
     right: "5.37%",
     left: "83.12%",
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   vectorIcon: {
     height: "0.71%",
@@ -713,7 +716,7 @@ const styles = StyleSheet.create({
     height: 844,
   },
   group1Container: {
-    position: 'absolute',
+    position: "absolute",
     top: 112,
     left: 270,
     zIndex: 1,
@@ -728,7 +731,7 @@ const styles = StyleSheet.create({
     width: 89,
   },
   tryText: {
-    position: 'absolute',
+    position: "absolute",
     top: -5,
     left: 32,
     textAlign: "center",

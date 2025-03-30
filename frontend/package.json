@@ -10,9 +10,9 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^2.1.2",
+    "@react-native-async-storage/async-storage": "1.23.1",
     "axios": "^1.8.4",
-    "expo": "~52.0.38",
+    "expo": "~52.0.41",
     "expo-font": "~13.0.4",
     "expo-router": "^4.0.19",
     "expo-splash-screen": "~0.29.22",
@@ -22,7 +22,7 @@
     "react-native": "0.76.7",
     "react-native-async-storage": "^0.0.1",
     "react-native-push-notification": "^8.1.1",
-    "react-native-svg": "^15.11.2",
+    "react-native-svg": "15.8.0",
     "react-native-web": "~0.19.13"
   },
   "devDependencies": {
