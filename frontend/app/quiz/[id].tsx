@@ -5,10 +5,13 @@ import {
   Text,
   ActivityIndicator,
   TouchableOpacity,
+  Modal,
+  Image,
 } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useQuiz } from "../../context/QuizContext";
 import api from "../../src/api/client";
+import ChatBot, { ChatBotHandle } from "../../src/components/Chatbot";
 
 interface Lesson {
   id: number;
@@ -40,6 +43,17 @@ const QuizComponent = () => {
     "continue" | "next" | "finish"
   >("continue");
   const [isReset, setIsReset] = React.useState(false);
+
+  const chatBotRef = React.useRef<ChatBotHandle>(null);
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [result, setResult] = React.useState<{
+    isCorrect: boolean;
+    feedback: string;
+  } | null>(null);
+
+  const handleHelpPress = () => {
+    chatBotRef.current?.toggleChat();
+  };
 
   React.useEffect(() => {
     if (!isReset) {
@@ -104,8 +118,10 @@ const QuizComponent = () => {
 
       if (!selectedChoiceObj) return;
 
+      setModalVisible(true);
+
       // Submit answer to backend
-      await api.post(`/lessons/check-answer`, {
+      const response = await api.post(`/lessons/check-answer`, {
         questionId: currentQuestion.id,
         choiceId: selectedChoice,
       });
@@ -127,6 +143,15 @@ const QuizComponent = () => {
       addAnswer(answer);
       setShowCorrectAnswer(true);
 
+      setResult({
+        isCorrect: selectedChoiceObj.isCorrect,
+        feedback:
+          response.data?.feedback ||
+          (selectedChoiceObj.isCorrect
+            ? "Correct answer!"
+            : "Incorrect, try again!"),
+      });
+
       // Determine next button state
       if (currentQuestionIndex < lesson.questions.length - 1) {
         setButtonState("next");
@@ -135,6 +160,12 @@ const QuizComponent = () => {
       }
     } catch (err) {
       setError(err.response?.data?.error || err.message || "An error occurred");
+      setResult({
+        isCorrect: false,
+        feedback: "Error submitting answer. Please try again.",
+      });
+    } finally {
+      setModalVisible(false);
     }
   };
 
@@ -183,8 +214,7 @@ const QuizComponent = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.background}>
-        <View style={styles.header} />
+      <View style={styles.header}>
         <Text style={styles.pageNumber}>
           {currentQuestionIndex + 1}/{lesson.questions.length}
         </Text>
@@ -192,6 +222,7 @@ const QuizComponent = () => {
 
       <View style={styles.content}>
         <Text style={styles.questionText}>{currentQuestion.text}</Text>
+
         {currentQuestion.choices.map((choice, index) => {
           const isSelected = selectedChoice === choice.id;
           const isCorrect = choice.isCorrect;
@@ -199,29 +230,27 @@ const QuizComponent = () => {
           const showAsIncorrect = showCorrectAnswer && isSelected && !isCorrect;
 
           return (
-            <React.Fragment key={choice.id}>
-              <TouchableOpacity
-                style={[
-                  styles.optionBox,
-                  styles[`optionBox${index}`],
-                  showAsCorrect && styles.correctChoice,
-                  showAsIncorrect && styles.incorrectChoice,
-                  isSelected && !showCorrectAnswer && styles.selectedChoice,
-                ]}
-                onPress={() => handleChoiceSelect(choice.id)}
-                disabled={showCorrectAnswer}
-              />
+            <TouchableOpacity
+              key={choice.id}
+              style={[
+                styles.optionBox,
+                showAsCorrect && styles.correctChoice,
+                showAsIncorrect && styles.incorrectChoice,
+                isSelected && !showCorrectAnswer && styles.selectedChoice,
+              ]}
+              onPress={() => handleChoiceSelect(choice.id)}
+              disabled={showCorrectAnswer}
+            >
               <Text
                 style={[
                   styles.optionText,
-                  styles[`optionText${index}`],
                   showAsCorrect && styles.correctChoiceText,
                   showAsIncorrect && styles.incorrectChoiceText,
                 ]}
               >
                 {String.fromCharCode(65 + index)}. {choice.text}
               </Text>
-            </React.Fragment>
+            </TouchableOpacity>
           );
         })}
 
@@ -244,35 +273,116 @@ const QuizComponent = () => {
           </Text>
         </TouchableOpacity>
       </View>
+
+      {/* Help Button in bottom right corner */}
+      <TouchableOpacity onPress={handleHelpPress} style={styles.helpButton}>
+        <Image
+          style={styles.robotImage}
+          source={require("../../src/img/robot.png")}
+        />
+        <Text style={styles.helpText}>Need help?</Text>
+      </TouchableOpacity>
+
+      <ChatBot ref={chatBotRef} taskId={currentQuestion.id} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  completionText: {
-    fontSize: 24,
-    color: "#6337a1",
-    fontWeight: "bold",
+  container: {
+    flex: 1,
+    backgroundColor: "#fdfcff",
   },
-  // New styles for answer states
+  header: {
+    height: 100,
+    backgroundColor: "#6337a1",
+    justifyContent: "center",
+    alignItems: "flex-end",
+    paddingRight: 20,
+  },
+  pageNumber: {
+    fontSize: 20,
+    color: "#fff",
+    fontFamily: "DoHyeon-Regular",
+  },
+  content: {
+    flex: 1,
+    padding: 20,
+    marginTop: 20,
+  },
+  questionText: {
+    fontSize: 22,
+    color: "#fff",
+    backgroundColor: "#6337a1",
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 30,
+    textAlign: "center",
+    fontFamily: "DoHyeon-Regular",
+  },
+  optionBox: {
+    borderWidth: 1,
+    borderColor: "#d6bdf4",
+    backgroundColor: "#fff",
+    borderRadius: 15,
+    padding: 15,
+    marginBottom: 15,
+  },
+  optionText: {
+    fontSize: 18,
+    color: "#000",
+  },
+  continueButton: {
+    backgroundColor: "#ffd980",
+    padding: 15,
+    borderRadius: 15,
+    alignItems: "center",
+    marginTop: 20,
+  },
+  continueText: {
+    fontSize: 18,
+    color: "#000",
+    fontFamily: "DoHyeon-Regular",
+  },
+  helpButton: {
+    position: "absolute",
+    bottom: 30,
+    right: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#f0e6ff",
+    padding: 10,
+    borderRadius: 20,
+    zIndex: 0,
+  },
+  robotImage: {
+    width: 24,
+    height: 24,
+    marginRight: 5,
+  },
+  helpText: {
+    color: "#6337a1",
+    fontSize: 14,
+  },
+  // Keep all your existing answer state styles
   correctChoice: {
-    backgroundColor: "#d4edda", // Light green
-    borderColor: "#28a745", // Green
+    backgroundColor: "#d4edda",
+    borderColor: "#28a745",
   },
   correctChoiceText: {
-    color: "#28a745", // Green
+    color: "#28a745",
     fontWeight: "bold",
   },
   incorrectChoice: {
-    backgroundColor: "#f8d7da", // Light red
-    borderColor: "#dc3545", // Red
+    backgroundColor: "#f8d7da",
+    borderColor: "#dc3545",
   },
   incorrectChoiceText: {
-    color: "#dc3545", // Red
+    color: "#dc3545",
   },
   selectedChoice: {
-    backgroundColor: "#e2e3e5", // Light gray
-    borderColor: "#d6d8db", // Gray
+    backgroundColor: "#e2e3e5",
+    borderColor: "#d6d8db",
   },
   disabledButton: {
     opacity: 0.5,
@@ -283,156 +393,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#fdfcff",
   },
-
-  // Error text style
   errorText: {
     fontSize: 18,
-    color: "#ff3b30", // iOS-like red error color
+    color: "#ff3b30",
     fontFamily: "Roboto-Bold",
     textAlign: "center",
     paddingHorizontal: 20,
     lineHeight: 24,
   },
-
-  // Question text style
-  questionText: {
-    position: "absolute",
-    top: "10%",
-    left: "10%",
-    right: "10%",
-    textAlign: "center",
-    fontSize: 22,
-    color: "#000",
-    fontFamily: "DoHyeon-Regular",
-    lineHeight: 28,
-    padding: 10,
-    backgroundColor: "rgba(255, 255, 255, 0.7)",
-    borderRadius: 10,
+  completionText: {
+    fontSize: 24,
+    color: "#6337a1",
+    fontWeight: "bold",
   },
-  container: {
-    flex: 1,
-    backgroundColor: "#fdfcff",
+  loadingText: {
+    marginTop: 16,
+    fontSize: 16,
+    color: "#6337a1",
   },
-  background: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  header: {
-    position: "absolute",
-    top: -21,
-    left: 0,
-    backgroundColor: "#6337a1",
-    width: 390,
-    height: 350,
-  },
-  pageNumber: {
-    position: "absolute",
-    top: 33,
-    right: 76,
-    fontSize: 30,
-    color: "#fff",
-    textAlign: "center",
-    fontFamily: "DoHyeon-Regular",
-    lineHeight: 38,
-  },
-  content: {
-    flex: 1,
-  },
-  rectangleIcon: {
-    position: "absolute",
-    height: "20.62%",
-    width: "85.64%",
-    top: "11.49%",
-    right: "7.18%",
-    left: "0.18%",
-    borderRadius: 10,
-    maxHeight: "100%",
-    maxWidth: "100%",
-    overflow: "hidden",
-  },
-  optionBox: {
-    position: "absolute",
-    borderWidth: 1,
-    borderStyle: "solid",
-    backgroundColor: "#fff",
-    left: "11.28%",
-    right: "11.28%",
-    width: "77.44%",
-    height: "5.69%",
-    borderRadius: 15,
-  },
-  optionBox0: { top: "42.3%", borderColor: "#d6bdf4" },
-  optionBox1: { top: "50.95%", borderColor: "#d1b1ff" },
-  optionBox2: { top: "59.83%", borderColor: "#d6bdf4" },
-  optionBox3: { top: "68.6%", borderColor: "#d6bdf4" },
-  optionText: {
-    position: "absolute",
-    left: "15.38%",
-    textAlign: "center",
-    color: "#000",
-    lineHeight: 38,
-    fontSize: 22,
-    fontWeight: "400",
-  },
-  optionText0: { top: "42.89%", fontFamily: "Roboto-Bold" },
-  optionText1: { top: "51.54%", fontFamily: "DoHyeon-Regular" },
-  optionText2: { top: "60.31%", fontFamily: "DoHyeon-Regular" },
-  optionText3: { top: "69.08%", fontFamily: "Roboto-Bold" },
-  ellipseIcon: {
-    position: "absolute",
-    maxHeight: "100%",
-    maxWidth: "100%",
-    overflow: "hidden",
-    width: "7.95%",
-    height: "3.67%",
-    right: "15.13%",
-    left: "76.92%",
-  },
-  continueButton: {
-    position: "absolute",
-    top: 678,
-    left: 99,
-    backgroundColor: "#ffd980",
-    width: 193,
-    height: 41,
-    borderRadius: 15,
-    shadowColor: "rgba(0, 0, 0, 0)",
-    shadowOffset: { width: 0, height: 133 },
-    shadowRadius: 37,
-    elevation: 37,
-    shadowOpacity: 1,
-  },
-  continueText: {
-    position: "absolute",
-    top: 2,
-    left: 61,
-    fontSize: 20,
-    color: "#000",
-    textAlign: "center",
-    fontFamily: "DoHyeon-Regular",
-    lineHeight: 38,
-  },
-  // continueButton: {
-  //   position: "absolute",
-  //   top: 678,
-  //   left: 99,
-  //   backgroundColor: "#ffd980",
-  //   width: 193,
-  //   height: 41,
-  //   borderRadius: 15,
-  //   shadowColor: "rgba(0, 0, 0, 0)",
-  //   shadowOffset: { width: 0, height: 133 },
-  //   shadowRadius: 37,
-  //   elevation: 37,
-  //   shadowOpacity: 1,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  // },
-  // continueText: {
-  //   fontSize: 20,
-  //   color: "#000",
-  //   textAlign: "center",
-  //   fontFamily: "DoHyeon-Regular",
-  // },
 });
-
 export default QuizComponent;

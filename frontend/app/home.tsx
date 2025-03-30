@@ -15,7 +15,7 @@ import { useRouter } from "expo-router";
 
 const IPhone1314 = () => {
   const router = useRouter();
-  const id = 11;
+  const id = 13;
 
   return (
     <View style={styles.iphone131417}>
