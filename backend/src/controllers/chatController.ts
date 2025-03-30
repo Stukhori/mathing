@@ -5,7 +5,7 @@ import { createSession } from '@/services/sessionService';
 export const startChat = async (req: Request, res: Response) => {
   try {
     const { taskId, lessonId } = req.body;
-    const userId = req.user.id; // From auth middleware
+    const userId = req.userId; // From auth middleware
 
     if (!taskId && !lessonId) {
       return res.status(400).json({

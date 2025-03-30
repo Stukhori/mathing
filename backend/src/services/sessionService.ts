@@ -13,8 +13,8 @@ export async function createSession(
   return await prisma.chatSession.create({
     data: {
       userId,
-      taskId: options.taskId,
-      lessonId: options.lessonId,
+      ...(options.taskId && { taskId: options.taskId }),
+      ...(options.lessonId && { lessonId: options.lessonId }),
       expiresAt,
     },
   });
