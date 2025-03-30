@@ -687,8 +687,6 @@ const styles = StyleSheet.create({
     width: "100%",
     overflow: "hidden",
   },
-<<<<<<< HEAD:frontend/app/courses.tsx
-=======
   	shapesFiguresAnglesLayout: {
     		left: 213,
     		height: 37,
@@ -1118,7 +1116,6 @@ const styles = StyleSheet.create({
     		width: "100%",
     		overflow: "hidden"
   	}
->>>>>>> 11dc625e6a3ff07e137117cbc1f1ea903ec24d47:frontend/app/course.tsx
 });
 
 export default IPhone1314;

@@ -133,7 +133,6 @@ const styles = StyleSheet.create({
   },
   passwordTypo: {
     color: "#5e5555",
-    textTransform: "uppercase",
     lineHeight: 18,
     letterSpacing: 1,
     top: 438,
