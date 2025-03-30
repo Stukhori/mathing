@@ -2,31 +2,29 @@ import { Request, Response } from 'express';
 import * as chatService from '../services/chatService';
 import { createSession } from '@/services/sessionService';
 
-export const startChat = async (req: Request, res: Response) => {
+export const startChat = async (req: Request, res: Response): Promise<void> => {
   try {
     const { taskId, lessonId } = req.body;
-    const userId = req.userId; // From auth middleware
+    const userId = req.userId;
 
     if (!taskId && !lessonId) {
-      return res.status(400).json({
-        message: 'Either taskId or lessonId is required',
-      });
+      res
+        .status(400)
+        .json({ message: 'Either taskId or lessonId is required' });
+      return;
     }
 
     const session = await createSession(userId, { taskId, lessonId });
 
     res.status(201).json({
       sessionId: session.id,
-      taskId: session.taskId,
-      lessonId: session.lessonId,
       expiresAt: session.expiresAt,
     });
   } catch (error) {
-    console.error('Error starting chat:', error);
-    res.status(500).json({ message: 'Error starting chat session' });
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
-
 export async function endChat(req: Request, res: Response) {
   try {
     const { sessionId } = req.body;
