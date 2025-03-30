@@ -1,30 +1,42 @@
 import { Request, Response } from 'express';
 import * as chatService from '../services/chatService';
-import { createSession } from '@/services/sessionService';
 
-export const startChat = async (req: Request, res: Response): Promise<void> => {
+import prisma from '../prisma';
+
+const SESSION_TTL_HOURS = 24;
+
+interface CreateSessionOptions {
+  taskId?: number;
+  lessonId?: number;
+}
+
+export async function createSession(
+  userId: number,
+  options: CreateSessionOptions
+) {
+  const expiresAt = new Date();
+  expiresAt.setHours(expiresAt.getHours() + SESSION_TTL_HOURS);
+
+  return await prisma.chatSession.create({
+    data: {
+      userId,
+      taskId: options.taskId ?? null,
+      lessonId: options.lessonId ?? null,
+      expiresAt,
+    },
+  });
+}
+
+export async function postChatMessage(req: Request, res: Response) {
   try {
-    const { taskId, lessonId } = req.body;
-    const userId = req.userId;
-
-    if (!taskId && !lessonId) {
-      res
-        .status(400)
-        .json({ message: 'Either taskId or lessonId is required' });
-      return;
-    }
-
-    const session = await createSession(userId, { taskId, lessonId });
-
-    res.status(201).json({
-      sessionId: session.id,
-      expiresAt: session.expiresAt,
-    });
+    const { sessionId, message } = req.body;
+    const response = await chatService.postMessage(sessionId, message);
+    res.json({ response });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(400).json({ error: 'Message processing failed' });
   }
-};
+}
+
 export async function endChat(req: Request, res: Response) {
   try {
     const { sessionId } = req.body;
